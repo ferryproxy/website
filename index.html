@@ -104,6 +104,11 @@ Github
 <ul>
 <li><a href=#ferry-proxy>Ferry Proxy</a>
 <ul>
+<li><a href=#public-to-public>Public to Public</a></li>
+<li><a href=#public-to-private>Public to Private</a></li>
+<li><a href=#private-to-public>Private to Public</a></li>
+<li><a href=#private-to-private>Private to Private</a></li>
+<li><a href=#example>Example</a></li>
 <li><a href=#how-to-use-ferry>How to use ferry</a></li>
 </ul>
 </li>
@@ -118,12 +123,33 @@ Ferry Proxy
 <p>Ferry is a Kubernetes multi-cluster communication component that eliminates communication differences between clusters as if they were within a cluster, regardless of the network environment those clusters are in.</p>
 <p>The main idea of Ferry is to map the Service of one cluster to another cluster, and the application of the other cluster only needs to access the Service normally.</p>
 <p>The Tunnel component in the Ferry project is mainly used to open up communication between different clusters, and has no requirements for the network environment and network segment currently used by the cluster.</p>
-<p>
-<img src=/images/architecture.png alt=Architecture></p>
+<h2 id=public-to-public>
+Public to Public
+<a class=anchor href=#public-to-public>#</a>
+</h2>
+<img src=/images/cloud-to-cloud.png width=600>
+<h2 id=public-to-private>
+Public to Private
+<a class=anchor href=#public-to-private>#</a>
+</h2>
+<img src=/images/cloud-to-edge.png width=600>
+<h2 id=private-to-public>
+Private to Public
+<a class=anchor href=#private-to-public>#</a>
+</h2>
+<img src=/images/edge-to-cloud.png width=600>
+<h2 id=private-to-private>
+Private to Private
+<a class=anchor href=#private-to-private>#</a>
+</h2>
+<img src=/images/edge-to-edge.png width=800>
+<h2 id=example>
+Example
+<a class=anchor href=#example>#</a>
+</h2>
 <p>Ferry defines a very simple API for configuring service mapping rules between clusters</p>
 <p>It can be very simple to describe which services need to be exposed to other clusters</p>
-<p>
-<img src=/images/case.png alt=Case></p>
+<img src=/images/case.png width=800>
 <h2 id=how-to-use-ferry>
 How to use ferry
 <a class=anchor href=#how-to-use-ferry>#</a>
@@ -133,7 +159,7 @@ How to use ferry
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/4ddee16a799594f030aa2e057478644efebb9bf2 title="Last modified by Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/b1393fd0afb4e24b0deb2fcf22a7873c9005c531 title="Last modified by Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-03-04</span>
 </a>
@@ -157,6 +183,11 @@ How to use ferry
 <ul>
 <li><a href=#ferry-proxy>Ferry Proxy</a>
 <ul>
+<li><a href=#public-to-public>Public to Public</a></li>
+<li><a href=#public-to-private>Public to Private</a></li>
+<li><a href=#private-to-public>Private to Public</a></li>
+<li><a href=#private-to-private>Private to Private</a></li>
+<li><a href=#example>Example</a></li>
 <li><a href=#how-to-use-ferry>How to use ferry</a></li>
 </ul>
 </li>

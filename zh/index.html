@@ -6,9 +6,9 @@
 <meta name=description content="Ferry Proxy #  Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。
 Ferry的主要思想是将一个集群的Service映射到另一个集群，另一个集群的应用程序只需要正常访问Service即可。
 Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
- Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
+公有云 对 公有云 #  公有云 对 私有云 #  私有云 对 公有云 #  私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
- 如何使用 Ferry #  查阅 快速开始">
+如何使用 Ferry #  查阅 快速开始">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
@@ -107,6 +107,11 @@ Github
 <ul>
 <li><a href=#ferry-proxy>Ferry Proxy</a>
 <ul>
+<li><a href=#公有云-对-公有云>公有云 对 公有云</a></li>
+<li><a href=#公有云-对-私有云>公有云 对 私有云</a></li>
+<li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
+<li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
+<li><a href=#示例>示例</a></li>
 <li><a href=#如何使用-ferry>如何使用 Ferry</a></li>
 </ul>
 </li>
@@ -121,12 +126,33 @@ Ferry Proxy
 <p>Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。</p>
 <p>Ferry的主要思想是将一个集群的Service映射到另一个集群，另一个集群的应用程序只需要正常访问Service即可。</p>
 <p>Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。</p>
-<p>
-<img src=/images/architecture.png alt=Architecture></p>
+<h2 id=公有云-对-公有云>
+公有云 对 公有云
+<a class=anchor href=#%e5%85%ac%e6%9c%89%e4%ba%91-%e5%af%b9-%e5%85%ac%e6%9c%89%e4%ba%91>#</a>
+</h2>
+<img src=/images/cloud-to-cloud.png width=600>
+<h2 id=公有云-对-私有云>
+公有云 对 私有云
+<a class=anchor href=#%e5%85%ac%e6%9c%89%e4%ba%91-%e5%af%b9-%e7%a7%81%e6%9c%89%e4%ba%91>#</a>
+</h2>
+<img src=/images/cloud-to-edge.png width=600>
+<h2 id=私有云-对-公有云>
+私有云 对 公有云
+<a class=anchor href=#%e7%a7%81%e6%9c%89%e4%ba%91-%e5%af%b9-%e5%85%ac%e6%9c%89%e4%ba%91>#</a>
+</h2>
+<img src=/images/edge-to-cloud.png width=600>
+<h2 id=私有云-对-私有云>
+私有云 对 私有云
+<a class=anchor href=#%e7%a7%81%e6%9c%89%e4%ba%91-%e5%af%b9-%e7%a7%81%e6%9c%89%e4%ba%91>#</a>
+</h2>
+<img src=/images/edge-to-edge.png width=800>
+<h2 id=示例>
+示例
+<a class=anchor href=#%e7%a4%ba%e4%be%8b>#</a>
+</h2>
 <p>Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则</p>
 <p>可以非常简单的描述哪些 Service 需要暴露给其他集群</p>
-<p>
-<img src=/images/case.png alt=Case></p>
+<img src=/images/case.png width=800>
 <h2 id=如何使用-ferry>
 如何使用 Ferry
 <a class=anchor href=#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-ferry>#</a>
@@ -136,7 +162,7 @@ Ferry Proxy
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/4ddee16a799594f030aa2e057478644efebb9bf2 title="最后修改者 Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/b1393fd0afb4e24b0deb2fcf22a7873c9005c531 title="最后修改者 Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-03-04</span>
 </a>
@@ -160,6 +186,11 @@ Ferry Proxy
 <ul>
 <li><a href=#ferry-proxy>Ferry Proxy</a>
 <ul>
+<li><a href=#公有云-对-公有云>公有云 对 公有云</a></li>
+<li><a href=#公有云-对-私有云>公有云 对 私有云</a></li>
+<li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
+<li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
+<li><a href=#示例>示例</a></li>
 <li><a href=#如何使用-ferry>如何使用 Ferry</a></li>
 </ul>
 </li>

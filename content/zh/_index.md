@@ -10,13 +10,31 @@ Ferry的主要思想是将一个集群的Service映射到另一个集群，另�
 
 Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
 
-![Architecture](/images/architecture.png)
+## 公有云 对 公有云
+
+<img src="/images/cloud-to-cloud.png" width="600">
+
+## 公有云 对 私有云
+
+<img src="/images/cloud-to-edge.png" width="600">
+
+## 私有云 对 公有云
+
+<img src="/images/edge-to-cloud.png" width="600">
+
+## 私有云 对 私有云
+
+<img src="/images/edge-to-edge.png" width="800">
+
+
+## 示例
 
 Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 
 可以非常简单的描述哪些 Service 需要暴露给其他集群
 
-![Case](/images/case.png)
+<img src="/images/case.png" width="800">
+
 
 ## 如何使用 Ferry
 

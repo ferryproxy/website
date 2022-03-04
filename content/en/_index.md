@@ -10,13 +10,30 @@ The main idea of Ferry is to map the Service of one cluster to another cluster, 
 
 The Tunnel component in the Ferry project is mainly used to open up communication between different clusters, and has no requirements for the network environment and network segment currently used by the cluster.
 
-![Architecture](/images/architecture.png)
+## Public to Public
+
+<img src="/images/cloud-to-cloud.png" width="600">
+
+## Public to Private
+
+<img src="/images/cloud-to-edge.png" width="600">
+
+## Private to Public
+
+<img src="/images/edge-to-cloud.png" width="600">
+
+## Private to Private
+
+<img src="/images/edge-to-edge.png" width="800">
+
+
+## Example
 
 Ferry defines a very simple API for configuring service mapping rules between clusters
 
 It can be very simple to describe which services need to be exposed to other clusters
 
-![Case](/images/case.png)
+<img src="/images/case.png" width="800">
 
 ## How to use ferry
 

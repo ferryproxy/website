@@ -28,14 +28,14 @@
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: ferry.zsm.io/v1alpha1 kind: FerryPolicy metadata: name: ferry-test namespace: ferry-system spec: rules: - exports: - clusterName: cluster-1 match: namespace: default name: app-1 imports: - clusterName: control-plane match: namespace: default name: app-1 ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferry.zsm.io/zh/docs/user/quick-start/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-03-04T15:15:31+08:00">
+<meta property="article:modified_time" content="2022-03-04T15:37:20+08:00">
 <title>Quick Start | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferry.zsm.io/docs/user/quick-start/ title="Quick Start">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.09218badd8c8350b1ba0067c7fab9c6e9abfb56a654cbe4f3099d1d00bef7eb1.js integrity="sha256-CSGLrdjINQsboAZ8f6ucbpq/tWplTL5PMJnR0AvvfrE=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.79dba3c199277f90dcb0f75e2e496a4f3e6852fedb28774584359fe9e125055f.js integrity="sha256-edujwZknf5DcsPdeLklqTz5oUv7bKHdFhDWf6eElBV8=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -82,19 +82,19 @@ Github
 <ul>
 <li>
 <p>
-<a href=/zh/><strong>Home</strong></a></p>
+<a href=/zh/><strong>主页</strong></a></p>
 </li>
 <li>
-<p><strong>User Guide</strong></p>
+<p><strong>用户指引</strong></p>
 <ul>
 <li>
-<a href=/zh/docs/user/quick-start/ class=active>Quick Start</a></li>
+<a href=/zh/docs/user/quick-start/ class=active>快速开始</a></li>
 <li>
-<a href=/zh/docs/user/join-mode/>Join Mode</a></li>
+<a href=/zh/docs/user/join-mode/>加入模式</a></li>
 </ul>
 </li>
 <li>
-<p><strong>Developer Guide</strong></p>
+<p><strong>开发者指引</strong></p>
 <ul>
 <li>
 <a href=/zh/docs/developer/roadmap/>Roadmap</a></li>
@@ -200,7 +200,7 @@ ferryctl control-plane pre-join direct cluster-1
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/a5bfb3095a966206e372f582c83c7ecc2e887bba title="最后修改者 Shiming Zhang | March 4, 2022" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/e5888fecd4ad214683c379c2c5f0138fce6b2d1e title="最后修改者 Shiming Zhang | March 4, 2022" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>March 4, 2022</span>
 </a>

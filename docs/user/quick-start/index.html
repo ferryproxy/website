@@ -1,0 +1,231 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Quick Start #  Prepare at least two clusters for demonstration
+Can be a cluster of one node or a cluster of Kind but at least two.
+ Download ferryctl #  ferryctl is the installation and operation tool for ferry
+A ferryctl needs to be installed for each cluster&rsquo;s control node
+ https://github.com/ferry-proxy/ferryctl/releases
+Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre-join other data plane ferryctl control-plane pre-join direct cluster-1 If the network environment is more complex, please refer to Join Mode">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Quick Start">
+<meta property="og:description" content="Quick Start #  Prepare at least two clusters for demonstration
+Can be a cluster of one node or a cluster of Kind but at least two.
+ Download ferryctl #  ferryctl is the installation and operation tool for ferry
+A ferryctl needs to be installed for each cluster&rsquo;s control node
+ https://github.com/ferry-proxy/ferryctl/releases
+Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre-join other data plane ferryctl control-plane pre-join direct cluster-1 If the network environment is more complex, please refer to Join Mode">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferry.zsm.io/docs/user/quick-start/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-03-04T15:15:31+08:00">
+<title>Quick Start | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=zh href=https://ferry.zsm.io/zh/docs/user/quick-start/ title="Quick Start">
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.06b6a1876eef02cf5236fc0cc7ba86c184c9ef841e06ec9a9456776da8c2ff80.js integrity="sha256-Brahh27vAs9SNvwMx7qGwYTJ74QeBuyalFZ3bajC/4A=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+English
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferry.zsm.io/zh/docs/user/quick-start/>
+简体中文
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferry-proxy target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/><strong>Home</strong></a></p>
+</li>
+<li>
+<p><strong>User Guide</strong></p>
+<ul>
+<li>
+<a href=/docs/user/quick-start/ class=active>Quick Start</a></li>
+<li>
+<a href=/docs/user/join-mode/>Join Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Developer Guide</strong></p>
+<ul>
+<li>
+<a href=/docs/developer/roadmap/>Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Quick Start</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#quick-start>Quick Start</a>
+<ul>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#initialize-control-plane>Initialize control plane</a></li>
+<li><a href=#declares-to-the-control-plane-which-data-plane-needs-to-join>Declares to the control plane which data plane needs to join</a></li>
+<li><a href=#data-plane-is-ready-to-be-managed-by-control-plane>Data plane is ready to be managed by control plane</a></li>
+<li><a href=#control-plane-begins-to-control-data-plane>Control plane begins to control data plane</a></li>
+<li><a href=#configuration-rules>Configuration rules</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=quick-start>
+Quick Start
+<a class=anchor href=#quick-start>#</a>
+</h1>
+<blockquote class="book-hint info">
+<p>Prepare at least two clusters for demonstration</p>
+<p>Can be a cluster of one node or a cluster of Kind but at least two.</p>
+</blockquote>
+<h2 id=download-ferryctl>
+Download ferryctl
+<a class=anchor href=#download-ferryctl>#</a>
+</h2>
+<p>ferryctl is the installation and operation tool for ferry</p>
+<p>A ferryctl needs to be installed for each cluster&rsquo;s control node</p>
+<p>
+<a href=https://github.com/ferry-proxy/ferryctl/releases>https://github.com/ferry-proxy/ferryctl/releases</a></p>
+<h2 id=initialize-control-plane>
+Initialize control plane
+<a class=anchor href=#initialize-control-plane>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on control plane</span>
+ferryctl control-plane init
+</code></pre></div><h2 id=declares-to-the-control-plane-which-data-plane-needs-to-join>
+Declares to the control plane which data plane needs to join
+<a class=anchor href=#declares-to-the-control-plane-which-data-plane-needs-to-join>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on control plane to pre-join other data plane</span>
+ferryctl control-plane pre-join direct cluster-1
+</code></pre></div><p>If the network environment is more complex, please refer to
+<a href=../join-mode>Join Mode</a></p>
+<h2 id=data-plane-is-ready-to-be-managed-by-control-plane>
+Data plane is ready to be managed by control plane
+<a class=anchor href=#data-plane-is-ready-to-be-managed-by-control-plane>#</a>
+</h2>
+<p>After the last command is executed of control plane, it responds with a command, copied to data plane to run.</p>
+<h2 id=control-plane-begins-to-control-data-plane>
+Control plane begins to control data plane
+<a class=anchor href=#control-plane-begins-to-control-data-plane>#</a>
+</h2>
+<p>After the last command is executed of data plane, it responds with a command, copied to the control plane to run.</p>
+<h2 id=configuration-rules>
+Configuration rules
+<a class=anchor href=#configuration-rules>#</a>
+</h2>
+<p>The test application needs to deploy and configure the Service</p>
+<p>Rules for configuring Ferry on the control plane cluster</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># Mapping app-1.default.svc of cluster-1 to the app-1.default.svc of control-plane</span>
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>ferry.zsm.io/v1alpha1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>FerryPolicy</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-rule</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>rules</span>:
+    - <span style=color:#f92672>exports</span>:
+        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>cluster-1</span>
+          <span style=color:#f92672>match</span>:
+            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+      <span style=color:#f92672>imports</span>:
+        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>control-plane</span>
+          <span style=color:#f92672>match</span>:
+            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/a5bfb3095a966206e372f582c83c7ecc2e887bba title="Last modified by Shiming Zhang | March 4, 2022" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>March 4, 2022</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferry-proxy/website/edit/gh-pages/content/en/docs/user/quick-start.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#quick-start>Quick Start</a>
+<ul>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#initialize-control-plane>Initialize control plane</a></li>
+<li><a href=#declares-to-the-control-plane-which-data-plane-needs-to-join>Declares to the control plane which data plane needs to join</a></li>
+<li><a href=#data-plane-is-ready-to-be-managed-by-control-plane>Data plane is ready to be managed by control plane</a></li>
+<li><a href=#control-plane-begins-to-control-data-plane>Control plane begins to control data plane</a></li>
+<li><a href=#configuration-rules>Configuration rules</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

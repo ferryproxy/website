@@ -1,0 +1,190 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="加入模式 #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join 当前有两种加入方式
+ direct tunnel  direct #  适用于集群之间网络是互通的情况, 不需要做穿透或者代理操作.
+tunnel #  适用于控制面集群无法访问到数据面集群但是数据面集群可以访问控制面集群的情况, 这时需要建立控制面集群到数据面集群的内网穿透.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Join Mode">
+<meta property="og:description" content="加入模式 #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join 当前有两种加入方式
+ direct tunnel  direct #  适用于集群之间网络是互通的情况, 不需要做穿透或者代理操作.
+tunnel #  适用于控制面集群无法访问到数据面集群但是数据面集群可以访问控制面集群的情况, 这时需要建立控制面集群到数据面集群的内网穿透.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferry.zsm.io/zh/docs/user/join-mode/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-03-04T15:15:31+08:00">
+<title>Join Mode | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferry.zsm.io/docs/user/join-mode/ title="Join Mode">
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.09218badd8c8350b1ba0067c7fab9c6e9abfb56a654cbe4f3099d1d00bef7eb1.js integrity="sha256-CSGLrdjINQsboAZ8f6ucbpq/tWplTL5PMJnR0AvvfrE=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferry.zsm.io/docs/user/join-mode/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferry-proxy target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/zh/><strong>Home</strong></a></p>
+</li>
+<li>
+<p><strong>User Guide</strong></p>
+<ul>
+<li>
+<a href=/zh/docs/user/quick-start/>Quick Start</a></li>
+<li>
+<a href=/zh/docs/user/join-mode/ class=active>Join Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Developer Guide</strong></p>
+<ul>
+<li>
+<a href=/zh/docs/developer/roadmap/>Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Join Mode</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#加入模式>加入模式</a>
+<ul>
+<li><a href=#direct>direct</a></li>
+<li><a href=#tunnel>tunnel</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=加入模式>
+加入模式
+<a class=anchor href=#%e5%8a%a0%e5%85%a5%e6%a8%a1%e5%bc%8f>#</a>
+</h1>
+<pre><code class=language-console data-lang=console>&gt; ferryctl control-plane pre-join --help
+Generate command for data plane join
+Need to copy the generated command to run on the data plane.
+
+Usage:
+  ferryctl control-plane pre-join [command]
+
+Aliases:
+  pre-join, p, pj, join, j
+
+Available Commands:
+  direct      Clusters can reach each other
+  tunnel      Control plane can't touch the data plane
+
+Flags:
+  -h, --help                                  help for pre-join
+</code></pre><p>当前有两种加入方式</p>
+<ol>
+<li>direct</li>
+<li>tunnel</li>
+</ol>
+<h2 id=direct>
+direct
+<a class=anchor href=#direct>#</a>
+</h2>
+<p>适用于集群之间网络是互通的情况,
+不需要做穿透或者代理操作.</p>
+<h2 id=tunnel>
+tunnel
+<a class=anchor href=#tunnel>#</a>
+</h2>
+<p>适用于控制面集群无法访问到数据面集群但是数据面集群可以访问控制面集群的情况,
+这时需要建立控制面集群到数据面集群的内网穿透.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/a5bfb3095a966206e372f582c83c7ecc2e887bba title="最后修改者 Shiming Zhang | March 4, 2022" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>March 4, 2022</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferry-proxy/website/edit/gh-pages/content/zh/docs/user/join-mode.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#加入模式>加入模式</a>
+<ul>
+<li><a href=#direct>direct</a></li>
+<li><a href=#tunnel>tunnel</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

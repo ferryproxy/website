@@ -1,0 +1,172 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta name=generator content="Hugo 0.87.0">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Ferry Proxy #  Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。
+Ferry的主要思想是将一个集群的Service映射到另一个集群，另一个集群的应用程序只需要正常访问Service即可。
+Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
+ Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
+可以非常简单的描述哪些 Service 需要暴露给其他集群
+ How to use ferry #  See the Quick Start">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ferry.zsm.io/zh/">
+<title>Home | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferry.zsm.io/ title=Home>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.09218badd8c8350b1ba0067c7fab9c6e9abfb56a654cbe4f3099d1d00bef7eb1.js integrity="sha256-CSGLrdjINQsboAZ8f6ucbpq/tWplTL5PMJnR0AvvfrE=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=https://ferry.zsm.io/zh/index.xml title="Ferry Proxy">
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferry.zsm.io/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferry-proxy target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/zh/ class=active><strong>Home</strong></a></p>
+</li>
+<li>
+<p><strong>User Guide</strong></p>
+<ul>
+<li>
+<a href=/zh/docs/user/quick-start/>Quick Start</a></li>
+<li>
+<a href=/zh/docs/user/join-mode/>Join Mode</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Developer Guide</strong></p>
+<ul>
+<li>
+<a href=/zh/docs/developer/roadmap/>Roadmap</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Home</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ferry-proxy>Ferry Proxy</a>
+<ul>
+<li><a href=#how-to-use-ferry>How to use ferry</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=ferry-proxy>
+Ferry Proxy
+<a class=anchor href=#ferry-proxy>#</a>
+</h1>
+<p>Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。</p>
+<p>Ferry的主要思想是将一个集群的Service映射到另一个集群，另一个集群的应用程序只需要正常访问Service即可。</p>
+<p>Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。</p>
+<p>
+<img src=/images/architecture.png alt=Architecture></p>
+<p>Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则</p>
+<p>可以非常简单的描述哪些 Service 需要暴露给其他集群</p>
+<p>
+<img src=/images/case.png alt=Case></p>
+<h2 id=how-to-use-ferry>
+How to use ferry
+<a class=anchor href=#how-to-use-ferry>#</a>
+</h2>
+<p>See the
+<a href=./docs/quick-start>Quick Start</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/a5bfb3095a966206e372f582c83c7ecc2e887bba title="最后修改者 Shiming Zhang | March 4, 2022" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>March 4, 2022</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferry-proxy/website/edit/gh-pages/content/zh/_index.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ferry-proxy>Ferry Proxy</a>
+<ul>
+<li><a href=#how-to-use-ferry>How to use ferry</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

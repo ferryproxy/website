@@ -6,5 +6,5 @@ direct tunnel direct # It is suitable for the case where the network between clu
 Can be a cluster of one node or a cluster of Kind but at least two.
 Download ferryctl # ferryctl is the installation and operation tool for ferry
 A ferryctl needs to be installed for each cluster&amp;rsquo;s control node
-https://github.com/ferry-proxy/ferryctl/releases
+https://github.com/ferry-proxy/ferry/releases
 Initialize control plane # # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join # # execute on control plane to pre-join other data plane ferryctl control-plane pre-join direct cluster-1 If the network environment is more complex, please refer to Join Mode</description></item></channel></rss>

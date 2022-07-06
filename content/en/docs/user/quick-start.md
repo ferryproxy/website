@@ -15,7 +15,7 @@ ferryctl is the installation and operation tool for ferry
 
 A ferryctl needs to be installed for each cluster's control node 
 
-https://github.com/ferry-proxy/ferryctl/releases
+https://github.com/ferry-proxy/ferry/releases
 
 ## Initialize control plane
 

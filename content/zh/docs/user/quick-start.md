@@ -15,7 +15,7 @@ ferryctl 是 ferry 的安装运维工具
 
 需要为每个集群的控制节点都安装一个 ferryctl
 
-https://github.com/ferry-proxy/ferryctl/releases
+https://github.com/ferry-proxy/ferry/releases
 
 ## 初始化控制面集群
 

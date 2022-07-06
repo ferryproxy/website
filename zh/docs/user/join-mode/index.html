@@ -2,24 +2,24 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="加入模式 #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join 当前有两种加入方式
+<meta name=description content="加入模式 #  当前有两种加入方式
  direct tunnel  direct #  适用于集群之间网络是互通的情况, 不需要做穿透或者代理操作.
 tunnel #  适用于控制面集群无法访问到数据面集群但是数据面集群可以访问控制面集群的情况, 这时需要建立控制面集群到数据面集群的内网穿透.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Join Mode">
-<meta property="og:description" content="加入模式 #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join 当前有两种加入方式
+<meta property="og:description" content="加入模式 #  当前有两种加入方式
  direct tunnel  direct #  适用于集群之间网络是互通的情况, 不需要做穿透或者代理操作.
 tunnel #  适用于控制面集群无法访问到数据面集群但是数据面集群可以访问控制面集群的情况, 这时需要建立控制面集群到数据面集群的内网穿透.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferry.zsm.io/zh/docs/user/join-mode/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-03-04T16:02:15+08:00">
+<meta property="article:modified_time" content="2022-07-06T16:26:30+08:00">
 <title>Join Mode | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferry.zsm.io/docs/user/join-mode/ title="Join Mode">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.f3d926d74bd9bc468d3cddb52cf15bcebac9ed9513d1a36c95579c7a055fffac.js integrity="sha256-89km10vZvEaNPN21LPFbzrrJ7ZUT0aNslVecegVf/6w=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.d3a6ae74cd9d92384ba6547bab5a4bd1699484f8b36fb636b4a7ef1f470894f3.js integrity="sha256-06audM2dkjhLplR7q1pL0WmUhPizb7Y2tKfvH0cIlPM=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -117,23 +117,7 @@ Github
 加入模式
 <a class=anchor href=#%e5%8a%a0%e5%85%a5%e6%a8%a1%e5%bc%8f>#</a>
 </h1>
-<pre><code class=language-console data-lang=console>&gt; ferryctl control-plane pre-join --help
-Generate command for data plane join
-Need to copy the generated command to run on the data plane.
-
-Usage:
-  ferryctl control-plane pre-join [command]
-
-Aliases:
-  pre-join, p, pj, join, j
-
-Available Commands:
-  direct      Clusters can reach each other
-  tunnel      Control plane can't touch the data plane
-
-Flags:
-  -h, --help                                  help for pre-join
-</code></pre><p>当前有两种加入方式</p>
+<p>当前有两种加入方式</p>
 <ol>
 <li>direct</li>
 <li>tunnel</li>
@@ -153,9 +137,9 @@ tunnel
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/4ddee16a799594f030aa2e057478644efebb9bf2 title="最后修改者 Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/91807ec9cd882ff603d3ac8d3365537427933f7f title="最后修改者 Shiming Zhang | 2022-07-06" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-03-04</span>
+<span>2022-07-06</span>
 </a>
 </div>
 <div>

@@ -2,22 +2,24 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Join Mode #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join There are currently two ways to join
- direct tunnel  direct #  It is suitable for the case where the network between clusters is interoperable, and there is no need to do penetration or proxy operations.">
+<meta name=description content="Join Mode #  There are currently two ways to join
+ direct tunnel  direct #  It is suitable for the case where the network between clusters is interoperable, and there is no need to do penetration or proxy operations.
+tunnel #  Applicable to the situation where the control plane cluster cannot access the data plane cluster but the data plane cluster can access the control plane cluster.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Join Mode">
-<meta property="og:description" content="Join Mode #  > ferryctl control-plane pre-join --help Generate command for data plane join Need to copy the generated command to run on the data plane. Usage: ferryctl control-plane pre-join [command] Aliases: pre-join, p, pj, join, j Available Commands: direct Clusters can reach each other tunnel Control plane can't touch the data plane Flags: -h, --help help for pre-join There are currently two ways to join
- direct tunnel  direct #  It is suitable for the case where the network between clusters is interoperable, and there is no need to do penetration or proxy operations.">
+<meta property="og:description" content="Join Mode #  There are currently two ways to join
+ direct tunnel  direct #  It is suitable for the case where the network between clusters is interoperable, and there is no need to do penetration or proxy operations.
+tunnel #  Applicable to the situation where the control plane cluster cannot access the data plane cluster but the data plane cluster can access the control plane cluster.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferry.zsm.io/docs/user/join-mode/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-03-04T16:02:15+08:00">
+<meta property="article:modified_time" content="2022-07-06T16:26:30+08:00">
 <title>Join Mode | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferry.zsm.io/zh/docs/user/join-mode/ title="Join Mode">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.429136d038473dfbe51d08c73ca2aebf581476fc3938824e373662f4c1831e22.js integrity="sha256-QpE20DhHPfvlHQjHPKKuv1gUdvw5OIJONzZi9MGDHiI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.f9d4e3c748b345be821d2b272388e9a0352ea7e33c44f431c69e02b4b5111efb.js integrity="sha256-+dTjx0izRb6CHSsnI4jpoDUup+M8RPQxxp4CtLURHvs=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -115,23 +117,7 @@ Github
 Join Mode
 <a class=anchor href=#join-mode>#</a>
 </h1>
-<pre><code class=language-console data-lang=console>&gt; ferryctl control-plane pre-join --help
-Generate command for data plane join
-Need to copy the generated command to run on the data plane.
-
-Usage:
-  ferryctl control-plane pre-join [command]
-
-Aliases:
-  pre-join, p, pj, join, j
-
-Available Commands:
-  direct      Clusters can reach each other
-  tunnel      Control plane can't touch the data plane
-
-Flags:
-  -h, --help                                  help for pre-join
-</code></pre><p>There are currently two ways to join</p>
+<p>There are currently two ways to join</p>
 <ol>
 <li>direct</li>
 <li>tunnel</li>
@@ -151,9 +137,9 @@ At this time, it is necessary to establish intranet penetration from the control
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/4ddee16a799594f030aa2e057478644efebb9bf2 title="Last modified by Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/91807ec9cd882ff603d3ac8d3365537427933f7f title="Last modified by Shiming Zhang | 2022-07-06" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-03-04</span>
+<span>2022-07-06</span>
 </a>
 </div>
 <div>

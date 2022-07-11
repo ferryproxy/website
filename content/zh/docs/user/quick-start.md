@@ -28,7 +28,7 @@ ferryctl control-plane init
 
 ``` bash
 # 在控制平面执行，预连接其他数据平面
-ferryctl control-plane pre-join direct cluster-1
+ferryctl control-plane join cluster-1
 ```
 
 如果网络环境较为复杂请参考[加入模式](../join-mode)
@@ -49,22 +49,21 @@ ferryctl control-plane pre-join direct cluster-1
 
 ``` yaml
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc
-apiVersion: ferry.zsm.io/v1alpha1
-kind: FerryPolicy
+apiVersion: traffic.ferry.zsm.io/v1alpha2
+kind: RoutePolicy
 metadata:
-  name: ferry-test
+  name: ferry-rule
   namespace: ferry-system
 spec:
-  rules:
-    - exports:
-        - clusterName: cluster-1
-          match:
-            namespace: default
-            name: app-1
-      imports:
-        - clusterName: control-plane
-          match:
-            namespace: default
-            name: app-1
+  exports:
+    - hubName: cluster-1
+      service:
+        namespace: default
+        name: app-1
+  imports:
+    - hubName: control-plane
+      service:
+        namespace: default
+        name: app-1
 ```
 

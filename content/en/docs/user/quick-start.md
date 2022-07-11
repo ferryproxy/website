@@ -28,8 +28,8 @@ ferryctl control-plane init
 ## Declares to the control plane which data plane needs to join 
 
 ``` bash
-# execute on control plane to pre-join other data plane
-ferryctl control-plane pre-join direct cluster-1
+# execute on control plane to pre join other data plane
+ferryctl control-plane join cluster-1
 ```
 
 If the network environment is more complex, please refer to [Join Mode](../join-mode)
@@ -50,22 +50,21 @@ Rules for configuring Ferry on the control plane cluster
 
 ``` yaml
 # Mapping app-1.default.svc of cluster-1 to the app-1.default.svc of control-plane
-apiVersion: ferry.zsm.io/v1alpha1
-kind: FerryPolicy
+apiVersion: traffic.ferry.zsm.io/v1alpha2
+kind: RoutePolicy
 metadata:
   name: ferry-rule
   namespace: ferry-system
 spec:
-  rules:
-    - exports:
-        - clusterName: cluster-1
-          match:
-            namespace: default
-            name: app-1
-      imports:
-        - clusterName: control-plane
-          match:
-            namespace: default
-            name: app-1
+  exports:
+    - hubName: cluster-1
+      service:
+        namespace: default
+        name: app-1
+  imports:
+    - hubName: control-plane
+      service:
+        namespace: default
+        name: app-1
 ```
 

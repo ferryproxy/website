@@ -7,12 +7,12 @@
  下载 ferryctl #  ferryctl 是 ferry 的安装运维工具
 需要为每个集群的控制节点都安装一个 ferryctl
  https://github.com/ferry-proxy/ferry/releases
-初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init 向控制面声明哪个数据面需要加入 #  # 在控制平面执行，预连接其他数据平面 ferryctl control-plane pre-join direct cluster-1 如果网络环境较为复杂请参考 加入模式
+初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init 向控制面声明哪个数据面需要加入 #  # 在控制平面执行，预连接其他数据平面 ferryctl control-plane join cluster-1 如果网络环境较为复杂请参考 加入模式
 数据面做好被控制面管控的准备 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 控制面开始管控数据面 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 规则配置 #  测试应用需要提前部署并配置 Service
 在控制面集群配置 Ferry 的规则
-# 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: ferry.zsm.io/v1alpha1 kind: FerryPolicy metadata: name: ferry-test namespace: ferry-system spec: rules: - exports: - clusterName: cluster-1 match: namespace: default name: app-1 imports: - clusterName: control-plane match: namespace: default name: app-1 ">
+# 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: traffic.ferry.zsm.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: control-plane service: namespace: default name: app-1 ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Quick Start">
 <meta property="og:description" content="快速开始 #  准备至少两个集群才能做演示
@@ -20,22 +20,22 @@
  下载 ferryctl #  ferryctl 是 ferry 的安装运维工具
 需要为每个集群的控制节点都安装一个 ferryctl
  https://github.com/ferry-proxy/ferry/releases
-初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init 向控制面声明哪个数据面需要加入 #  # 在控制平面执行，预连接其他数据平面 ferryctl control-plane pre-join direct cluster-1 如果网络环境较为复杂请参考 加入模式
+初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init 向控制面声明哪个数据面需要加入 #  # 在控制平面执行，预连接其他数据平面 ferryctl control-plane join cluster-1 如果网络环境较为复杂请参考 加入模式
 数据面做好被控制面管控的准备 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 控制面开始管控数据面 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 规则配置 #  测试应用需要提前部署并配置 Service
 在控制面集群配置 Ferry 的规则
-# 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: ferry.zsm.io/v1alpha1 kind: FerryPolicy metadata: name: ferry-test namespace: ferry-system spec: rules: - exports: - clusterName: cluster-1 match: namespace: default name: app-1 imports: - clusterName: control-plane match: namespace: default name: app-1 ">
+# 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: traffic.ferry.zsm.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: control-plane service: namespace: default name: app-1 ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferry.zsm.io/zh/docs/user/quick-start/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-06T16:25:16+08:00">
+<meta property="article:modified_time" content="2022-07-11T14:29:08+08:00">
 <title>Quick Start | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferry.zsm.io/docs/user/quick-start/ title="Quick Start">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.d3a6ae74cd9d92384ba6547bab5a4bd1699484f8b36fb636b4a7ef1f470894f3.js integrity="sha256-06audM2dkjhLplR7q1pL0WmUhPizb7Y2tKfvH0cIlPM=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.d30a4c9e16826716aa48141212d985dd776c0e91e1493c7042612de019a199c9.js integrity="sha256-0wpMnhaCZxaqSBQSEtmF3XdsDpHhSTxwQmEt4Bmhmck=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -160,7 +160,7 @@ ferryctl control-plane init
 <a class=anchor href=#%e5%90%91%e6%8e%a7%e5%88%b6%e9%9d%a2%e5%a3%b0%e6%98%8e%e5%93%aa%e4%b8%aa%e6%95%b0%e6%8d%ae%e9%9d%a2%e9%9c%80%e8%a6%81%e5%8a%a0%e5%85%a5>#</a>
 </h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 在控制平面执行，预连接其他数据平面</span>
-ferryctl control-plane pre-join direct cluster-1
+ferryctl control-plane join cluster-1
 </code></pre></div><p>如果网络环境较为复杂请参考
 <a href=../join-mode>加入模式</a></p>
 <h2 id=数据面做好被控制面管控的准备>
@@ -180,29 +180,28 @@ ferryctl control-plane pre-join direct cluster-1
 <p>测试应用需要提前部署并配置 Service</p>
 <p>在控制面集群配置 Ferry 的规则</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc</span>
-<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>ferry.zsm.io/v1alpha1</span>
-<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>FerryPolicy</span>
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferry.zsm.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
 <span style=color:#f92672>metadata</span>:
-  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-test</span>
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-rule</span>
   <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
 <span style=color:#f92672>spec</span>:
-  <span style=color:#f92672>rules</span>:
-    - <span style=color:#f92672>exports</span>:
-        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>cluster-1</span>
-          <span style=color:#f92672>match</span>:
-            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
-            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
-      <span style=color:#f92672>imports</span>:
-        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>control-plane</span>
-          <span style=color:#f92672>match</span>:
-            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
-            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/b03f94358b9781c4c9053a24f22ed2fa4696077b title="最后修改者 Shiming Zhang | 2022-07-06" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/49fea061b265596cd48a7217c10574dea12c3788 title="最后修改者 Shiming Zhang | 2022-07-11" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-06</span>
+<span>2022-07-11</span>
 </a>
 </div>
 <div>

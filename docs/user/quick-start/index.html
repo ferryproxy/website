@@ -7,7 +7,7 @@ Can be a cluster of one node or a cluster of Kind but at least two.
  Download ferryctl #  ferryctl is the installation and operation tool for ferry
 A ferryctl needs to be installed for each cluster&rsquo;s control node
  https://github.com/ferry-proxy/ferry/releases
-Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre-join other data plane ferryctl control-plane pre-join direct cluster-1 If the network environment is more complex, please refer to Join Mode">
+Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre join other data plane ferryctl control-plane join cluster-1 If the network environment is more complex, please refer to Join Mode">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Quick Start">
 <meta property="og:description" content="Quick Start #  Prepare at least two clusters for demonstration
@@ -15,17 +15,17 @@ Can be a cluster of one node or a cluster of Kind but at least two.
  Download ferryctl #  ferryctl is the installation and operation tool for ferry
 A ferryctl needs to be installed for each cluster&rsquo;s control node
  https://github.com/ferry-proxy/ferry/releases
-Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre-join other data plane ferryctl control-plane pre-join direct cluster-1 If the network environment is more complex, please refer to Join Mode">
+Initialize control plane #  # execute on control plane ferryctl control-plane init Declares to the control plane which data plane needs to join #  # execute on control plane to pre join other data plane ferryctl control-plane join cluster-1 If the network environment is more complex, please refer to Join Mode">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferry.zsm.io/docs/user/quick-start/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-06T16:25:16+08:00">
+<meta property="article:modified_time" content="2022-07-11T14:29:08+08:00">
 <title>Quick Start | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferry.zsm.io/zh/docs/user/quick-start/ title="Quick Start">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f9d4e3c748b345be821d2b272388e9a0352ea7e33c44f431c69e02b4b5111efb.js integrity="sha256-+dTjx0izRb6CHSsnI4jpoDUup+M8RPQxxp4CtLURHvs=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6a9fde83c8b388f53a1ab03836030d9dad9750e54f6eb59b2dd9a4801cf806e7.js integrity="sha256-ap/eg8iziPU6GrA4NgMNna2XUOVPbrWbLdmkgBz4Buc=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
@@ -149,8 +149,8 @@ ferryctl control-plane init
 Declares to the control plane which data plane needs to join
 <a class=anchor href=#declares-to-the-control-plane-which-data-plane-needs-to-join>#</a>
 </h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on control plane to pre-join other data plane</span>
-ferryctl control-plane pre-join direct cluster-1
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on control plane to pre join other data plane</span>
+ferryctl control-plane join cluster-1
 </code></pre></div><p>If the network environment is more complex, please refer to
 <a href=../join-mode>Join Mode</a></p>
 <h2 id=data-plane-is-ready-to-be-managed-by-control-plane>
@@ -170,29 +170,28 @@ Configuration rules
 <p>The test application needs to deploy and configure the Service</p>
 <p>Rules for configuring Ferry on the control plane cluster</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># Mapping app-1.default.svc of cluster-1 to the app-1.default.svc of control-plane</span>
-<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>ferry.zsm.io/v1alpha1</span>
-<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>FerryPolicy</span>
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferry.zsm.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
 <span style=color:#f92672>metadata</span>:
   <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-rule</span>
   <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
 <span style=color:#f92672>spec</span>:
-  <span style=color:#f92672>rules</span>:
-    - <span style=color:#f92672>exports</span>:
-        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>cluster-1</span>
-          <span style=color:#f92672>match</span>:
-            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
-            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
-      <span style=color:#f92672>imports</span>:
-        - <span style=color:#f92672>clusterName</span>: <span style=color:#ae81ff>control-plane</span>
-          <span style=color:#f92672>match</span>:
-            <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
-            <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/b03f94358b9781c4c9053a24f22ed2fa4696077b title="Last modified by Shiming Zhang | 2022-07-06" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/49fea061b265596cd48a7217c10574dea12c3788 title="Last modified by Shiming Zhang | 2022-07-11" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-06</span>
+<span>2022-07-11</span>
 </a>
 </div>
 <div>

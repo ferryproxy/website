@@ -8,7 +8,7 @@ Ferry的主要思想是将一个集群的Service映射到另一个集群，另�
 Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
 公有云 对 公有云 #  公有云 对 私有云 #  私有云 对 公有云 #  私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
-如何使用 Ferry #  查阅 快速开始">
+apiVersion: traffic.ferry.zsm.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 如何使用 Ferry #  查阅 快速开始">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
@@ -20,7 +20,7 @@ Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对
 <link rel=alternate hreflang=en href=https://ferry.zsm.io/ title=Home>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.d3a6ae74cd9d92384ba6547bab5a4bd1699484f8b36fb636b4a7ef1f470894f3.js integrity="sha256-06audM2dkjhLplR7q1pL0WmUhPizb7Y2tKfvH0cIlPM=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.d30a4c9e16826716aa48141212d985dd776c0e91e1493c7042612de019a199c9.js integrity="sha256-0wpMnhaCZxaqSBQSEtmF3XdsDpHhSTxwQmEt4Bmhmck=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=https://ferry.zsm.io/zh/index.xml title="Ferry Proxy">
 </head>
@@ -153,7 +153,23 @@ Ferry Proxy
 <p>Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则</p>
 <p>可以非常简单的描述哪些 Service 需要暴露给其他集群</p>
 <img src=/images/case.png width=800>
-<h2 id=如何使用-ferry>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferry.zsm.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-rule</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div><h2 id=如何使用-ferry>
 如何使用 Ferry
 <a class=anchor href=#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-ferry>#</a>
 </h2>
@@ -162,9 +178,9 @@ Ferry Proxy
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/b1393fd0afb4e24b0deb2fcf22a7873c9005c531 title="最后修改者 Shiming Zhang | 2022-03-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/49fea061b265596cd48a7217c10574dea12c3788 title="最后修改者 Shiming Zhang | 2022-07-11" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-03-04</span>
+<span>2022-07-11</span>
 </a>
 </div>
 <div>

@@ -35,6 +35,24 @@ Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映
 
 <img src="/images/case.png" width="800">
 
+``` yaml
+apiVersion: traffic.ferry.zsm.io/v1alpha2
+kind: RoutePolicy
+metadata:
+  name: ferry-rule
+  namespace: ferry-system
+spec:
+  exports:
+    - hubName: cluster-1
+      service:
+        namespace: default
+        name: app-1
+  imports:
+    - hubName: cluster-0
+      service:
+        namespace: default
+        name: app-1
+```
 
 ## 如何使用 Ferry
 

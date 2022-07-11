@@ -35,6 +35,25 @@ It can be very simple to describe which services need to be exposed to other clu
 
 <img src="/images/case.png" width="800">
 
+``` yaml
+apiVersion: traffic.ferry.zsm.io/v1alpha2
+kind: RoutePolicy
+metadata:
+  name: ferry-rule
+  namespace: ferry-system
+spec:
+  exports:
+    - hubName: cluster-1
+      service:
+        namespace: default
+        name: app-1
+  imports:
+    - hubName: cluster-0
+      service:
+        namespace: default
+        name: app-1
+```
+
 ## How to use ferry
 
 See the [Quick Start](./docs/user/quick-start)

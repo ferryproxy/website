@@ -36,7 +36,7 @@ Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映
 <img src="/images/case.png" width="800">
 
 ``` yaml
-apiVersion: traffic.ferry.zsm.io/v1alpha2
+apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
 metadata:
   name: ferry-rule

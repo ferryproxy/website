@@ -36,7 +36,7 @@ It can be very simple to describe which services need to be exposed to other clu
 <img src="/images/case.png" width="800">
 
 ``` yaml
-apiVersion: traffic.ferry.zsm.io/v1alpha2
+apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
 metadata:
   name: ferry-rule

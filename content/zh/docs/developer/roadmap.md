@@ -8,4 +8,4 @@ First roadmap 🎉
 
 Requirements
 
-- [ ] Authentication between Tunnels [#36](https://github.com/ferry-proxy/ferry/issues/36)
+- [ ] Authentication between Tunnels [#36](https://github.com/ferryproxy/ferry/issues/36)

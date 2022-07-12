@@ -1,6 +1,6 @@
 # hugo server --minify --themesDir ... --baseURL=http://0.0.0.0:1313/theme/hugo-book/
 
-baseURL: https://ferry.zsm.io/
+baseURL: https://ferryproxy.io/
 title: Ferry Proxy
 theme: hugo-book
 
@@ -33,7 +33,7 @@ languages:
 menu:
   before:
     - name: "Github"
-      url: "https://github.com/ferry-proxy"
+      url: "https://github.com/ferryproxy"
       weight: 10
   after: []
 
@@ -62,7 +62,7 @@ params:
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo: https://github.com/ferry-proxy/website
+  BookRepo: https://github.com/ferryproxy/website
 
   # (Optional, default 'commit') Specifies commit portion of the link to the page's last modified
   # commit hash for 'doc' page type.

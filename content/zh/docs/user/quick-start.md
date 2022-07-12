@@ -15,7 +15,7 @@ ferryctl 是 ferry 的安装运维工具
 
 需要为每个集群的控制节点都安装一个 ferryctl
 
-https://github.com/ferry-proxy/ferry/releases
+https://github.com/ferryproxy/ferry/releases
 
 ## 初始化控制面集群
 
@@ -49,7 +49,7 @@ ferryctl control-plane join cluster-1
 
 ``` yaml
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc
-apiVersion: traffic.ferry.zsm.io/v1alpha2
+apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
 metadata:
   name: ferry-rule

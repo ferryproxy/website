@@ -15,7 +15,7 @@ ferryctl is the installation and operation tool for ferry
 
 A ferryctl needs to be installed for each cluster's control node 
 
-https://github.com/ferry-proxy/ferry/releases
+https://github.com/ferryproxy/ferry/releases
 
 ## Initialize control plane
 
@@ -50,7 +50,7 @@ Rules for configuring Ferry on the control plane cluster
 
 ``` yaml
 # Mapping app-1.default.svc of cluster-1 to the app-1.default.svc of control-plane
-apiVersion: traffic.ferry.zsm.io/v1alpha2
+apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
 metadata:
   name: ferry-rule

@@ -8,21 +8,21 @@ Ferry的主要思想是将一个集群的Service映射到另一个集群，另�
 Ferry项目中的Tunnel组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
 公有云 对 公有云 #  公有云 对 私有云 #  私有云 对 公有云 #  私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
-apiVersion: traffic.ferry.zsm.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 如何使用 Ferry #  查阅 快速开始">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 如何使用 Ferry #  查阅 快速开始">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ferry.zsm.io/zh/">
+<meta property="og:url" content="https://ferryproxy.io/zh/">
 <title>Home | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=en href=https://ferry.zsm.io/ title=Home>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/ title=Home>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.d30a4c9e16826716aa48141212d985dd776c0e91e1493c7042612de019a199c9.js integrity="sha256-0wpMnhaCZxaqSBQSEtmF3XdsDpHhSTxwQmEt4Bmhmck=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.29250ad9a479af01e69ce4b24a4d62eb0784b931ac2941436996285df179ad1f.js integrity="sha256-KSUK2aR5rwHmnOSySk1i6weEuTGsKUFDaZYoXfF5rR8=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
-<link rel=alternate type=application/rss+xml href=https://ferry.zsm.io/zh/index.xml title="Ferry Proxy">
+<link rel=alternate type=application/rss+xml href=https://ferryproxy.io/zh/index.xml title="Ferry Proxy">
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -51,7 +51,7 @@ apiVersion: traffic.ferry.zsm.io/v1alpha2 kind: RoutePolicy metadata: name: ferr
 </label>
 <ul>
 <li>
-<a href=https://ferry.zsm.io/>
+<a href=https://ferryproxy.io/>
 English
 </a>
 </li>
@@ -60,7 +60,7 @@ English
 </ul>
 <ul>
 <li>
-<a href=https://github.com/ferry-proxy target=_blank rel=noopener>
+<a href=https://github.com/ferryproxy target=_blank rel=noopener>
 Github
 </a>
 </li>
@@ -153,7 +153,7 @@ Ferry Proxy
 <p>Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则</p>
 <p>可以非常简单的描述哪些 Service 需要暴露给其他集群</p>
 <img src=/images/case.png width=800>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferry.zsm.io/v1alpha2</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
 <span style=color:#f92672>metadata</span>:
   <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-rule</span>
@@ -178,13 +178,13 @@ Ferry Proxy
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferry-proxy/website/commit/49fea061b265596cd48a7217c10574dea12c3788 title="最后修改者 Shiming Zhang | 2022-07-11" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/bf59344e375d8703c4a8488ac18ec71cc4976c84 title="最后修改者 Shiming Zhang | 2022-07-12" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-11</span>
+<span>2022-07-12</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferry-proxy/website/edit/main/content/zh/_index.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/_index.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span>
 </a>

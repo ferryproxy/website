@@ -11,7 +11,7 @@
 数据面做好被控制面管控的准备 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 控制面开始管控数据面 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 规则配置 #  测试应用需要提前部署并配置 Service
-在控制面集群配置 Ferry 的规则
+在控制面集群配置路由规则
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: control-plane service: namespace: default name: app-1 ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Quick Start">
@@ -24,18 +24,18 @@
 数据面做好被控制面管控的准备 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 控制面开始管控数据面 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 规则配置 #  测试应用需要提前部署并配置 Service
-在控制面集群配置 Ferry 的规则
+在控制面集群配置路由规则
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: control-plane service: namespace: default name: app-1 ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/quick-start/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-12T13:31:27+08:00">
+<meta property="article:modified_time" content="2022-07-14T22:19:35+08:00">
 <title>Quick Start | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/quick-start/ title="Quick Start">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.29250ad9a479af01e69ce4b24a4d62eb0784b931ac2941436996285df179ad1f.js integrity="sha256-KSUK2aR5rwHmnOSySk1i6weEuTGsKUFDaZYoXfF5rR8=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.8aca29d3139696fdb772472f2f0c3bb6f2dcecbfb81d02c07a627d0a4674dbce.js integrity="sha256-isop0xOWlv23ckcvLww7tvLc7L+4HQLAemJ9CkZ0284=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -180,7 +180,7 @@ ferryctl control-plane join cluster-1
 <a class=anchor href=#%e8%a7%84%e5%88%99%e9%85%8d%e7%bd%ae>#</a>
 </h2>
 <p>测试应用需要提前部署并配置 Service</p>
-<p>在控制面集群配置 Ferry 的规则</p>
+<p>在控制面集群配置路由规则</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc</span>
 <span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
@@ -201,9 +201,9 @@ ferryctl control-plane join cluster-1
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/bf59344e375d8703c4a8488ac18ec71cc4976c84 title="最后修改者 Shiming Zhang | 2022-07-12" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/f640dcf469249bb1539aa0798526cf754fc163b1 title="最后修改者 Shiming Zhang | 2022-07-14" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-12</span>
+<span>2022-07-14</span>
 </a>
 </div>
 <div>

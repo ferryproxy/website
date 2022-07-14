@@ -45,7 +45,7 @@ ferryctl control-plane join cluster-1
 
 测试应用需要提前部署并配置 Service
 
-在控制面集群配置 Ferry 的规则
+在控制面集群配置路由规则
 
 ``` yaml
 # 映射 cluster-1 的 app-1.default.svc 映射到 control-plane 的 app-1.default.svc

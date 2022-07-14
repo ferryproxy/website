@@ -44,9 +44,9 @@ After the last command is executed of data plane, it responds with a command, co
 
 ## Configuration rules
 
-The test application needs to deploy and configure the Service 
+Test applications need to be deployed and configured in advance Service
 
-Rules for configuring Ferry on the control plane cluster
+Configure routing rules in the control plane cluster
 
 ``` yaml
 # Mapping app-1.default.svc of cluster-1 to the app-1.default.svc of control-plane

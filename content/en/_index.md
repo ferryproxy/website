@@ -14,13 +14,19 @@ The Tunnel component of the Ferry project is mainly used to bridge the communica
 
 <img src="/images/cloud-to-cloud.png" width="600">
 
+[Quick Start](./docs/user/examples/default)
+
 ## Public to Private
 
 <img src="/images/cloud-to-edge.png" width="600">
 
+[Quick Start](./docs/user/examples/data-plane-unreachable)
+
 ## Private to Public
 
 <img src="/images/edge-to-cloud.png" width="600">
+
+[Quick Start](./docs/user/examples/control-plane-unreachable)
 
 ## Private to Private
 
@@ -33,7 +39,7 @@ Ferry defines a very simple API for configuring the rules for mapping Services b
 
 It is very simple to describe which services need to be exposed to other clusters
 
-<img src="/images/case.png" width="800">
+<img src="/images/case.png" width="600">
 
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
@@ -53,7 +59,3 @@ spec:
         namespace: default
         name: app-1
 ```
-
-## How to use ferry
-
-See the [Quick Start](./docs/user/quick-start)

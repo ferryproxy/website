@@ -1,0 +1,185 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="创建并转发集群的 Service 端口到本地端口 #  安装 Tunnel #  ferryctl data-plane init 创建并转发集群的 Service 端口到本地端口 #  ferryctl local forward listen <remote service port> <local address port>  ferryctl local forward listen local.test.svc:80 127.0.0.1:28080 所有在集群里 web-0.test.svc:80 端口的访问都会被转发到本地的 127.0.0.1:28080 端口
+ 示例代码">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="创建并转发集群的 Service 端口到本地端口">
+<meta property="og:description" content="创建并转发集群的 Service 端口到本地端口 #  安装 Tunnel #  ferryctl data-plane init 创建并转发集群的 Service 端口到本地端口 #  ferryctl local forward listen <remote service port> <local address port>  ferryctl local forward listen local.test.svc:80 127.0.0.1:28080 所有在集群里 web-0.test.svc:80 端口的访问都会被转发到本地的 127.0.0.1:28080 端口
+ 示例代码">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/forward-listen/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<title>创建并转发集群的 Service 端口到本地端口 | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/forward-listen/ title="Forward Service to Local Port">
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.a337680de849f2ebaf28d1af1097cb1c342de28fb33d3c76ee2f583dc41de022.js integrity="sha256-ozdoDehJ8uuvKNGvEJfLHDQt4o+zPTx27i9YPcQd4CI=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/docs/user/examples/forward-listen/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/zh/><strong>主页</strong></a></p>
+</li>
+<li>
+<p><strong>用户指引</strong></p>
+<ul>
+<li>示例
+<ul>
+<li>
+<a href=/zh/docs/user/examples/default/>默认示例</a></li>
+<li>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>控制面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-listen/ class=active>创建并转发集群的 Service 端口到本地端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/manual/>手动映射服务</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href=/zh/docs/glossary/>术语</a></p>
+</li>
+<li>
+<p>
+<a href=/zh/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>创建并转发集群的 Service 端口到本地端口</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#创建并转发集群的-service-端口到本地端口>创建并转发集群的 Service 端口到本地端口</a>
+<ul>
+<li><a href=#安装-tunnel>安装 Tunnel</a></li>
+<li><a href=#创建并转发集群的-service-端口到本地端口-1>创建并转发集群的 Service 端口到本地端口</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=创建并转发集群的-service-端口到本地端口>
+创建并转发集群的 Service 端口到本地端口
+<a class=anchor href=#%e5%88%9b%e5%bb%ba%e5%b9%b6%e8%bd%ac%e5%8f%91%e9%9b%86%e7%be%a4%e7%9a%84-service-%e7%ab%af%e5%8f%a3%e5%88%b0%e6%9c%ac%e5%9c%b0%e7%ab%af%e5%8f%a3>#</a>
+</h1>
+<h2 id=安装-tunnel>
+安装 Tunnel
+<a class=anchor href=#%e5%ae%89%e8%a3%85-tunnel>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
+</code></pre></div><h2 id=创建并转发集群的-service-端口到本地端口-1>
+创建并转发集群的 Service 端口到本地端口
+<a class=anchor href=#%e5%88%9b%e5%bb%ba%e5%b9%b6%e8%bd%ac%e5%8f%91%e9%9b%86%e7%be%a4%e7%9a%84-service-%e7%ab%af%e5%8f%a3%e5%88%b0%e6%9c%ac%e5%9c%b0%e7%ab%af%e5%8f%a3-1>#</a>
+</h2>
+<pre><code>ferryctl local forward listen &lt;remote service port&gt; &lt;local address port&gt;
+</code></pre>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local forward listen local.test.svc:80 127.0.0.1:28080
+</code></pre></div><p>所有在集群里 web-0.test.svc:80 端口的访问都会被转发到本地的 127.0.0.1:28080 端口</p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-forward.sh>示例代码</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="最后修改者 Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-07-15</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/examples/forward-listen.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#创建并转发集群的-service-端口到本地端口>创建并转发集群的 Service 端口到本地端口</a>
+<ul>
+<li><a href=#安装-tunnel>安装 Tunnel</a></li>
+<li><a href=#创建并转发集群的-service-端口到本地端口-1>创建并转发集群的 Service 端口到本地端口</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

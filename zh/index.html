@@ -6,9 +6,12 @@
 <meta name=description content="Ferry Proxy #  Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。
 Ferry 的主要思想是将一个集群的 Service 映射到另一个集群，另一个集群的应用程序只需要正常访问 Service 即可。
 Ferry 项目中的 Tunnel 组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
-公有云 对 公有云 #  公有云 对 私有云 #  私有云 对 公有云 #  私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
+公有云 对 公有云 #   快速开始
+公有云 对 私有云 #   快速开始
+私有云 对 公有云 #   快速开始
+私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 如何使用 Ferry #  查阅 快速开始">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
@@ -20,7 +23,7 @@ apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: fer
 <link rel=alternate hreflang=en href=https://ferryproxy.io/ title=Home>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.8aca29d3139696fdb772472f2f0c3bb6f2dcecbfb81d02c07a627d0a4674dbce.js integrity="sha256-isop0xOWlv23ckcvLww7tvLc7L+4HQLAemJ9CkZ0284=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.a337680de849f2ebaf28d1af1097cb1c342de28fb33d3c76ee2f583dc41de022.js integrity="sha256-ozdoDehJ8uuvKNGvEJfLHDQt4o+zPTx27i9YPcQd4CI=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -62,31 +65,44 @@ English
 </ul>
 <ul>
 <li>
-<a href=https://github.com/ferryproxy target=_blank rel=noopener>
-Github
-</a>
-</li>
-</ul>
-<ul>
-<li>
 <p>
 <a href=/zh/ class=active><strong>主页</strong></a></p>
 </li>
 <li>
 <p><strong>用户指引</strong></p>
 <ul>
+<li>示例
+<ul>
 <li>
-<a href=/zh/docs/user/quick-start/>快速开始</a></li>
+<a href=/zh/docs/user/examples/default/>默认示例</a></li>
 <li>
-<a href=/zh/docs/user/join-mode/>加入模式</a></li>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>控制面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-listen/>创建并转发集群的 Service 端口到本地端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/manual/>手动映射服务</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
-<p><strong>开发者指引</strong></p>
+<p>
+<a href=/zh/docs/glossary/>术语</a></p>
+</li>
+<li>
+<p>
+<a href=/zh/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
 <ul>
 <li>
-<a href=/zh/docs/developer/roadmap/>Roadmap</a></li>
-</ul>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
 </li>
 </ul>
 </nav>
@@ -114,7 +130,6 @@ Github
 <li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
 <li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
 <li><a href=#示例>示例</a></li>
-<li><a href=#如何使用-ferry>如何使用 Ferry</a></li>
 </ul>
 </li>
 </ul>
@@ -133,16 +148,22 @@ Ferry Proxy
 <a class=anchor href=#%e5%85%ac%e6%9c%89%e4%ba%91-%e5%af%b9-%e5%85%ac%e6%9c%89%e4%ba%91>#</a>
 </h2>
 <img src=/images/cloud-to-cloud.png width=600>
+<p>
+<a href=/zh/docs/user/examples/default/>快速开始</a></p>
 <h2 id=公有云-对-私有云>
 公有云 对 私有云
 <a class=anchor href=#%e5%85%ac%e6%9c%89%e4%ba%91-%e5%af%b9-%e7%a7%81%e6%9c%89%e4%ba%91>#</a>
 </h2>
 <img src=/images/cloud-to-edge.png width=600>
+<p>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>快速开始</a></p>
 <h2 id=私有云-对-公有云>
 私有云 对 公有云
 <a class=anchor href=#%e7%a7%81%e6%9c%89%e4%ba%91-%e5%af%b9-%e5%85%ac%e6%9c%89%e4%ba%91>#</a>
 </h2>
 <img src=/images/edge-to-cloud.png width=600>
+<p>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>快速开始</a></p>
 <h2 id=私有云-对-私有云>
 私有云 对 私有云
 <a class=anchor href=#%e7%a7%81%e6%9c%89%e4%ba%91-%e5%af%b9-%e7%a7%81%e6%9c%89%e4%ba%91>#</a>
@@ -154,7 +175,7 @@ Ferry Proxy
 </h2>
 <p>Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则</p>
 <p>可以非常简单的描述哪些 Service 需要暴露给其他集群</p>
-<img src=/images/case.png width=800>
+<img src=/images/case.png width=600>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
 <span style=color:#f92672>metadata</span>:
@@ -171,18 +192,12 @@ Ferry Proxy
       <span style=color:#f92672>service</span>:
         <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
-</code></pre></div><h2 id=如何使用-ferry>
-如何使用 Ferry
-<a class=anchor href=#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-ferry>#</a>
-</h2>
-<p>查阅
-<a href=/zh/docs/user/quick-start/>快速开始</a></p>
-</article>
+</code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/f640dcf469249bb1539aa0798526cf754fc163b1 title="最后修改者 Shiming Zhang | 2022-07-14" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="最后修改者 Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-14</span>
+<span>2022-07-15</span>
 </a>
 </div>
 <div>
@@ -209,7 +224,6 @@ Ferry Proxy
 <li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
 <li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
 <li><a href=#示例>示例</a></li>
-<li><a href=#如何使用-ferry>如何使用 Ferry</a></li>
 </ul>
 </li>
 </ul>

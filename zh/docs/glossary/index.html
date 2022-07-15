@@ -1,0 +1,271 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="术语 #  API server #  也被称为: kube-apiserver
+API服务器是 Kubernetes 控制平面的一个组件，它暴露了 Kubernetes 的 API。API Server 是 Kubernetes 控制平面的前端。
+Cluster #  也被称为: 集群
+一个机器，称为节点，运行容器化应用程序。每个集群至少有一个节点。
+Controller #  也被称为: 控制器
+在 Kubernetes 中，控制器是观察集群状态的控制回路，然后在需要时进行或请求改变。每个控制器都试图使当前的集群状态更接近理想状态。 控制器通过 apiserver（控制平面的一部分）观察集群的共享状态。
+Control Plane #  也被称为: 控制面
+在 Kubernetes 中，中容器协调层，暴露了定义、部署和管理容器生命周期的API和接口。
+该层由许多不同的组件组成，例如（但不限于）。 - Etcd - API Server - Scheduler - Controller Manager
+Control Plane Cluster #  也被称为: 控制面集群
+在多 Kubernetes 集群中，控制平面集群要向其他集群提供控制平面服务。
+Data Plane #  也被称为: 数据面">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="术语">
+<meta property="og:description" content="术语 #  API server #  也被称为: kube-apiserver
+API服务器是 Kubernetes 控制平面的一个组件，它暴露了 Kubernetes 的 API。API Server 是 Kubernetes 控制平面的前端。
+Cluster #  也被称为: 集群
+一个机器，称为节点，运行容器化应用程序。每个集群至少有一个节点。
+Controller #  也被称为: 控制器
+在 Kubernetes 中，控制器是观察集群状态的控制回路，然后在需要时进行或请求改变。每个控制器都试图使当前的集群状态更接近理想状态。 控制器通过 apiserver（控制平面的一部分）观察集群的共享状态。
+Control Plane #  也被称为: 控制面
+在 Kubernetes 中，中容器协调层，暴露了定义、部署和管理容器生命周期的API和接口。
+该层由许多不同的组件组成，例如（但不限于）。 - Etcd - API Server - Scheduler - Controller Manager
+Control Plane Cluster #  也被称为: 控制面集群
+在多 Kubernetes 集群中，控制平面集群要向其他集群提供控制平面服务。
+Data Plane #  也被称为: 数据面">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/glossary/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<title>术语 | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/glossary/ title=Glossary>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.a337680de849f2ebaf28d1af1097cb1c342de28fb33d3c76ee2f583dc41de022.js integrity="sha256-ozdoDehJ8uuvKNGvEJfLHDQt4o+zPTx27i9YPcQd4CI=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/docs/glossary/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/zh/><strong>主页</strong></a></p>
+</li>
+<li>
+<p><strong>用户指引</strong></p>
+<ul>
+<li>示例
+<ul>
+<li>
+<a href=/zh/docs/user/examples/default/>默认示例</a></li>
+<li>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>控制面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-listen/>创建并转发集群的 Service 端口到本地端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/manual/>手动映射服务</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href=/zh/docs/glossary/ class=active>术语</a></p>
+</li>
+<li>
+<p>
+<a href=/zh/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>术语</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#术语>术语</a>
+<ul>
+<li><a href=#api-server>API server</a></li>
+<li><a href=#cluster>Cluster</a></li>
+<li><a href=#controller>Controller</a></li>
+<li><a href=#control-plane>Control Plane</a></li>
+<li><a href=#control-plane-cluster>Control Plane Cluster</a></li>
+<li><a href=#data-plane>Data Plane</a></li>
+<li><a href=#data-plane-cluster>Data Plane Cluster</a></li>
+<li><a href=#ferryctl>Ferryctl</a></li>
+<li><a href=#ferry-controller>Ferry-Controller</a></li>
+<li><a href=#ferry-tunnel>Ferry-Tunnel</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=术语>
+术语
+<a class=anchor href=#%e6%9c%af%e8%af%ad>#</a>
+</h1>
+<h2 id=api-server>
+API server
+<a class=anchor href=#api-server>#</a>
+</h2>
+<p>也被称为: kube-apiserver<br>
+API服务器是 Kubernetes 控制平面的一个组件，它暴露了 Kubernetes 的 API。API Server 是 Kubernetes 控制平面的前端。</p>
+<h2 id=cluster>
+Cluster
+<a class=anchor href=#cluster>#</a>
+</h2>
+<p>也被称为: 集群<br>
+一个机器，称为节点，运行容器化应用程序。每个集群至少有一个节点。</p>
+<h2 id=controller>
+Controller
+<a class=anchor href=#controller>#</a>
+</h2>
+<p>也被称为: 控制器<br>
+在 Kubernetes 中，控制器是观察集群状态的控制回路，然后在需要时进行或请求改变。每个控制器都试图使当前的集群状态更接近理想状态。
+控制器通过 apiserver（控制平面的一部分）观察集群的共享状态。</p>
+<h2 id=control-plane>
+Control Plane
+<a class=anchor href=#control-plane>#</a>
+</h2>
+<p>也被称为: 控制面<br>
+在 Kubernetes 中，中容器协调层，暴露了定义、部署和管理容器生命周期的API和接口。<br>
+该层由许多不同的组件组成，例如（但不限于）。
+- Etcd
+- API Server
+- Scheduler
+- Controller Manager</p>
+<h2 id=control-plane-cluster>
+Control Plane Cluster
+<a class=anchor href=#control-plane-cluster>#</a>
+</h2>
+<p>也被称为: 控制面集群<br>
+在多 Kubernetes 集群中，控制平面集群要向其他集群提供控制平面服务。</p>
+<h2 id=data-plane>
+Data Plane
+<a class=anchor href=#data-plane>#</a>
+</h2>
+<p>也被称为: 数据面<br>
+在 Kubernetes 中，中提供CPU、内存、网络和存储等容量的层，以便容器能够运行并连接到网络。</p>
+<h2 id=data-plane-cluster>
+Data Plane Cluster
+<a class=anchor href=#data-plane-cluster>#</a>
+</h2>
+<p>也被称为: 数据面集群<br>
+在多 Kubernetes 集群中, 数据面集群主要工作是自身的服务。</p>
+<h2 id=ferryctl>
+Ferryctl
+<a class=anchor href=#ferryctl>#</a>
+</h2>
+<p>一个用于安装和维护 Ferry 的工具。</p>
+<h2 id=ferry-controller>
+Ferry-Controller
+<a class=anchor href=#ferry-controller>#</a>
+</h2>
+<p>它是 Ferry 的控制器，用于推送服务路由规则，并动态地发现需要映射的服务。
+需要安装在控制平面集群中</p>
+<h2 id=ferry-tunnel>
+Ferry-Tunnel
+<a class=anchor href=#ferry-tunnel>#</a>
+</h2>
+<p>它是 Ferry 的隧道，用于服务从一个集群路由到另一个集群。
+需要安装在数据平面集群中</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="最后修改者 Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-07-15</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/glossary.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#术语>术语</a>
+<ul>
+<li><a href=#api-server>API server</a></li>
+<li><a href=#cluster>Cluster</a></li>
+<li><a href=#controller>Controller</a></li>
+<li><a href=#control-plane>Control Plane</a></li>
+<li><a href=#control-plane-cluster>Control Plane Cluster</a></li>
+<li><a href=#data-plane>Data Plane</a></li>
+<li><a href=#data-plane-cluster>Data Plane Cluster</a></li>
+<li><a href=#ferryctl>Ferryctl</a></li>
+<li><a href=#ferry-controller>Ferry-Controller</a></li>
+<li><a href=#ferry-tunnel>Ferry-Tunnel</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

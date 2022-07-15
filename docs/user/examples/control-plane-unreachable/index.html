@@ -1,0 +1,271 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Control Plane Unreachable #  Prepare at least two clusters for demonstration
+Can be a cluster of one node or a cluster of Kind but at least two.
+ Download ferryctl #  ferryctl is the installation and operation tool for ferry
+A ferryctl needs to be installed for each cluster&rsquo;s control node
+ https://github.com/ferryproxy/ferry/releases
+Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Control Plane Unreachable">
+<meta property="og:description" content="Control Plane Unreachable #  Prepare at least two clusters for demonstration
+Can be a cluster of one node or a cluster of Kind but at least two.
+ Download ferryctl #  ferryctl is the installation and operation tool for ferry
+A ferryctl needs to be installed for each cluster&rsquo;s control node
+ https://github.com/ferryproxy/ferry/releases
+Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/docs/user/examples/control-plane-unreachable/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<title>Control Plane Unreachable | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/ title=控制面集群不可达>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.1b20308a4c36b333c22225d13ee536848fb9acfe3d91d15c068b44f795326e0e.js integrity="sha256-GyAwikw2szPCIiXRPuU2hI+5rP49kdFcBotE95Uybg4=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+English
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/>
+简体中文
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/><strong>Home</strong></a></p>
+</li>
+<li>
+<p><strong>User Guide</strong></p>
+<ul>
+<li>Examples
+<ul>
+<li>
+<a href=/docs/user/examples/default/>Default Example</a></li>
+<li>
+<a href=/docs/user/examples/control-plane-unreachable/ class=active>Control Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
+<li>
+<a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
+<li>
+<a href=/docs/user/examples/manual/>Manual Mapping Service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href=/docs/glossary/>Glossary</a></p>
+</li>
+<li>
+<p>
+<a href=/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Control Plane Unreachable</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#control-plane-unreachable>Control Plane Unreachable</a>
+<ul>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#initialize-control-plane-cluster>Initialize Control Plane Cluster</a></li>
+<li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
+<ul>
+<li><a href=#define-which-data-plane-cluster-needs-to-be-joined>Define which Data Plane Cluster needs to be joined</a></li>
+<li><a href=#execute-on-the-data-plane-cluster>Execute on the Data Plane Cluster</a></li>
+<li><a href=#execute-on-the-control-plane-cluster>Execute on the Control Plane Cluster</a></li>
+</ul>
+</li>
+<li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=control-plane-unreachable>
+Control Plane Unreachable
+<a class=anchor href=#control-plane-unreachable>#</a>
+</h1>
+<blockquote class="book-hint info">
+<p>Prepare at least two clusters for demonstration</p>
+<p>Can be a cluster of one node or a cluster of Kind but at least two.</p>
+</blockquote>
+<img src=/images/edge-to-cloud.png width=600>
+<h2 id=download-ferryctl>
+Download ferryctl
+<a class=anchor href=#download-ferryctl>#</a>
+</h2>
+<p>ferryctl is the installation and operation tool for ferry</p>
+<p>A ferryctl needs to be installed for each cluster&rsquo;s control node</p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/releases>https://github.com/ferryproxy/ferry/releases</a></p>
+<h2 id=initialize-control-plane-cluster>
+Initialize Control Plane Cluster
+<a class=anchor href=#initialize-control-plane-cluster>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on control plane</span>
+ferryctl control-plane init --control-plane-reachable<span style=color:#f92672>=</span>false
+</code></pre></div><h2 id=join-a-data-plane-cluster>
+Join a Data Plane Cluster
+<a class=anchor href=#join-a-data-plane-cluster>#</a>
+</h2>
+<p>3 steps are required to configure</p>
+<h3 id=define-which-data-plane-cluster-needs-to-be-joined>
+Define which Data Plane Cluster needs to be joined
+<a class=anchor href=#define-which-data-plane-cluster-needs-to-be-joined>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on Control Plane Cluster</span>
+ferryctl control-plane join cluster-1 <span style=color:#e6db74>&#34;--data-plane-tunnel-address=</span><span style=color:#e6db74>${</span>HOST_IP<span style=color:#e6db74>}</span><span style=color:#e6db74>:31001&#34;</span> --control-plane-reachable<span style=color:#f92672>=</span>false
+</code></pre></div><pre><code>--data-plane-tunnel-address Specify the address of the Data Plane Cluster Tunnel for the Control Plane Cluster  
+--control-plane-reachable Specify whether the Data Plane Cluster is reachable  
+</code></pre>
+<h3 id=execute-on-the-data-plane-cluster>
+Execute on the Data Plane Cluster
+<a class=anchor href=#execute-on-the-data-plane-cluster>#</a>
+</h3>
+<p>After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.</p>
+<h3 id=execute-on-the-control-plane-cluster>
+Execute on the Control Plane Cluster
+<a class=anchor href=#execute-on-the-control-plane-cluster>#</a>
+</h3>
+<p>After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.</p>
+<h2 id=quickly-pull-up-a-test-environment-locally>
+Quickly pull up a test environment locally
+<a class=anchor href=#quickly-pull-up-a-test-environment-locally>#</a>
+</h2>
+<p>Requirement: Docker, Kind, Go</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git clone https://github.com/ferryproxy/ferry
+go install ./cmd/ferryctl
+./test/hack/start-environment.sh control-plane-unreachable
+</code></pre></div><p>Two clusters will be started using Kind, and the ferry-controller will be installed in the Control Plane Cluster, but no routing rules will be configured</p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/blob/main/test/environments/control-plane-unreachable/>Environment</a></p>
+<p>Configuration route rules</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># Map cluster-1&#39;s web-1.test.svc to control-plane&#39;s web-1.test.svc</span>
+<span style=color:#75715e># Map control-plane&#39;s web-0.test.svc to cluster-1&#39;s web-0.test.svc</span>
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ferry-test</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>test</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-1</span>
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-0</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+</code></pre></div><p>
+<a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-in-both.sh>Sample</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-07-15</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/user/examples/control-plane-unreachable.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#control-plane-unreachable>Control Plane Unreachable</a>
+<ul>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#initialize-control-plane-cluster>Initialize Control Plane Cluster</a></li>
+<li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
+<ul>
+<li><a href=#define-which-data-plane-cluster-needs-to-be-joined>Define which Data Plane Cluster needs to be joined</a></li>
+<li><a href=#execute-on-the-data-plane-cluster>Execute on the Data Plane Cluster</a></li>
+<li><a href=#execute-on-the-control-plane-cluster>Execute on the Control Plane Cluster</a></li>
+</ul>
+</li>
+<li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

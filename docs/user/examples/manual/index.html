@@ -1,0 +1,238 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
+The routing rules configured by this feature are not controlled by the ferry-controller.
+Install Tunnel #  ferryctl data-plane init Manual Mapping Service #  3 steps are required to configure">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Manual Mapping Service">
+<meta property="og:description" content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
+The routing rules configured by this feature are not controlled by the ferry-controller.
+Install Tunnel #  ferryctl data-plane init Manual Mapping Service #  3 steps are required to configure">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/docs/user/examples/manual/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<title>Manual Mapping Service | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/manual/ title=手动映射服务>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.1b20308a4c36b333c22225d13ee536848fb9acfe3d91d15c068b44f795326e0e.js integrity="sha256-GyAwikw2szPCIiXRPuU2hI+5rP49kdFcBotE95Uybg4=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+English
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/zh/docs/user/examples/manual/>
+简体中文
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>
+<a href=/><strong>Home</strong></a></p>
+</li>
+<li>
+<p><strong>User Guide</strong></p>
+<ul>
+<li>Examples
+<ul>
+<li>
+<a href=/docs/user/examples/default/>Default Example</a></li>
+<li>
+<a href=/docs/user/examples/control-plane-unreachable/>Control Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
+<li>
+<a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
+<li>
+<a href=/docs/user/examples/manual/ class=active>Manual Mapping Service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href=/docs/glossary/>Glossary</a></p>
+</li>
+<li>
+<p>
+<a href=/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Manual Mapping Service</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#manual-mapping-service>Manual Mapping Service</a>
+<ul>
+<li><a href=#why-this-is-needed>Why this is needed</a></li>
+<li><a href=#install-tunnel>Install Tunnel</a></li>
+<li><a href=#manual-mapping-service-1>Manual Mapping Service</a>
+<ul>
+<li><a href=#define-exporting-a-service-from-another-cluster>Define exporting a service from another cluster</a></li>
+<li><a href=#execute-in-the-cluster-of-the-exported-service>Execute in the cluster of the exported service</a></li>
+<li><a href=#execute-in-the-cluster-of-the-imported-service>Execute in the cluster of the imported service</a></li>
+</ul>
+</li>
+<li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=manual-mapping-service>
+Manual Mapping Service
+<a class=anchor href=#manual-mapping-service>#</a>
+</h1>
+<h2 id=why-this-is-needed>
+Why this is needed
+<a class=anchor href=#why-this-is-needed>#</a>
+</h2>
+<p>In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.</p>
+<p>The routing rules configured by this feature are not controlled by the ferry-controller.</p>
+<h2 id=install-tunnel>
+Install Tunnel
+<a class=anchor href=#install-tunnel>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
+</code></pre></div><h2 id=manual-mapping-service-1>
+Manual Mapping Service
+<a class=anchor href=#manual-mapping-service-1>#</a>
+</h2>
+<p>3 steps are required to configure</p>
+<h3 id=define-exporting-a-service-from-another-cluster>
+Define exporting a service from another cluster
+<a class=anchor href=#define-exporting-a-service-from-another-cluster>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local manual import --reachable<span style=color:#f92672>=</span>true <span style=color:#e6db74>&#34;--tunnel-address=</span><span style=color:#e6db74>${</span>HOST_IP<span style=color:#e6db74>}</span><span style=color:#e6db74>:31000&#34;</span> --export-host-port<span style=color:#f92672>=</span>web-1.test.svc:8080 --import-service-name<span style=color:#f92672>=</span>web-1-8080
+</code></pre></div><p>This command describes the mapping of the web-1.test.svc:8080 service of the export service cluster to the web-1-8080.ferry-tunnel-system:8080 service of the current cluster</p>
+<pre><code>--reachable=true Is the current cluster is reachable  
+--tunnel-address The address of the Tunnel if the current cluster is reachable  
+--export-host-port Service ports exported from other clusters  
+--import-service-name Mapped services created by the current cluster from services exported from other clusters (by default under the ferry-tunnel-system namespace)  
+</code></pre>
+<h3 id=execute-in-the-cluster-of-the-exported-service>
+Execute in the cluster of the exported service
+<a class=anchor href=#execute-in-the-cluster-of-the-exported-service>#</a>
+</h3>
+<p>After the previous command is executed, a response is copied to the exported cluster for execution</p>
+<h3 id=execute-in-the-cluster-of-the-imported-service>
+Execute in the cluster of the imported service
+<a class=anchor href=#execute-in-the-cluster-of-the-imported-service>#</a>
+</h3>
+<p>After the previous command is executed, a response is copied to the imported cluster for execution</p>
+<h2 id=quickly-pull-up-a-test-environment-locally>
+Quickly pull up a test environment locally
+<a class=anchor href=#quickly-pull-up-a-test-environment-locally>#</a>
+</h2>
+<p>Requirement: Docker, Kind, Go</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git clone https://github.com/ferryproxy/ferry
+go install ./cmd/ferryctl
+./test/hack/start-environment.sh manual
+</code></pre></div><p>The two clusters will be started using Kind, and the service routing rules between the two clusters will be configured</p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/blob/main/test/environments/manual/>Environment</a></p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-manual.sh>Sample</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-07-15</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/user/examples/manual.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#manual-mapping-service>Manual Mapping Service</a>
+<ul>
+<li><a href=#why-this-is-needed>Why this is needed</a></li>
+<li><a href=#install-tunnel>Install Tunnel</a></li>
+<li><a href=#manual-mapping-service-1>Manual Mapping Service</a>
+<ul>
+<li><a href=#define-exporting-a-service-from-another-cluster>Define exporting a service from another cluster</a></li>
+<li><a href=#execute-in-the-cluster-of-the-exported-service>Execute in the cluster of the exported service</a></li>
+<li><a href=#execute-in-the-cluster-of-the-imported-service>Execute in the cluster of the imported service</a></li>
+</ul>
+</li>
+<li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -17,7 +17,7 @@ The Tunnel component of the Ferry project is mainly used to bridge the communica
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/ title=Home>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.51fcca63ca46df76c92859639fe88773afd5827327f9ec57831e0ec83a800815.js integrity="sha256-UfzKY8pG33bJKFljn+iHc6/VgnMn+exXgx4OyDqACBU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.1b20308a4c36b333c22225d13ee536848fb9acfe3d91d15c068b44f795326e0e.js integrity="sha256-GyAwikw2szPCIiXRPuU2hI+5rP49kdFcBotE95Uybg4=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -59,31 +59,44 @@ English
 </ul>
 <ul>
 <li>
-<a href=https://github.com/ferryproxy target=_blank rel=noopener>
-Github
-</a>
-</li>
-</ul>
-<ul>
-<li>
 <p>
 <a href=/ class=active><strong>Home</strong></a></p>
 </li>
 <li>
 <p><strong>User Guide</strong></p>
 <ul>
+<li>Examples
+<ul>
 <li>
-<a href=/docs/user/quick-start/>Quick Start</a></li>
+<a href=/docs/user/examples/default/>Default Example</a></li>
 <li>
-<a href=/docs/user/join-mode/>Join Mode</a></li>
+<a href=/docs/user/examples/control-plane-unreachable/>Control Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
+<li>
+<a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
+<li>
+<a href=/docs/user/examples/manual/>Manual Mapping Service</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
-<p><strong>Developer Guide</strong></p>
+<p>
+<a href=/docs/glossary/>Glossary</a></p>
+</li>
+<li>
+<p>
+<a href=/docs/roadmap/>Roadmap</a></p>
+</li>
+</ul>
 <ul>
 <li>
-<a href=/docs/developer/roadmap/>Roadmap</a></li>
-</ul>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
 </li>
 </ul>
 </nav>
@@ -111,7 +124,6 @@ Github
 <li><a href=#private-to-public>Private to Public</a></li>
 <li><a href=#private-to-private>Private to Private</a></li>
 <li><a href=#example>Example</a></li>
-<li><a href=#how-to-use-ferry>How to use ferry</a></li>
 </ul>
 </li>
 </ul>
@@ -130,16 +142,22 @@ Public to Public
 <a class=anchor href=#public-to-public>#</a>
 </h2>
 <img src=/images/cloud-to-cloud.png width=600>
+<p>
+<a href=/docs/user/examples/default/>Quick Start</a></p>
 <h2 id=public-to-private>
 Public to Private
 <a class=anchor href=#public-to-private>#</a>
 </h2>
 <img src=/images/cloud-to-edge.png width=600>
+<p>
+<a href=/docs/user/examples/data-plane-unreachable/>Quick Start</a></p>
 <h2 id=private-to-public>
 Private to Public
 <a class=anchor href=#private-to-public>#</a>
 </h2>
 <img src=/images/edge-to-cloud.png width=600>
+<p>
+<a href=/docs/user/examples/control-plane-unreachable/>Quick Start</a></p>
 <h2 id=private-to-private>
 Private to Private
 <a class=anchor href=#private-to-private>#</a>
@@ -151,7 +169,7 @@ Example
 </h2>
 <p>Ferry defines a very simple API for configuring the rules for mapping Services between clusters</p>
 <p>It is very simple to describe which services need to be exposed to other clusters</p>
-<img src=/images/case.png width=800>
+<img src=/images/case.png width=600>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
 <span style=color:#f92672>metadata</span>:
@@ -168,18 +186,12 @@ Example
       <span style=color:#f92672>service</span>:
         <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
-</code></pre></div><h2 id=how-to-use-ferry>
-How to use ferry
-<a class=anchor href=#how-to-use-ferry>#</a>
-</h2>
-<p>See the
-<a href=/docs/user/quick-start/>Quick Start</a></p>
-</article>
+</code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/f640dcf469249bb1539aa0798526cf754fc163b1 title="Last modified by Shiming Zhang | 2022-07-14" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-14</span>
+<span>2022-07-15</span>
 </a>
 </div>
 <div>
@@ -206,7 +218,6 @@ How to use ferry
 <li><a href=#private-to-public>Private to Public</a></li>
 <li><a href=#private-to-private>Private to Private</a></li>
 <li><a href=#example>Example</a></li>
-<li><a href=#how-to-use-ferry>How to use ferry</a></li>
 </ul>
 </li>
 </ul>

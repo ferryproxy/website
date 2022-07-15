@@ -14,13 +14,19 @@ Ferry 项目中的 Tunnel 组件主要用于打通不同集群之间的通信，
 
 <img src="/images/cloud-to-cloud.png" width="600">
 
+[快速开始](./docs/user/examples/default)
+
 ## 公有云 对 私有云
 
 <img src="/images/cloud-to-edge.png" width="600">
 
+[快速开始](./docs/user/examples/data-plane-unreachable)
+
 ## 私有云 对 公有云
 
 <img src="/images/edge-to-cloud.png" width="600">
+
+[快速开始](./docs/user/examples/control-plane-unreachable)
 
 ## 私有云 对 私有云
 
@@ -33,7 +39,7 @@ Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映
 
 可以非常简单的描述哪些 Service 需要暴露给其他集群
 
-<img src="/images/case.png" width="800">
+<img src="/images/case.png" width="600">
 
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
@@ -53,7 +59,3 @@ spec:
         namespace: default
         name: app-1
 ```
-
-## 如何使用 Ferry
-
- 查阅[快速开始](./docs/user/quick-start)

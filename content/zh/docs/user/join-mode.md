@@ -1,5 +1,0 @@
----
-title: "Join Mode"
----
-
-TODO

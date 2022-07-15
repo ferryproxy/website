@@ -4,9 +4,13 @@ headless: true
 
 - [**Home**]({{< relref "/" >}})
 - **User Guide**
-  - [Quick Start]({{< relref "/docs/user/quick-start" >}})
-  - [Join Mode]({{< relref "/docs/user/join-mode" >}})
+  - Examples
+    - [Default Example]({{< relref "/docs/user/examples/default" >}})
+    - [Control Plane Unreachable]({{< relref "/docs/user/examples/control-plane-unreachable" >}})
+    - [Data Plane Unreachable]({{< relref "/docs/user/examples/data-plane-unreachable" >}})
+    - [Forward Local Port to Cluster]({{< relref "/docs/user/examples/forward-dial" >}})
+    - [Forward Service to Local Port]({{< relref "/docs/user/examples/forward-listen" >}})
+    - [Manual Mapping Service]({{< relref "/docs/user/examples/manual" >}})
 
-
-- **Developer Guide**
-  - [Roadmap]({{< relref "/docs/developer/roadmap" >}})
+- [Glossary]({{< relref "/docs/glossary" >}})
+- [Roadmap]({{< relref "/docs/roadmap" >}})

@@ -11,4 +11,5 @@ This document outlines some goals, non-goals, and future aspirations for Ferry a
 - [ ] Multi-cluster load balancing
 - [ ] IP-based access control
 - [ ] Provide an cluster-to-cluster view of traffic flow and service performance
-
+- [ ] Adapting to the ecosystem
+- [ ] Support UDP

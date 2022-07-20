@@ -43,6 +43,8 @@ ferryctl local manual import --reachable=true "--tunnel-address=${HOST_IP}:31000
 
 ## 快速在本地拉起测试环境
 
+如果你没有可以测试集群又想快速尝试可以按照下面的流程
+
 要求: Docker, Kind, Go
 
 ``` bash

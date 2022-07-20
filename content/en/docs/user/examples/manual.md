@@ -43,6 +43,8 @@ After the previous command is executed, a response is copied to the imported clu
 
 ## Quickly pull up a test environment locally
 
+If you don't have a cluster to test and want to try it quickly, you can follow the process below
+
 Requirement: Docker, Kind, Go
 
 ``` bash

@@ -51,7 +51,15 @@ ferryctl control-plane join cluster-1 "--data-plane-tunnel-address=${HOST_IP}:31
 
 上一个命令执行后, 会响应一个命令复制到控制面集群执行
 
+然后可以在控制面集群查看这个数据面集群了
+
+``` bash
+kubectl get hub.traffic.ferryproxy.io -n ferry-system
+```
+
 ## 快速在本地拉起测试环境
+
+如果你没有可以测试集群又想快速尝试可以按照下面的流程
 
 要求: Docker, Kind, Go
 
@@ -83,11 +91,21 @@ spec:
         name: web-1
     - hubName: control-plane
       service:
-        namespace: default
+        namespace: test
         name: web-0
   imports:
     - hubName: cluster-1
     - hubName: control-plane
+```
+
+``` bash
+# 进入 control-plane 的容器里 去 请求 cluster-1 映射过来的 servuce
+kubectl --context=kind-ferry-test-control-plane exec -it svc/web-0 -n test -- wget -O - web-1
+```
+
+``` bash
+# 进入 cluster-1 的容器里 去 请求 control-plane 映射过来的 servuce
+kubectl --context=kind-ferry-test-cluster-1 exec -it svc/web-1 -n test -- wget -O - web-0
 ```
 
 [示例代码](https://github.com/ferryproxy/ferry/blob/main/test/test/test-in-both.sh)

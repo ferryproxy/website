@@ -50,7 +50,15 @@ After the last command is executed of Control Plane Cluster, it responds with a 
 
 After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.
 
+This data plane cluster can then be viewed in the control plane cluster
+
+``` bash
+kubectl get hub.traffic.ferryproxy.io -n ferry-system
+```
+
 ## Quickly pull up a test environment locally
+
+If you don't have a cluster to test and want to try it quickly, you can follow the process below
 
 Requirement: Docker, Kind, Go
 
@@ -82,11 +90,21 @@ spec:
         name: web-1
     - hubName: control-plane
       service:
-        namespace: default
+        namespace: test
         name: web-0
   imports:
     - hubName: cluster-1
     - hubName: control-plane
+```
+
+``` bash
+# Go to the control-plane container and request the servuce mapped from cluster-1
+kubectl --context=kind-ferry-test-control-plane exec -it svc/web-0 -n test -- wget -O - web-1
+```
+
+``` bash
+# Go to the cluster-1 container and request the servuce mapped from control-plane
+kubectl --context=kind-ferry-test-cluster-1 exec -it svc/web-1 -n test -- wget -O - web-0
 ```
 
 [Sample](https://github.com/ferryproxy/ferry/blob/main/test/test/test-in-both.sh)

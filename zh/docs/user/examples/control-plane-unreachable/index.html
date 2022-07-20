@@ -10,7 +10,8 @@
 初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init --control-plane-reachable=false --control-plane-reachable 指定控制面集群是否可达  加入数据面集群 #  需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 #  # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address 指定对于控制面集群来说数据面集群 Tunnel 的地址 --control-plane-reachable 指定控制面集群是否可达  在数据面集群执行 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
-快速在本地拉起测试环境 #  要求: Docker, Kind, Go">
+然后可以在控制面集群查看这个数据面集群了
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="控制面集群不可达">
 <meta property="og:description" content="控制面集群不可达 #  准备至少两个集群才能做演示
@@ -21,17 +22,18 @@
 初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init --control-plane-reachable=false --control-plane-reachable 指定控制面集群是否可达  加入数据面集群 #  需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 #  # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address 指定对于控制面集群来说数据面集群 Tunnel 的地址 --control-plane-reachable 指定控制面集群是否可达  在数据面集群执行 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
-快速在本地拉起测试环境 #  要求: Docker, Kind, Go">
+然后可以在控制面集群查看这个数据面集群了
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<meta property="article:modified_time" content="2022-07-20T12:09:48+08:00">
 <title>控制面集群不可达 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/control-plane-unreachable/ title="Control Plane Unreachable">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.c9e129339cd8083d7978ebbbe68bdb8542d137c30fc6a2e69d69dad5fab23447.js integrity="sha256-yeEpM5zYCD15eOu75ovbhULRN8MPxqLmnWna1fqyNEc=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.cf65b4a545b83fd2630cff744efdeda52016629a7bf28c1764b7625bf08be593.js integrity="sha256-z2W0pUW4P9JjDP90Tv3tpSAWYpp78owXZLdiW/CL5ZM=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -197,10 +199,13 @@ ferryctl control-plane join cluster-1 <span style=color:#e6db74>&#34;--data-plan
 <a class=anchor href=#%e5%9c%a8%e6%8e%a7%e5%88%b6%e9%9d%a2%e9%9b%86%e7%be%a4%e6%89%a7%e8%a1%8c>#</a>
 </h3>
 <p>上一个命令执行后, 会响应一个命令复制到控制面集群执行</p>
-<h2 id=快速在本地拉起测试环境>
+<p>然后可以在控制面集群查看这个数据面集群了</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get hub.traffic.ferryproxy.io -n ferry-system
+</code></pre></div><h2 id=快速在本地拉起测试环境>
 快速在本地拉起测试环境
 <a class=anchor href=#%e5%bf%ab%e9%80%9f%e5%9c%a8%e6%9c%ac%e5%9c%b0%e6%8b%89%e8%b5%b7%e6%b5%8b%e8%af%95%e7%8e%af%e5%a2%83>#</a>
 </h2>
+<p>如果你没有可以测试集群又想快速尝试可以按照下面的流程</p>
 <p>要求: Docker, Kind, Go</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git clone https://github.com/ferryproxy/ferry
 go install ./cmd/ferryctl
@@ -224,19 +229,23 @@ go install ./cmd/ferryctl
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-1</span>
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
       <span style=color:#f92672>service</span>:
-        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>test</span>
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-0</span>
   <span style=color:#f92672>imports</span>:
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 进入 control-plane 的容器里 去 请求 cluster-1 映射过来的 servuce</span>
+kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-control-plane exec -it svc/web-0 -n test -- wget -O - web-1
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 进入 cluster-1 的容器里 去 请求 control-plane 映射过来的 servuce</span>
+kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exec -it svc/web-1 -n test -- wget -O - web-0
 </code></pre></div><p>
 <a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-in-both.sh>示例代码</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="最后修改者 Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/506a8ed757e3cf883a2219998f841c80295bcfe9 title="最后修改者 Shiming Zhang | 2022-07-20" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-15</span>
+<span>2022-07-20</span>
 </a>
 </div>
 <div>

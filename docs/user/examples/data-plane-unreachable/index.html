@@ -18,14 +18,14 @@ A ferryctl needs to be installed for each cluster&rsquo;s control node
 Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init Join a Data Plane Cluster #  3 steps are required to configure">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/data-plane-unreachable/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<meta property="article:modified_time" content="2022-07-20T12:09:48+08:00">
 <title>Data Plane Unreachable | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/data-plane-unreachable/ title=数据面集群不可达>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.99fa9ae2d5fb06e6a5bb8f162cd1ddb3ef28b2113d1b0ac723959c75755648a6.js integrity="sha256-mfqa4tX7Bualu48WLNHds+8oshE9GwrHI5WcdXVWSKY=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.eed6d7ef7fabbc49aa14265436ea36524f9790a915ee9503d6152b00ae16857d.js integrity="sha256-7tbX73+rvEmqFCZUNuo2Uk+XkKkV7pUD1hUrAK4WhX0=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -189,10 +189,13 @@ Execute on the Control Plane Cluster
 <a class=anchor href=#execute-on-the-control-plane-cluster>#</a>
 </h3>
 <p>After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.</p>
-<h2 id=quickly-pull-up-a-test-environment-locally>
+<p>This data plane cluster can then be viewed in the control plane cluster</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get hub.traffic.ferryproxy.io -n ferry-system
+</code></pre></div><h2 id=quickly-pull-up-a-test-environment-locally>
 Quickly pull up a test environment locally
 <a class=anchor href=#quickly-pull-up-a-test-environment-locally>#</a>
 </h2>
+<p>If you don&rsquo;t have a cluster to test and want to try it quickly, you can follow the process below</p>
 <p>Requirement: Docker, Kind, Go</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git clone https://github.com/ferryproxy/ferry
 go install ./cmd/ferryctl
@@ -216,19 +219,23 @@ go install ./cmd/ferryctl
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-1</span>
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
       <span style=color:#f92672>service</span>:
-        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>test</span>
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>web-0</span>
   <span style=color:#f92672>imports</span>:
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
     - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>control-plane</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Go to the control-plane container and request the servuce mapped from cluster-1</span>
+kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-control-plane exec -it svc/web-0 -n test -- wget -O - web-1
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Go to the cluster-1 container and request the servuce mapped from control-plane</span>
+kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exec -it svc/web-1 -n test -- wget -O - web-0
 </code></pre></div><p>
 <a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-in-both.sh>Sample</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/506a8ed757e3cf883a2219998f841c80295bcfe9 title="Last modified by Shiming Zhang | 2022-07-20" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-15</span>
+<span>2022-07-20</span>
 </a>
 </div>
 <div>

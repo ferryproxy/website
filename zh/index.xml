@@ -5,7 +5,7 @@
 定义从其他集群导出某一服务 # ferryctl local manual import --reachable=true &amp;#34;--tunnel-address=${HOST_IP}:31000&amp;#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
 --reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下) 导出服务的集群执行 # 上一个命令执行后, 会响应一个命令复制到导出集群执行
 导入服务的集群执行 # 上一个命令执行后, 会响应一个命令复制到导入集群执行
-快速在本地拉起测试环境 # 要求: Docker, Kind, Go</description></item><item><title>控制面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</guid><description>控制面集群不可达 # 准备至少两个集群才能做演示
+快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程</description></item><item><title>控制面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</guid><description>控制面集群不可达 # 准备至少两个集群才能做演示
 可以是一个节点的集群或者 Kind 起的集群但最少也要两个
 下载 ferryctl # ferryctl 是 ferry 的安装运维工具
 需要为每个集群的控制节点都安装一个 ferryctl
@@ -13,7 +13,8 @@ https://github.com/ferryproxy/ferry/releases
 初始化控制面集群 # # 在控制面集群执行 ferryctl control-plane init --control-plane-reachable=false --control-plane-reachable 指定控制面集群是否可达 加入数据面集群 # 需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 # # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &amp;#34;--data-plane-tunnel-address=${HOST_IP}:31001&amp;#34; --control-plane-reachable=false --data-plane-tunnel-address 指定对于控制面集群来说数据面集群 Tunnel 的地址 --control-plane-reachable 指定控制面集群是否可达 在数据面集群执行 # 上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 # 上一个命令执行后, 会响应一个命令复制到控制面集群执行
-快速在本地拉起测试环境 # 要求: Docker, Kind, Go</description></item><item><title>数据面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/data-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/data-plane-unreachable/</guid><description>数据面集群不可达 # 准备至少两个集群才能做演示
+然后可以在控制面集群查看这个数据面集群了
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程</description></item><item><title>数据面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/data-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/data-plane-unreachable/</guid><description>数据面集群不可达 # 准备至少两个集群才能做演示
 可以是一个节点的集群或者 Kind 起的集群但最少也要两个
 下载 ferryctl # ferryctl 是 ferry 的安装运维工具
 需要为每个集群的控制节点都安装一个 ferryctl
@@ -21,8 +22,8 @@ https://github.com/ferryproxy/ferry/releases
 初始化控制面集群 # # 在控制面集群执行 ferryctl control-plane init 加入数据面集群 # 需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 # # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &amp;#34;--control-plane-tunnel-address=${HOST_IP}:31000&amp;#34; --data-plane-reachable=false --control-plane-tunnel-address 指定对于数据面集群来说控制面集群 Tunnel 的地址 --data-plane-reachable 指定数据面集群是否可达 在数据面集群执行 # 上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 # 上一个命令执行后, 会响应一个命令复制到控制面集群执行
-快速在本地拉起测试环境 # 要求: Docker, Kind, Go
-git clone https://github.</description></item><item><title>术语</title><link>https://ferryproxy.io/zh/docs/glossary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/glossary/</guid><description>术语 # API server # 也被称为: kube-apiserver
+然后可以在控制面集群查看这个数据面集群了
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程</description></item><item><title>术语</title><link>https://ferryproxy.io/zh/docs/glossary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/glossary/</guid><description>术语 # API server # 也被称为: kube-apiserver
 API服务器是 Kubernetes 控制平面的一个组件，它暴露了 Kubernetes 的 API。API Server 是 Kubernetes 控制平面的前端。
 Cluster # 也被称为: 集群
 一个机器，称为节点，运行容器化应用程序。每个集群至少有一个节点。
@@ -42,5 +43,7 @@ https://github.com/ferryproxy/ferry/releases
 初始化控制面集群 # # 在控制面集群执行 ferryctl control-plane init 加入数据面集群 # 需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 # # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 在数据面集群执行 # 上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 # 上一个命令执行后, 会响应一个命令复制到控制面集群执行
-快速在本地拉起测试环境 # 要求: Docker, Kind, Go
-git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/hack/start-environment.sh default 将会使用 Kind 启动两个集群, 并在控制面集群安装好 ferry-controller, 但是没有配置路由规则</description></item></channel></rss>
+然后可以在控制面集群查看这个数据面集群了
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程
+要求: Docker, Kind, Go
+git clone https://github.com/ferryproxy/ferry go install .</description></item></channel></rss>

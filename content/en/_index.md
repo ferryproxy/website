@@ -10,6 +10,8 @@ The main idea of Ferry is to map a Service from one cluster to another cluster, 
 
 The Tunnel component of the Ferry project is mainly used to bridge the communication between different clusters and has no requirements on the network environment and network segment currently used by the cluster.
 
+Ferry can simplify the architecture in cross cluster for metrics collection, request tracking reporting, log uploading, connecting to unreachable Apiserver, etc.
+
 ## Public to Public
 
 <img src="/images/cloud-to-cloud.png" width="600">

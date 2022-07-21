@@ -10,6 +10,8 @@ Ferry 的主要思想是将一个集群的 Service 映射到另一个集群，�
 
 Ferry 项目中的 Tunnel 组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
 
+Ferry可以简化跨集群中的架构，可用于指标收集、请求跟踪上报、日志上传、连接到无法访问的Apiserver等。
+
 ## 公有云 对 公有云
 
 <img src="/images/cloud-to-cloud.png" width="600">

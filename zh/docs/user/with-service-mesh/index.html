@@ -2,19 +2,17 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="转发本地端口到集群的端口 #  安装 Tunnel #  ferryctl data-plane init 转发本地端口到集群的端口 #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 所有对 127.0.0.1:18080 端口的访问都会被转发到 web-0.test.svc:80 端口
- 示例代码">
+<meta name=description content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="转发本地端口到集群的端口">
-<meta property="og:description" content="转发本地端口到集群的端口 #  安装 Tunnel #  ferryctl data-plane init 转发本地端口到集群的端口 #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 所有对 127.0.0.1:18080 端口的访问都会被转发到 web-0.test.svc:80 端口
- 示例代码">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="和服务网格一起使用">
+<meta property="og:description" content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/forward-dial/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
-<title>转发本地端口到集群的端口 | Ferry Proxy</title>
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/with-service-mesh/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-21T15:33:07+08:00">
+<title>和服务网格一起使用 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/forward-dial/ title="Forward Local Port to Cluster">
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/with-service-mesh/ title="With Service Mesh">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.733a170b5f42b89d46a9c7ed21c54bd7555aa766e687176e3dbb2331e70dbef5.js integrity="sha256-czoXC19CuJ1GqcftIcVL11Vap2bmhxduPbsjMecNvvU=" crossorigin=anonymous></script>
@@ -49,7 +47,7 @@
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/docs/user/examples/forward-dial/>
+<a href=https://ferryproxy.io/docs/user/with-service-mesh/>
 English
 </a>
 </li>
@@ -70,7 +68,7 @@ English
 <li>
 <a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
 <li>
-<a href=/zh/docs/user/examples/forward-dial/ class=active>转发本地端口到集群的端口</a></li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
 <li>
 <a href=/zh/docs/user/examples/forward-listen/>创建并转发集群的 Service 端口到本地端口</a></li>
 <li>
@@ -78,7 +76,7 @@ English
 </ul>
 </li>
 <li>
-<a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
+<a href=/zh/docs/user/with-service-mesh/ class=active>和服务网格一起使用</a></li>
 </ul>
 </li>
 <li>
@@ -103,7 +101,7 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>转发本地端口到集群的端口</strong>
+<strong>和服务网格一起使用</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
@@ -111,45 +109,26 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#转发本地端口到集群的端口>转发本地端口到集群的端口</a>
-<ul>
-<li><a href=#安装-tunnel>安装 Tunnel</a></li>
-<li><a href=#转发本地端口到集群的端口-1>转发本地端口到集群的端口</a></li>
-</ul>
-</li>
+<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=转发本地端口到集群的端口>
-转发本地端口到集群的端口
-<a class=anchor href=#%e8%bd%ac%e5%8f%91%e6%9c%ac%e5%9c%b0%e7%ab%af%e5%8f%a3%e5%88%b0%e9%9b%86%e7%be%a4%e7%9a%84%e7%ab%af%e5%8f%a3>#</a>
+<article class=markdown><h1 id=和服务网格一起使用>
+和服务网格一起使用
+<a class=anchor href=#%e5%92%8c%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8>#</a>
 </h1>
-<h2 id=安装-tunnel>
-安装 Tunnel
-<a class=anchor href=#%e5%ae%89%e8%a3%85-tunnel>#</a>
-</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
-</code></pre></div><h2 id=转发本地端口到集群的端口-1>
-转发本地端口到集群的端口
-<a class=anchor href=#%e8%bd%ac%e5%8f%91%e6%9c%ac%e5%9c%b0%e7%ab%af%e5%8f%a3%e5%88%b0%e9%9b%86%e7%be%a4%e7%9a%84%e7%ab%af%e5%8f%a3-1>#</a>
-</h2>
-<pre><code>ferryctl local forward dial &lt;local address port&gt; &lt;remote service port&gt;
-</code></pre>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80
-</code></pre></div><p>所有对 127.0.0.1:18080 端口的访问都会被转发到 web-0.test.svc:80 端口</p>
-<p>
-<a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-forward.sh>示例代码</a></p>
+<p>通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="最后修改者 Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/5ae9c1c81ed3febda41a204ce7d3423189e0a997 title="最后修改者 Shiming Zhang | 2022-07-21" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-15</span>
+<span>2022-07-21</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/examples/forward-dial.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/with-service-mesh.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span>
 </a>
@@ -165,12 +144,7 @@ Code Source
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#转发本地端口到集群的端口>转发本地端口到集群的端口</a>
-<ul>
-<li><a href=#安装-tunnel>安装 Tunnel</a></li>
-<li><a href=#转发本地端口到集群的端口-1>转发本地端口到集群的端口</a></li>
-</ul>
-</li>
+<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
 </ul>
 </nav>
 </div>

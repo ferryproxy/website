@@ -2,19 +2,17 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Forward Local Port to Cluster #  Installing Tunnel in the cluster #  ferryctl data-plane init Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
- Sample">
+<meta name=description content="With Service Mesh #  As verified in Istio, Ferry fits perfectly as long as Sidecar is not injected into the ferry-tunnel">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Forward Local Port to Cluster">
-<meta property="og:description" content="Forward Local Port to Cluster #  Installing Tunnel in the cluster #  ferryctl data-plane init Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
- Sample">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="With Service Mesh">
+<meta property="og:description" content="With Service Mesh #  As verified in Istio, Ferry fits perfectly as long as Sidecar is not injected into the ferry-tunnel">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ferryproxy.io/docs/user/examples/forward-dial/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
-<title>Forward Local Port to Cluster | Ferry Proxy</title>
+<meta property="og:url" content="https://ferryproxy.io/docs/user/with-service-mesh/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-21T15:33:07+08:00">
+<title>With Service Mesh | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/forward-dial/ title=转发本地端口到集群的端口>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/with-service-mesh/ title=和服务网格一起使用>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/en.search.min.eaacf60a3450a4a1d65c4bf47f8bc00000c29e4e8fc30361f9cc2c55b6ebe67f.js integrity="sha256-6qz2CjRQpKHWXEv0f4vAAADCnk6PwwNh+cwsVbbr5n8=" crossorigin=anonymous></script>
@@ -49,7 +47,7 @@ English
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/zh/docs/user/examples/forward-dial/>
+<a href=https://ferryproxy.io/zh/docs/user/with-service-mesh/>
 简体中文
 </a>
 </li>
@@ -70,7 +68,7 @@ English
 <li>
 <a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
 <li>
-<a href=/docs/user/examples/forward-dial/ class=active>Forward Local Port to Cluster</a></li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
 <li>
 <a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
 <li>
@@ -78,7 +76,7 @@ English
 </ul>
 </li>
 <li>
-<a href=/docs/user/with-service-mesh/>With Service Mesh</a></li>
+<a href=/docs/user/with-service-mesh/ class=active>With Service Mesh</a></li>
 </ul>
 </li>
 <li>
@@ -103,7 +101,7 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Forward Local Port to Cluster</strong>
+<strong>With Service Mesh</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
@@ -111,45 +109,26 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#forward-local-port-to-cluster>Forward Local Port to Cluster</a>
-<ul>
-<li><a href=#installing-tunnel-in-the-cluster>Installing Tunnel in the cluster</a></li>
-<li><a href=#forward-local-port-to-cluster-1>Forward Local Port to Cluster</a></li>
-</ul>
-</li>
+<li><a href=#with-service-mesh>With Service Mesh</a></li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=forward-local-port-to-cluster>
-Forward Local Port to Cluster
-<a class=anchor href=#forward-local-port-to-cluster>#</a>
+<article class=markdown><h1 id=with-service-mesh>
+With Service Mesh
+<a class=anchor href=#with-service-mesh>#</a>
 </h1>
-<h2 id=installing-tunnel-in-the-cluster>
-Installing Tunnel in the cluster
-<a class=anchor href=#installing-tunnel-in-the-cluster>#</a>
-</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
-</code></pre></div><h2 id=forward-local-port-to-cluster-1>
-Forward Local Port to Cluster
-<a class=anchor href=#forward-local-port-to-cluster-1>#</a>
-</h2>
-<pre><code>ferryctl local forward dial &lt;local address port&gt; &lt;remote service port&gt;
-</code></pre>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80
-</code></pre></div><p>All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80</p>
-<p>
-<a href=https://github.com/ferryproxy/ferry/blob/main/test/test/test-forward.sh>Sample</a></p>
+<p>As verified in Istio, Ferry fits perfectly as long as Sidecar is not injected into the ferry-tunnel</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/5ae9c1c81ed3febda41a204ce7d3423189e0a997 title="Last modified by Shiming Zhang | 2022-07-21" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-15</span>
+<span>2022-07-21</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/user/examples/forward-dial.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/user/with-service-mesh.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>Edit this page</span>
 </a>
@@ -165,12 +144,7 @@ Forward Local Port to Cluster
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#forward-local-port-to-cluster>Forward Local Port to Cluster</a>
-<ul>
-<li><a href=#installing-tunnel-in-the-cluster>Installing Tunnel in the cluster</a></li>
-<li><a href=#forward-local-port-to-cluster-1>Forward Local Port to Cluster</a></li>
-</ul>
-</li>
+<li><a href=#with-service-mesh>With Service Mesh</a></li>
 </ul>
 </nav>
 </div>

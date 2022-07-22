@@ -13,3 +13,6 @@
 - [ ] 提供流量和业务性能的 cluster-to-cluster 视图
 - [ ] 适配上游生态
 - [ ] 支持 UDP
+- [ ] 支持 [mcs api](https://github.com/kubernetes-sigs/mcs-api)
+- [ ] 支持两个无公网 IP 的集群通过 UDP p2p 直连
+- [ ] 支持任何带有 sshd 的服务器作为 Hub，不需要集群

@@ -13,3 +13,6 @@ This document outlines some goals, non-goals, and future aspirations for Ferry a
 - [ ] Provide an cluster-to-cluster view of traffic flow and service performance
 - [ ] Adapting to the ecosystem
 - [ ] Support UDP
+- [ ] Support [mcs api](https://github.com/kubernetes-sigs/mcs-api)
+- [ ] Supports direct UDP p2p connection between two clusters without public IPs
+- [ ] Support any server with sshd as a hub without Cluster

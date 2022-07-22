@@ -12,7 +12,7 @@ Ferry 可以简化跨集群中的架构，可用于指标收集、请求跟踪�
 私有云 对 公有云 #   快速开始
 私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 为什么使用 Ferry #   避免云厂商锁定  让不同云之间可以相互访问 将服务迁移到不同的云中是无缝的   开箱即用  提供命令行工具以方便安装和使用   无侵入  不依赖 Kubernetes 版本 不依赖任何 CNI 或网络环境 不需要修改现有环境   内网渗透  只需要一个公共 IP    ">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 为什么使用 Ferry #   避免云厂商锁定  让不同云之间可以相互访问 将服务迁移到不同的云中是无缝的   开箱即用  提供命令行工具以方便安装和使用 集中定义规则   无侵入  不依赖 Kubernetes 版本 不依赖任何 CNI 或网络环境 不需要修改现有环境   内网穿透  只需要一个公共 IP    ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
@@ -206,6 +206,7 @@ Ferry Proxy
 <li>开箱即用
 <ul>
 <li>提供命令行工具以方便安装和使用</li>
+<li>集中定义规则</li>
 </ul>
 </li>
 <li>无侵入
@@ -215,7 +216,7 @@ Ferry Proxy
 <li>不需要修改现有环境</li>
 </ul>
 </li>
-<li>内网渗透
+<li>内网穿透
 <ul>
 <li>只需要一个公共 IP</li>
 </ul>
@@ -224,7 +225,7 @@ Ferry Proxy
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/dcdb6dc0f56add7becf050fea7c9a0bedaba0a44 title="最后修改者 Shiming Zhang | 2022-07-22" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/30371111c07fbc85a3650dc744786a69399600f4 title="最后修改者 Shiming Zhang | 2022-07-22" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-07-22</span>
 </a>

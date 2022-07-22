@@ -5,7 +5,11 @@
 定义从其他集群导出某一服务 # ferryctl local manual import --reachable=true &amp;#34;--tunnel-address=${HOST_IP}:31000&amp;#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
 --reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下) 导出服务的集群执行 # 上一个命令执行后, 会响应一个命令复制到导出集群执行
 导入服务的集群执行 # 上一个命令执行后, 会响应一个命令复制到导入集群执行
-快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程</description></item><item><title>控制面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</guid><description>控制面集群不可达 # 准备至少两个集群才能做演示
+快速在本地拉起测试环境 # 如果你没有可以测试集群又想快速尝试可以按照下面的流程</description></item><item><title>技术原理</title><link>https://ferryproxy.io/zh/docs/principle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/principle/</guid><description>技术原理 # 通信和穿透 # Ferry-Tunnel 之间使用 ssh 协议的能力实现通信和穿透
+主要使用以下能力
+direct-tcpip tcpip-forward direct-streamlocal streamlocal-forward 核心就两点
+监听本地一个端口, 连接上对端的 Ferry-Tunnel, 并通过其转发所有连接 连接上对端的 Ferry-Tunnel 并监听一个端口, 转发监听端口的连接到本地 服务发现 # 每一个导出的服务端口都会在导入的集群中的 Ferry-Tunnel 分配一个端口
+Ferry 会在导入的集群创建 Headless Service 指向本集群的 Ferry-Tunnel 对应服务的端口</description></item><item><title>控制面集群不可达</title><link>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/</guid><description>控制面集群不可达 # 准备至少两个集群才能做演示
 可以是一个节点的集群或者 Kind 起的集群但最少也要两个
 下载 ferryctl # ferryctl 是 ferry 的安装运维工具
 需要为每个集群的控制节点都安装一个 ferryctl

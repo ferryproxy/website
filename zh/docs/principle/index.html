@@ -2,17 +2,25 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
+<meta name=description content="技术原理 #  通信和穿透 #  Ferry-Tunnel 之间使用 ssh 协议的能力实现通信和穿透
+主要使用以下能力
+  direct-tcpip  tcpip-forward  direct-streamlocal  streamlocal-forward  核心就两点
+ 监听本地一个端口, 连接上对端的 Ferry-Tunnel, 并通过其转发所有连接 连接上对端的 Ferry-Tunnel 并监听一个端口, 转发监听端口的连接到本地  服务发现 #  每一个导出的服务端口都会在导入的集群中的 Ferry-Tunnel 分配一个端口
+Ferry 会在导入的集群创建 Headless Service 指向本集群的 Ferry-Tunnel 对应服务的端口">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="和服务网格一起使用">
-<meta property="og:description" content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="技术原理">
+<meta property="og:description" content="技术原理 #  通信和穿透 #  Ferry-Tunnel 之间使用 ssh 协议的能力实现通信和穿透
+主要使用以下能力
+  direct-tcpip  tcpip-forward  direct-streamlocal  streamlocal-forward  核心就两点
+ 监听本地一个端口, 连接上对端的 Ferry-Tunnel, 并通过其转发所有连接 连接上对端的 Ferry-Tunnel 并监听一个端口, 转发监听端口的连接到本地  服务发现 #  每一个导出的服务端口都会在导入的集群中的 Ferry-Tunnel 分配一个端口
+Ferry 会在导入的集群创建 Headless Service 指向本集群的 Ferry-Tunnel 对应服务的端口">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/with-service-mesh/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-21T15:33:07+08:00">
-<title>和服务网格一起使用 | Ferry Proxy</title>
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/principle/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-22T15:18:42+08:00">
+<title>技术原理 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/with-service-mesh/ title="With Service Mesh">
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/principle/ title="Technology Principle">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.e775388eae5c3d913aba034c6e88b89278b4686a1a98630189454e6ace855aa3.js integrity="sha256-53U4jq5cPZE6ugNMboi4kni0aGoamGMBiUVOas6FWqM=" crossorigin=anonymous></script>
@@ -47,7 +55,7 @@
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/docs/user/with-service-mesh/>
+<a href=https://ferryproxy.io/docs/principle/>
 English
 </a>
 </li>
@@ -76,11 +84,11 @@ English
 </ul>
 </li>
 <li>
-<a href=/zh/docs/user/with-service-mesh/ class=active>和服务网格一起使用</a></li>
+<a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
 </ul>
 </li>
 <li>
-<a href=/zh/docs/principle/>技术原理</a></li>
+<a href=/zh/docs/principle/ class=active>技术原理</a></li>
 <li>
 <a href=/zh/docs/glossary/>术语</a></li>
 <li>
@@ -103,7 +111,7 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>和服务网格一起使用</strong>
+<strong>技术原理</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
@@ -111,26 +119,57 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
+<li><a href=#技术原理>技术原理</a>
+<ul>
+<li><a href=#通信和穿透>通信和穿透</a></li>
+<li><a href=#服务发现>服务发现</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=和服务网格一起使用>
-和服务网格一起使用
-<a class=anchor href=#%e5%92%8c%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8>#</a>
+<article class=markdown><h1 id=技术原理>
+技术原理
+<a class=anchor href=#%e6%8a%80%e6%9c%af%e5%8e%9f%e7%90%86>#</a>
 </h1>
-<p>通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配</p>
+<h2 id=通信和穿透>
+通信和穿透
+<a class=anchor href=#%e9%80%9a%e4%bf%a1%e5%92%8c%e7%a9%bf%e9%80%8f>#</a>
+</h2>
+<p>Ferry-Tunnel 之间使用 ssh 协议的能力实现通信和穿透</p>
+<p>主要使用以下能力</p>
+<ul>
+<li>
+<a href=https://datatracker.ietf.org/doc/html/rfc4254>direct-tcpip</a></li>
+<li>
+<a href=https://datatracker.ietf.org/doc/html/rfc4254>tcpip-forward</a></li>
+<li>
+<a href=https://github.com/openssh/openssh-portable/blob/master/PROTOCOL>direct-streamlocal</a></li>
+<li>
+<a href=https://github.com/openssh/openssh-portable/blob/master/PROTOCOL>streamlocal-forward</a></li>
+</ul>
+<p>核心就两点</p>
+<ul>
+<li>监听本地一个端口, 连接上对端的 Ferry-Tunnel, 并通过其转发所有连接</li>
+<li>连接上对端的 Ferry-Tunnel 并监听一个端口, 转发监听端口的连接到本地</li>
+</ul>
+<h2 id=服务发现>
+服务发现
+<a class=anchor href=#%e6%9c%8d%e5%8a%a1%e5%8f%91%e7%8e%b0>#</a>
+</h2>
+<p>每一个导出的服务端口都会在导入的集群中的 Ferry-Tunnel 分配一个端口</p>
+<p>Ferry 会在导入的集群创建 Headless Service 指向本集群的 Ferry-Tunnel 对应服务的端口</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/5ae9c1c81ed3febda41a204ce7d3423189e0a997 title="最后修改者 Shiming Zhang | 2022-07-21" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/54668419f1bc50b3a63f85107341ac400b79b369 title="最后修改者 Shiming Zhang | 2022-07-22" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-21</span>
+<span>2022-07-22</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/with-service-mesh.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/principle.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span>
 </a>
@@ -146,7 +185,12 @@ Code Source
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
+<li><a href=#技术原理>技术原理</a>
+<ul>
+<li><a href=#通信和穿透>通信和穿透</a></li>
+<li><a href=#服务发现>服务发现</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>

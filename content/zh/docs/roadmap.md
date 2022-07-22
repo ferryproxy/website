@@ -1,15 +1,15 @@
-# Roadmap
+# 路线图
 
 {{< hint info >}}
 本文概述了Ferry作为一个项目的一些目标、非目标和未来的期望。
 {{< /hint >}}
 
-- [x] Engage encryption
-- [x] Use Ferryctl alone to configure service mapping between clusters without the Controller
-- [ ] Status is monitored and displayed in the status of the Hub
-- [ ] Multi-cluster failover
-- [ ] Multi-cluster load balancing
-- [ ] IP-based access control
-- [ ] Provide an cluster-to-cluster view of traffic flow and service performance
-- [ ] Adapting to the ecosystem
-- [ ] Support UDP
+- [x] 通信加密
+- [x] 只使用Ferryctl来配置集群之间的服务映射，而不使用Controller
+- [ ] 监控状态，并显示在Hub的状态中
+- [ ] 多集群故障转移
+- [ ] 多集群负载均衡
+- [ ] 基于 IP 的访问控制
+- [ ] 提供流量和业务性能的 cluster-to-cluster 视图
+- [ ] 适配上游生态
+- [ ] 支持 UDP

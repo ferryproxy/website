@@ -14,4 +14,4 @@ headless: true
   - [和服务网格一起使用]({{< relref "/docs/user/with-service-mesh" >}})
 - [技术原理]({{< relref "/docs/principle" >}})
 - [术语]({{< relref "/docs/glossary" >}})
-- [Roadmap]({{< relref "/docs/roadmap" >}})
+- [路线图]({{< relref "/docs/roadmap" >}})

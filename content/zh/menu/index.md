@@ -12,5 +12,6 @@ headless: true
     - [创建并转发集群的 Service 端口到本地端口]({{< relref "/docs/user/examples/forward-listen" >}})
     - [手动映射服务]({{< relref "/docs/user/examples/manual" >}})
   - [和服务网格一起使用]({{< relref "/docs/user/with-service-mesh" >}})
+- [技术原理]({{< relref "/docs/principle" >}})
 - [术语]({{< relref "/docs/glossary" >}})
 - [Roadmap]({{< relref "/docs/roadmap" >}})

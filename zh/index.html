@@ -6,13 +6,13 @@
 <meta name=description content="Ferry Proxy #  Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。
 Ferry 的主要思想是将一个集群的 Service 映射到另一个集群，另一个集群的应用程序只需要正常访问 Service 即可。
 Ferry 项目中的 Tunnel 组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。
-Ferry可以简化跨集群中的架构，可用于指标收集、请求跟踪上报、日志上传、连接到无法访问的Apiserver等。
+Ferry 可以简化跨集群中的架构，可用于指标收集、请求跟踪上报、日志上传、连接到无法访问的 Apiserver 等。
 公有云 对 公有云 #   快速开始
 公有云 对 私有云 #   快速开始
 私有云 对 公有云 #   快速开始
 私有云 对 私有云 #  示例 #  Ferry 定义了一个非常简单 API 用于配置 Service 在集群之间的映射规则
 可以非常简单的描述哪些 Service 需要暴露给其他集群
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 ">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy metadata: name: ferry-rule namespace: ferry-system spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 为什么使用 Ferry #   避免云厂商锁定  让不同云之间可以相互访问 将服务迁移到不同的云中是无缝的   开箱即用  提供命令行工具以方便安装和使用   无侵入  不依赖 Kubernetes 版本 不依赖任何 CNI 或网络环境 不需要修改现有环境   内网渗透  只需要一个公共 IP    ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Home">
 <meta property="og:description" content>
@@ -128,6 +128,7 @@ Code Source
 <li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
 <li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
 <li><a href=#示例>示例</a></li>
+<li><a href=#为什么使用-ferry>为什么使用 Ferry</a></li>
 </ul>
 </li>
 </ul>
@@ -141,7 +142,7 @@ Ferry Proxy
 <p>Ferry 是一个 Kubernetes 多集群通信组件，它消除了集群之间的通信差异，就好像它们在一个集群中一样，无论这些集群所处的网络环境如何。</p>
 <p>Ferry 的主要思想是将一个集群的 Service 映射到另一个集群，另一个集群的应用程序只需要正常访问 Service 即可。</p>
 <p>Ferry 项目中的 Tunnel 组件主要用于打通不同集群之间的通信，对集群当前使用的网络环境和网段没有要求。</p>
-<p>Ferry可以简化跨集群中的架构，可用于指标收集、请求跟踪上报、日志上传、连接到无法访问的Apiserver等。</p>
+<p>Ferry 可以简化跨集群中的架构，可用于指标收集、请求跟踪上报、日志上传、连接到无法访问的 Apiserver 等。</p>
 <h2 id=公有云-对-公有云>
 公有云 对 公有云
 <a class=anchor href=#%e5%85%ac%e6%9c%89%e4%ba%91-%e5%af%b9-%e5%85%ac%e6%9c%89%e4%ba%91>#</a>
@@ -191,12 +192,41 @@ Ferry Proxy
       <span style=color:#f92672>service</span>:
         <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
         <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
-</code></pre></div></article>
+</code></pre></div><h2 id=为什么使用-ferry>
+为什么使用 Ferry
+<a class=anchor href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8-ferry>#</a>
+</h2>
+<ul>
+<li>避免云厂商锁定
+<ul>
+<li>让不同云之间可以相互访问</li>
+<li>将服务迁移到不同的云中是无缝的</li>
+</ul>
+</li>
+<li>开箱即用
+<ul>
+<li>提供命令行工具以方便安装和使用</li>
+</ul>
+</li>
+<li>无侵入
+<ul>
+<li>不依赖 Kubernetes 版本</li>
+<li>不依赖任何 CNI 或网络环境</li>
+<li>不需要修改现有环境</li>
+</ul>
+</li>
+<li>内网渗透
+<ul>
+<li>只需要一个公共 IP</li>
+</ul>
+</li>
+</ul>
+</article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/dacc9c8ff0a77d3386004aad0dd98ba75a0eb3f3 title="最后修改者 Shiming Zhang | 2022-07-21" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/dcdb6dc0f56add7becf050fea7c9a0bedaba0a44 title="最后修改者 Shiming Zhang | 2022-07-22" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-21</span>
+<span>2022-07-22</span>
 </a>
 </div>
 <div>
@@ -223,6 +253,7 @@ Ferry Proxy
 <li><a href=#私有云-对-公有云>私有云 对 公有云</a></li>
 <li><a href=#私有云-对-私有云>私有云 对 私有云</a></li>
 <li><a href=#示例>示例</a></li>
+<li><a href=#为什么使用-ferry>为什么使用 Ferry</a></li>
 </ul>
 </li>
 </ul>

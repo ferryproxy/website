@@ -61,3 +61,17 @@ spec:
         namespace: default
         name: app-1
 ```
+
+## Why Ferry
+
+- Avoid Cloud Lock-in
+    - Open up inter-access between different clouds
+    - Migration of Service to different clouds is seamless
+- Out of the Box
+    - Command line tools are provided for easy installation and use
+- No Intrusion
+    - No dependency on Kubernetes version
+    - No dependency on any CNI or network environment
+    - No need to modify existing environment
+- Intranet Penetration
+    - Only a public IP is required

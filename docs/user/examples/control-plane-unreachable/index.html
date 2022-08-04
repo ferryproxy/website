@@ -4,28 +4,26 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Control Plane Unreachable #  Prepare at least two clusters for demonstration
 Can be a cluster of one node or a cluster of Kind but at least two.
- Download ferryctl #  ferryctl is the installation and operation tool for ferry
-A ferryctl needs to be installed for each cluster&rsquo;s control node
- https://github.com/ferryproxy/ferry/releases
-Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure">
+ Preparation #   Preparation
+Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure
+Define which Data Plane Cluster needs to be joined #  # execute on Control Plane Cluster ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address Specify the address of the Data Plane Cluster Tunnel for the Control Plane Cluster --control-plane-reachable Specify whether the Data Plane Cluster is reachable  Execute on the Data Plane Cluster #  After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Control Plane Unreachable">
 <meta property="og:description" content="Control Plane Unreachable #  Prepare at least two clusters for demonstration
 Can be a cluster of one node or a cluster of Kind but at least two.
- Download ferryctl #  ferryctl is the installation and operation tool for ferry
-A ferryctl needs to be installed for each cluster&rsquo;s control node
- https://github.com/ferryproxy/ferry/releases
-Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure">
+ Preparation #   Preparation
+Initialize Control Plane Cluster #  # execute on control plane ferryctl control-plane init --control-plane-reachable=false Join a Data Plane Cluster #  3 steps are required to configure
+Define which Data Plane Cluster needs to be joined #  # execute on Control Plane Cluster ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address Specify the address of the Data Plane Cluster Tunnel for the Control Plane Cluster --control-plane-reachable Specify whether the Data Plane Cluster is reachable  Execute on the Data Plane Cluster #  After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/control-plane-unreachable/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-20T12:09:48+08:00">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
 <title>Control Plane Unreachable | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/ title=控制面集群不可达>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4b0c04e107e21e8b7498516b1495cfc240e06b5f535c85751468b0bbdd1d8653.js integrity="sha256-SwwE4QfiHot0mFFrFJXPwkDga19TXIV1FGiwu90dhlM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.b15e3c3823699fbc907013f5b4d744c7ecfd3dec8263b8ed8622b74cd6238a67.js integrity="sha256-sV48OCNpn7yQcBP1tNdEx+z9PeyCY7jthiK3TNYjimc=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -69,6 +67,8 @@ English
 <a href=/><strong>Home</strong></a></li>
 <li><strong>User Guide</strong>
 <ul>
+<li>
+<a href=/docs/user/preparation/>Preparation</a></li>
 <li>Examples
 <ul>
 <li>
@@ -123,7 +123,7 @@ Code Source
 <ul>
 <li><a href=#control-plane-unreachable>Control Plane Unreachable</a>
 <ul>
-<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#preparation>Preparation</a></li>
 <li><a href=#initialize-control-plane-cluster>Initialize Control Plane Cluster</a></li>
 <li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
 <ul>
@@ -148,14 +148,12 @@ Control Plane Unreachable
 <p>Can be a cluster of one node or a cluster of Kind but at least two.</p>
 </blockquote>
 <img src=/images/edge-to-cloud.png width=600>
-<h2 id=download-ferryctl>
-Download ferryctl
-<a class=anchor href=#download-ferryctl>#</a>
+<h2 id=preparation>
+Preparation
+<a class=anchor href=#preparation>#</a>
 </h2>
-<p>ferryctl is the installation and operation tool for ferry</p>
-<p>A ferryctl needs to be installed for each cluster&rsquo;s control node</p>
 <p>
-<a href=https://github.com/ferryproxy/ferry/releases>https://github.com/ferryproxy/ferry/releases</a></p>
+<a href=/docs/user/preparation/>Preparation</a></p>
 <h2 id=initialize-control-plane-cluster>
 Initialize Control Plane Cluster
 <a class=anchor href=#initialize-control-plane-cluster>#</a>
@@ -230,9 +228,9 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/506a8ed757e3cf883a2219998f841c80295bcfe9 title="Last modified by Shiming Zhang | 2022-07-20" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-20</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
@@ -254,7 +252,7 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 <ul>
 <li><a href=#control-plane-unreachable>Control Plane Unreachable</a>
 <ul>
-<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#preparation>Preparation</a></li>
 <li><a href=#initialize-control-plane-cluster>Initialize Control Plane Cluster</a></li>
 <li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
 <ul>

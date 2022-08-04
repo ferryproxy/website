@@ -2,23 +2,29 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Technology Principle #  Communication and penetration #  Ferry-Tunnel uses the capabilities of the ssh protocol for communication and penetration between Ferry-Tunnel
-The following capabilities are primarily used
-  direct-tcpip  tcpip-forward  direct-streamlocal  streamlocal-forward  There are two core points
- Listen to a local port, connect to the Ferry-Tunnel on the other side, and forward all connections through it Connecting to the peer Ferry-Tunnel and listening to a port, and forwarding connections from the listening port to the local  Service Discovery #  Each exported service port will be assigned a port in the Ferry-Tunnel of the imported cluster">
+<meta name=description content="Download ferryctl #  ferryctl is the installation and maintenance tool for Ferry
+You need to install ferryctl for each cluster
+ https://github.com/ferryproxy/ferry/releases
+Install Tunnel #  Tunnel needs to be installed for each cluster
+Clusters that support LoadBalancer #  As in each public cloud environment
+ferryctl data-plane init --tunnel-service-type=LoadBalancer Other #  such as Kind or private cloud environments
+will use NodePort to expose port 31087 by default">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Technology Principle">
-<meta property="og:description" content="Technology Principle #  Communication and penetration #  Ferry-Tunnel uses the capabilities of the ssh protocol for communication and penetration between Ferry-Tunnel
-The following capabilities are primarily used
-  direct-tcpip  tcpip-forward  direct-streamlocal  streamlocal-forward  There are two core points
- Listen to a local port, connect to the Ferry-Tunnel on the other side, and forward all connections through it Connecting to the peer Ferry-Tunnel and listening to a port, and forwarding connections from the listening port to the local  Service Discovery #  Each exported service port will be assigned a port in the Ferry-Tunnel of the imported cluster">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Preparation">
+<meta property="og:description" content="Download ferryctl #  ferryctl is the installation and maintenance tool for Ferry
+You need to install ferryctl for each cluster
+ https://github.com/ferryproxy/ferry/releases
+Install Tunnel #  Tunnel needs to be installed for each cluster
+Clusters that support LoadBalancer #  As in each public cloud environment
+ferryctl data-plane init --tunnel-service-type=LoadBalancer Other #  such as Kind or private cloud environments
+will use NodePort to expose port 31087 by default">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ferryproxy.io/docs/principle/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-22T15:18:42+08:00">
-<title>Technology Principle | Ferry Proxy</title>
+<meta property="og:url" content="https://ferryproxy.io/docs/user/preparation/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
+<title>Preparation | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/principle/ title=技术原理>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/preparation/ title=预备工作>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/en.search.min.b15e3c3823699fbc907013f5b4d744c7ecfd3dec8263b8ed8622b74cd6238a67.js integrity="sha256-sV48OCNpn7yQcBP1tNdEx+z9PeyCY7jthiK3TNYjimc=" crossorigin=anonymous></script>
@@ -53,7 +59,7 @@ English
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/zh/docs/principle/>
+<a href=https://ferryproxy.io/zh/docs/user/preparation/>
 简体中文
 </a>
 </li>
@@ -66,7 +72,7 @@ English
 <li><strong>User Guide</strong>
 <ul>
 <li>
-<a href=/docs/user/preparation/>Preparation</a></li>
+<a href=/docs/user/preparation/ class=active>Preparation</a></li>
 <li>Examples
 <ul>
 <li>
@@ -88,7 +94,7 @@ English
 </ul>
 </li>
 <li>
-<a href=/docs/principle/ class=active>Technology Principle</a></li>
+<a href=/docs/principle/>Technology Principle</a></li>
 <li>
 <a href=/docs/glossary/>Glossary</a></li>
 <li>
@@ -111,7 +117,7 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Technology Principle</strong>
+<strong>Preparation</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
@@ -119,57 +125,57 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#technology-principle>Technology Principle</a>
+<li>
 <ul>
-<li><a href=#communication-and-penetration>Communication and penetration</a></li>
-<li><a href=#service-discovery>Service Discovery</a></li>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#install-tunnel>Install Tunnel</a>
+<ul>
+<li><a href=#clusters-that-support-loadbalancer>Clusters that support LoadBalancer</a></li>
+<li><a href=#other>Other</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=technology-principle>
-Technology Principle
-<a class=anchor href=#technology-principle>#</a>
-</h1>
-<h2 id=communication-and-penetration>
-Communication and penetration
-<a class=anchor href=#communication-and-penetration>#</a>
+<article class=markdown><h2 id=download-ferryctl>
+Download ferryctl
+<a class=anchor href=#download-ferryctl>#</a>
 </h2>
-<p>Ferry-Tunnel uses the capabilities of the ssh protocol for communication and penetration between Ferry-Tunnel</p>
-<p>The following capabilities are primarily used</p>
-<ul>
-<li>
-<a href=https://datatracker.ietf.org/doc/html/rfc4254>direct-tcpip</a></li>
-<li>
-<a href=https://datatracker.ietf.org/doc/html/rfc4254>tcpip-forward</a></li>
-<li>
-<a href=https://github.com/openssh/openssh-portable/blob/master/PROTOCOL>direct-streamlocal</a></li>
-<li>
-<a href=https://github.com/openssh/openssh-portable/blob/master/PROTOCOL>streamlocal-forward</a></li>
-</ul>
-<p>There are two core points</p>
-<ul>
-<li>Listen to a local port, connect to the Ferry-Tunnel on the other side, and forward all connections through it</li>
-<li>Connecting to the peer Ferry-Tunnel and listening to a port, and forwarding connections from the listening port to the local</li>
-</ul>
-<h2 id=service-discovery>
-Service Discovery
-<a class=anchor href=#service-discovery>#</a>
+<p><code>ferryctl</code> is the installation and maintenance tool for <code>Ferry</code></p>
+<p>You need to install <code>ferryctl</code> for each cluster</p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/releases>https://github.com/ferryproxy/ferry/releases</a></p>
+<h2 id=install-tunnel>
+Install Tunnel
+<a class=anchor href=#install-tunnel>#</a>
 </h2>
-<p>Each exported service port will be assigned a port in the Ferry-Tunnel of the imported cluster</p>
-<p>Ferry will create a port in the imported cluster for the Headless Service to point to the Ferry-Tunnel&rsquo;s corresponding service in this cluster</p>
-</article>
+<p>Tunnel needs to be installed for each cluster</p>
+<h3 id=clusters-that-support-loadbalancer>
+Clusters that support LoadBalancer
+<a class=anchor href=#clusters-that-support-loadbalancer>#</a>
+</h3>
+<p>As in each public cloud environment</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init --tunnel-service-type<span style=color:#f92672>=</span>LoadBalancer
+</code></pre></div><h3 id=other>
+Other
+<a class=anchor href=#other>#</a>
+</h3>
+<p>such as Kind or private cloud environments</p>
+<p>will use NodePort to expose port 31087 by default</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
+</code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/54668419f1bc50b3a63f85107341ac400b79b369 title="Last modified by Shiming Zhang | 2022-07-22" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-22</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/principle.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/user/preparation.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>Edit this page</span>
 </a>
@@ -185,10 +191,15 @@ Service Discovery
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#technology-principle>Technology Principle</a>
+<li>
 <ul>
-<li><a href=#communication-and-penetration>Communication and penetration</a></li>
-<li><a href=#service-discovery>Service Discovery</a></li>
+<li><a href=#download-ferryctl>Download ferryctl</a></li>
+<li><a href=#install-tunnel>Install Tunnel</a>
+<ul>
+<li><a href=#clusters-that-support-loadbalancer>Clusters that support LoadBalancer</a></li>
+<li><a href=#other>Other</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

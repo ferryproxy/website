@@ -4,7 +4,8 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
-安装 Tunnel #  ferryctl data-plane init 手动映射服务 #  需要 3 步去配置
+准备工作 #   准备工作
+手动映射服务 #  需要 3 步去配置
 定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
 --reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  导出服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导出集群执行
 导入服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导入集群执行
@@ -13,21 +14,22 @@
 <meta name=color-scheme content="light dark"><meta property="og:title" content="手动映射服务">
 <meta property="og:description" content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
-安装 Tunnel #  ferryctl data-plane init 手动映射服务 #  需要 3 步去配置
+准备工作 #   准备工作
+手动映射服务 #  需要 3 步去配置
 定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
 --reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  导出服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导出集群执行
 导入服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导入集群执行
 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/manual/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-20T12:09:48+08:00">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
 <title>手动映射服务 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/manual/ title="Manual Mapping Service">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.d305b9d0798ab72f042eaa507dc8b6ed8413af6630e3339b3c596dd8daa1ca7b.js integrity="sha256-0wW50HmKty8ELqpQfci27YQTr2Yw4zObPFlt2Nqhyns=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.8c838b5aa62327ae5c9a0b4068414bdb14252d54c3a0b896ae117db6d0a97004.js integrity="sha256-jIOLWqYjJ65cmgtAaEFL2xQlLVTDoLiWrhF9ttCpcAQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -71,6 +73,8 @@ English
 <a href=/zh/><strong>主页</strong></a></li>
 <li><strong>用户指引</strong>
 <ul>
+<li>
+<a href=/zh/docs/user/preparation/>准备工作</a></li>
 <li>示例
 <ul>
 <li>
@@ -126,7 +130,7 @@ Code Source
 <li><a href=#手动映射服务>手动映射服务</a>
 <ul>
 <li><a href=#为什么需要这个>为什么需要这个</a></li>
-<li><a href=#安装-tunnel>安装 Tunnel</a></li>
+<li><a href=#准备工作>准备工作</a></li>
 <li><a href=#手动映射服务-1>手动映射服务</a>
 <ul>
 <li><a href=#定义从其他集群导出某一服务>定义从其他集群导出某一服务</a></li>
@@ -151,12 +155,13 @@ Code Source
 </h2>
 <p>在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver</p>
 <p>由该功能配置的路由规则不受 ferry-controller 的控制</p>
-<h2 id=安装-tunnel>
-安装 Tunnel
-<a class=anchor href=#%e5%ae%89%e8%a3%85-tunnel>#</a>
+<h2 id=准备工作>
+准备工作
+<a class=anchor href=#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c>#</a>
 </h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
-</code></pre></div><h2 id=手动映射服务-1>
+<p>
+<a href=/zh/docs/user/preparation/>准备工作</a></p>
+<h2 id=手动映射服务-1>
 手动映射服务
 <a class=anchor href=#%e6%89%8b%e5%8a%a8%e6%98%a0%e5%b0%84%e6%9c%8d%e5%8a%a1-1>#</a>
 </h2>
@@ -199,9 +204,9 @@ go install ./cmd/ferryctl
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/506a8ed757e3cf883a2219998f841c80295bcfe9 title="最后修改者 Shiming Zhang | 2022-07-20" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-20</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
@@ -224,7 +229,7 @@ go install ./cmd/ferryctl
 <li><a href=#手动映射服务>手动映射服务</a>
 <ul>
 <li><a href=#为什么需要这个>为什么需要这个</a></li>
-<li><a href=#安装-tunnel>安装 Tunnel</a></li>
+<li><a href=#准备工作>准备工作</a></li>
 <li><a href=#手动映射服务-1>手动映射服务</a>
 <ul>
 <li><a href=#定义从其他集群导出某一服务>定义从其他集群导出某一服务</a></li>

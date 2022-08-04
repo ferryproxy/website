@@ -2,17 +2,31 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
+<meta name=description content="下载 ferryctl #  ferryctl 是 Ferry 的安装运维工具
+需要为每个集群安装 ferryctl
+ https://github.com/ferryproxy/ferry/releases
+安装 Tunnel #  需要为每个集群安装 Tunnel
+支持 LoadBalancer 的集群 #  如在各个公有云环境
+ferryctl data-plane init --tunnel-service-type=LoadBalancer 其他 #  如 Kind 或私有云环境
+将默认使用 NodePort 暴露 31087 端口
+ferryctl data-plane init ">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="和服务网格一起使用">
-<meta property="og:description" content="和服务网格一起使用 #  通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="预备工作">
+<meta property="og:description" content="下载 ferryctl #  ferryctl 是 Ferry 的安装运维工具
+需要为每个集群安装 ferryctl
+ https://github.com/ferryproxy/ferry/releases
+安装 Tunnel #  需要为每个集群安装 Tunnel
+支持 LoadBalancer 的集群 #  如在各个公有云环境
+ferryctl data-plane init --tunnel-service-type=LoadBalancer 其他 #  如 Kind 或私有云环境
+将默认使用 NodePort 暴露 31087 端口
+ferryctl data-plane init ">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/with-service-mesh/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-21T15:33:07+08:00">
-<title>和服务网格一起使用 | Ferry Proxy</title>
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/preparation/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
+<title>预备工作 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/with-service-mesh/ title="With Service Mesh">
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/preparation/ title=Preparation>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.8c838b5aa62327ae5c9a0b4068414bdb14252d54c3a0b896ae117db6d0a97004.js integrity="sha256-jIOLWqYjJ65cmgtAaEFL2xQlLVTDoLiWrhF9ttCpcAQ=" crossorigin=anonymous></script>
@@ -47,7 +61,7 @@
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/docs/user/with-service-mesh/>
+<a href=https://ferryproxy.io/docs/user/preparation/>
 English
 </a>
 </li>
@@ -60,7 +74,7 @@ English
 <li><strong>用户指引</strong>
 <ul>
 <li>
-<a href=/zh/docs/user/preparation/>准备工作</a></li>
+<a href=/zh/docs/user/preparation/ class=active>准备工作</a></li>
 <li>示例
 <ul>
 <li>
@@ -78,7 +92,7 @@ English
 </ul>
 </li>
 <li>
-<a href=/zh/docs/user/with-service-mesh/ class=active>和服务网格一起使用</a></li>
+<a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
 </ul>
 </li>
 <li>
@@ -105,7 +119,7 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>和服务网格一起使用</strong>
+<strong>预备工作</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
@@ -113,26 +127,57 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
+<li>
+<ul>
+<li><a href=#下载-ferryctl>下载 ferryctl</a></li>
+<li><a href=#安装-tunnel>安装 Tunnel</a>
+<ul>
+<li><a href=#支持-loadbalancer-的集群>支持 LoadBalancer 的集群</a></li>
+<li><a href=#其他>其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=和服务网格一起使用>
-和服务网格一起使用
-<a class=anchor href=#%e5%92%8c%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8>#</a>
-</h1>
-<p>通过在 Istio 中验证, 只要不往 ferry-tunnel 中注入 Sidecar, Ferry 可以完美适配</p>
-</article>
+<article class=markdown><h2 id=下载-ferryctl>
+下载 ferryctl
+<a class=anchor href=#%e4%b8%8b%e8%bd%bd-ferryctl>#</a>
+</h2>
+<p><code>ferryctl</code> 是 <code>Ferry</code> 的安装运维工具</p>
+<p>需要为每个集群安装 <code>ferryctl</code></p>
+<p>
+<a href=https://github.com/ferryproxy/ferry/releases>https://github.com/ferryproxy/ferry/releases</a></p>
+<h2 id=安装-tunnel>
+安装 Tunnel
+<a class=anchor href=#%e5%ae%89%e8%a3%85-tunnel>#</a>
+</h2>
+<p>需要为每个集群安装 Tunnel</p>
+<h3 id=支持-loadbalancer-的集群>
+支持 LoadBalancer 的集群
+<a class=anchor href=#%e6%94%af%e6%8c%81-loadbalancer-%e7%9a%84%e9%9b%86%e7%be%a4>#</a>
+</h3>
+<p>如在各个公有云环境</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init --tunnel-service-type<span style=color:#f92672>=</span>LoadBalancer
+</code></pre></div><h3 id=其他>
+其他
+<a class=anchor href=#%e5%85%b6%e4%bb%96>#</a>
+</h3>
+<p>如 Kind 或私有云环境</p>
+<p>将默认使用 NodePort 暴露 31087 端口</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
+</code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/5ae9c1c81ed3febda41a204ce7d3423189e0a997 title="最后修改者 Shiming Zhang | 2022-07-21" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-21</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
-<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/with-service-mesh.md target=_blank rel=noopener>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/preparation.md target=_blank rel=noopener>
 <img src=/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span>
 </a>
@@ -148,7 +193,17 @@ Code Source
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#和服务网格一起使用>和服务网格一起使用</a></li>
+<li>
+<ul>
+<li><a href=#下载-ferryctl>下载 ferryctl</a></li>
+<li><a href=#安装-tunnel>安装 Tunnel</a>
+<ul>
+<li><a href=#支持-loadbalancer-的集群>支持 LoadBalancer 的集群</a></li>
+<li><a href=#其他>其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>

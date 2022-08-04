@@ -4,36 +4,34 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="控制面集群不可达 #  准备至少两个集群才能做演示
 可以是一个节点的集群或者 Kind 起的集群但最少也要两个
- 下载 ferryctl #  ferryctl 是 ferry 的安装运维工具
-需要为每个集群的控制节点都安装一个 ferryctl
- https://github.com/ferryproxy/ferry/releases
+ 准备工作 #   准备工作
 初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init --control-plane-reachable=false --control-plane-reachable 指定控制面集群是否可达  加入数据面集群 #  需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 #  # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address 指定对于控制面集群来说数据面集群 Tunnel 的地址 --control-plane-reachable 指定控制面集群是否可达  在数据面集群执行 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 然后可以在控制面集群查看这个数据面集群了
-kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
+要求: Docker, Kind, Go">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="控制面集群不可达">
 <meta property="og:description" content="控制面集群不可达 #  准备至少两个集群才能做演示
 可以是一个节点的集群或者 Kind 起的集群但最少也要两个
- 下载 ferryctl #  ferryctl 是 ferry 的安装运维工具
-需要为每个集群的控制节点都安装一个 ferryctl
- https://github.com/ferryproxy/ferry/releases
+ 准备工作 #   准备工作
 初始化控制面集群 #  # 在控制面集群执行 ferryctl control-plane init --control-plane-reachable=false --control-plane-reachable 指定控制面集群是否可达  加入数据面集群 #  需要 3 步去配置
 向控制面集群声明哪个数据面集群需要加入 #  # 在控制面集群执行，预连接其他数据平集群 ferryctl control-plane join cluster-1 &#34;--data-plane-tunnel-address=${HOST_IP}:31001&#34; --control-plane-reachable=false --data-plane-tunnel-address 指定对于控制面集群来说数据面集群 Tunnel 的地址 --control-plane-reachable 指定控制面集群是否可达  在数据面集群执行 #  上一个命令执行后, 会响应一个命令复制到数据面集群执行
 在控制面集群执行 #  上一个命令执行后, 会响应一个命令复制到控制面集群执行
 然后可以在控制面集群查看这个数据面集群了
-kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
+kubectl get hub.traffic.ferryproxy.io -n ferry-system 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
+要求: Docker, Kind, Go">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/control-plane-unreachable/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-20T12:09:48+08:00">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
 <title>控制面集群不可达 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/control-plane-unreachable/ title="Control Plane Unreachable">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.d305b9d0798ab72f042eaa507dc8b6ed8413af6630e3339b3c596dd8daa1ca7b.js integrity="sha256-0wW50HmKty8ELqpQfci27YQTr2Yw4zObPFlt2Nqhyns=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.8c838b5aa62327ae5c9a0b4068414bdb14252d54c3a0b896ae117db6d0a97004.js integrity="sha256-jIOLWqYjJ65cmgtAaEFL2xQlLVTDoLiWrhF9ttCpcAQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -77,6 +75,8 @@ English
 <a href=/zh/><strong>主页</strong></a></li>
 <li><strong>用户指引</strong>
 <ul>
+<li>
+<a href=/zh/docs/user/preparation/>准备工作</a></li>
 <li>示例
 <ul>
 <li>
@@ -131,7 +131,7 @@ Code Source
 <ul>
 <li><a href=#控制面集群不可达>控制面集群不可达</a>
 <ul>
-<li><a href=#下载-ferryctl>下载 ferryctl</a></li>
+<li><a href=#准备工作>准备工作</a></li>
 <li><a href=#初始化控制面集群>初始化控制面集群</a></li>
 <li><a href=#加入数据面集群>加入数据面集群</a>
 <ul>
@@ -156,14 +156,12 @@ Code Source
 <p>可以是一个节点的集群或者 Kind 起的集群但最少也要两个</p>
 </blockquote>
 <img src=/images/edge-to-cloud.png width=600>
-<h2 id=下载-ferryctl>
-下载 ferryctl
-<a class=anchor href=#%e4%b8%8b%e8%bd%bd-ferryctl>#</a>
+<h2 id=准备工作>
+准备工作
+<a class=anchor href=#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c>#</a>
 </h2>
-<p>ferryctl 是 ferry 的安装运维工具</p>
-<p>需要为每个集群的控制节点都安装一个 ferryctl</p>
 <p>
-<a href=https://github.com/ferryproxy/ferry/releases>https://github.com/ferryproxy/ferry/releases</a></p>
+<a href=/zh/docs/user/preparation/>准备工作</a></p>
 <h2 id=初始化控制面集群>
 初始化控制面集群
 <a class=anchor href=#%e5%88%9d%e5%a7%8b%e5%8c%96%e6%8e%a7%e5%88%b6%e9%9d%a2%e9%9b%86%e7%be%a4>#</a>
@@ -240,9 +238,9 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/506a8ed757e3cf883a2219998f841c80295bcfe9 title="最后修改者 Shiming Zhang | 2022-07-20" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-20</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
@@ -264,7 +262,7 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 <ul>
 <li><a href=#控制面集群不可达>控制面集群不可达</a>
 <ul>
-<li><a href=#下载-ferryctl>下载 ferryctl</a></li>
+<li><a href=#准备工作>准备工作</a></li>
 <li><a href=#初始化控制面集群>初始化控制面集群</a></li>
 <li><a href=#加入数据面集群>加入数据面集群</a>
 <ul>

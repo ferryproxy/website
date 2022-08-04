@@ -2,22 +2,24 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Forward Local Port to Cluster #  Installing Tunnel in the cluster #  ferryctl data-plane init Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
+<meta name=description content="Forward Local Port to Cluster #  Preparation #   Preparation
+Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
  Sample">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Forward Local Port to Cluster">
-<meta property="og:description" content="Forward Local Port to Cluster #  Installing Tunnel in the cluster #  ferryctl data-plane init Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
+<meta property="og:description" content="Forward Local Port to Cluster #  Preparation #   Preparation
+Forward Local Port to Cluster #  ferryctl local forward dial <local address port> <remote service port>  ferryctl local forward dial 0.0.0.0:18080 web-0.test.svc:80 All accesses to port 127.0.0.1:18080 are forwarded to port web-0.test.svc:80
  Sample">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/forward-dial/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-15T16:10:44+08:00">
+<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
 <title>Forward Local Port to Cluster | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/forward-dial/ title=转发本地端口到集群的端口>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4b0c04e107e21e8b7498516b1495cfc240e06b5f535c85751468b0bbdd1d8653.js integrity="sha256-SwwE4QfiHot0mFFrFJXPwkDga19TXIV1FGiwu90dhlM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.b15e3c3823699fbc907013f5b4d744c7ecfd3dec8263b8ed8622b74cd6238a67.js integrity="sha256-sV48OCNpn7yQcBP1tNdEx+z9PeyCY7jthiK3TNYjimc=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -61,6 +63,8 @@ English
 <a href=/><strong>Home</strong></a></li>
 <li><strong>User Guide</strong>
 <ul>
+<li>
+<a href=/docs/user/preparation/>Preparation</a></li>
 <li>Examples
 <ul>
 <li>
@@ -115,7 +119,7 @@ Code Source
 <ul>
 <li><a href=#forward-local-port-to-cluster>Forward Local Port to Cluster</a>
 <ul>
-<li><a href=#installing-tunnel-in-the-cluster>Installing Tunnel in the cluster</a></li>
+<li><a href=#preparation>Preparation</a></li>
 <li><a href=#forward-local-port-to-cluster-1>Forward Local Port to Cluster</a></li>
 </ul>
 </li>
@@ -127,12 +131,13 @@ Code Source
 Forward Local Port to Cluster
 <a class=anchor href=#forward-local-port-to-cluster>#</a>
 </h1>
-<h2 id=installing-tunnel-in-the-cluster>
-Installing Tunnel in the cluster
-<a class=anchor href=#installing-tunnel-in-the-cluster>#</a>
+<h2 id=preparation>
+Preparation
+<a class=anchor href=#preparation>#</a>
 </h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl data-plane init
-</code></pre></div><h2 id=forward-local-port-to-cluster-1>
+<p>
+<a href=/docs/user/preparation/>Preparation</a></p>
+<h2 id=forward-local-port-to-cluster-1>
 Forward Local Port to Cluster
 <a class=anchor href=#forward-local-port-to-cluster-1>#</a>
 </h2>
@@ -145,9 +150,9 @@ Forward Local Port to Cluster
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/3c241672a93472f57c90698d03548a95840fd160 title="Last modified by Shiming Zhang | 2022-07-15" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-15</span>
+<span>2022-08-04</span>
 </a>
 </div>
 <div>
@@ -169,7 +174,7 @@ Forward Local Port to Cluster
 <ul>
 <li><a href=#forward-local-port-to-cluster>Forward Local Port to Cluster</a>
 <ul>
-<li><a href=#installing-tunnel-in-the-cluster>Installing Tunnel in the cluster</a></li>
+<li><a href=#preparation>Preparation</a></li>
 <li><a href=#forward-local-port-to-cluster-1>Forward Local Port to Cluster</a></li>
 </ul>
 </li>

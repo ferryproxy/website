@@ -25,8 +25,6 @@ ferryctl control-plane init
 
 ## 加入数据面集群
 
-需要 3 步去配置
-
 ### 向控制面集群声明哪个数据面集群需要加入
 
 ``` bash
@@ -34,13 +32,9 @@ ferryctl control-plane init
 ferryctl control-plane join cluster-1
 ```
 
-### 在数据面集群执行
+需要[握手](/docs/user/handshake)
 
-上一个命令执行后, 会响应一个命令复制到数据面集群执行
-
-### 在控制面集群执行
-
-上一个命令执行后, 会响应一个命令复制到控制面集群执行
+### 完成握手
 
 然后可以在控制面集群查看这个数据面集群了
 

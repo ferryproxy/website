@@ -26,8 +26,6 @@ https://github.com/ferryproxy/ferry/releases
 
 ## Join a Data Plane Cluster
 
-3 steps are required to configure
-
 ### Define which Data Plane Cluster needs to be joined
 
 ``` bash
@@ -35,13 +33,9 @@ https://github.com/ferryproxy/ferry/releases
 ferryctl control-plane join cluster-1
 ```
 
-### Execute on the Data Plane Cluster
+Need [handshake](/docs/user/handshake)
 
-After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.
-
-### Execute on the Control Plane Cluster
-
-After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.
+### Complete handshake
 
 This data plane cluster can then be viewed in the control plane cluster
 

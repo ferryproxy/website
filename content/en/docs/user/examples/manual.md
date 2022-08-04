@@ -16,8 +16,6 @@ The routing rules configured by this feature are not controlled by the ferry-con
 
 ## Manual Mapping Service
 
-3 steps are required to configure
-
 ### Define exporting a service from another cluster
 
 ``` bash
@@ -31,13 +29,7 @@ This command describes the mapping of the web-1.test.svc:8080 service of the exp
     --export-host-port Service ports exported from other clusters  
     --import-service-name Mapped services created by the current cluster from services exported from other clusters (by default under the ferry-tunnel-system namespace)  
 
-### Execute in the cluster of the exported service
-
-After the previous command is executed, a response is copied to the exported cluster for execution
-
-### Execute in the cluster of the imported service
-
-After the previous command is executed, a response is copied to the imported cluster for execution
+Need [handshake](/docs/user/handshake)
 
 ## Quickly pull up a test environment locally
 

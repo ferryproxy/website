@@ -4,11 +4,9 @@ title: "创建并转发集群的 Service 端口到本地端口"
 
 # 创建并转发集群的 Service 端口到本地端口
 
-## 安装 Tunnel
+## 准备工作
 
-``` bash
-ferryctl data-plane init
-```
+[准备工作](/docs/user/preparation)
 
 ## 创建并转发集群的 Service 端口到本地端口
 

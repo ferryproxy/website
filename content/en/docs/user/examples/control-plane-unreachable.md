@@ -12,13 +12,9 @@ Can be a cluster of one node or a cluster of Kind but at least two.
 
 <img src="/images/edge-to-cloud.png" width="600">
 
-## Download ferryctl
+## Preparation
 
-ferryctl is the installation and operation tool for ferry 
-
-A ferryctl needs to be installed for each cluster's control node 
-
-https://github.com/ferryproxy/ferry/releases
+[Preparation](/docs/user/preparation)
 
 ## Initialize Control Plane Cluster
 

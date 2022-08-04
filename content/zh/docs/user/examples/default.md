@@ -12,13 +12,9 @@ title: "默认示例"
 
 <img src="/images/cloud-to-cloud.png" width="600">
 
-## 下载 ferryctl
+## 准备工作
 
-ferryctl 是 ferry 的安装运维工具
-
-需要为每个集群的控制节点都安装一个 ferryctl
-
-https://github.com/ferryproxy/ferry/releases
+[准备工作](/docs/user/preparation)
 
 ## 初始化控制面集群
 

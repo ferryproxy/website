@@ -10,11 +10,9 @@ title: "手动映射服务"
 
 由该功能配置的路由规则不受 ferry-controller 的控制
 
-## 安装 Tunnel
+## 准备工作
 
-``` bash
-ferryctl data-plane init
-```
+[准备工作](/docs/user/preparation)
 
 ## 手动映射服务
 

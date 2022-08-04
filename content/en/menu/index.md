@@ -4,6 +4,7 @@ headless: true
 
 - [**Home**]({{< relref "/" >}})
 - **User Guide**
+  - [Preparation]({{< relref "/docs/user/preparation" >}})
   - Examples
     - [Default Example]({{< relref "/docs/user/examples/default" >}})
     - [Control Plane Unreachable]({{< relref "/docs/user/examples/control-plane-unreachable" >}})

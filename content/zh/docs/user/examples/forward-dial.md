@@ -4,11 +4,9 @@ title: "转发本地端口到集群的端口"
 
 # 转发本地端口到集群的端口
 
-## 安装 Tunnel
+## 准备工作
 
-``` bash
-ferryctl data-plane init
-```
+[准备工作](/docs/user/preparation)
 
 ## 转发本地端口到集群的端口
 

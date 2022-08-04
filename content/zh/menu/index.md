@@ -4,6 +4,7 @@ headless: true
 
 - [**主页**]({{< relref "/" >}})
 - **用户指引**
+  - [准备工作]({{< relref "/docs/user/preparation" >}})
   - 示例
     - [默认示例]({{< relref "/docs/user/examples/default" >}})
     - [控制面集群不可达]({{< relref "/docs/user/examples/control-plane-unreachable" >}})

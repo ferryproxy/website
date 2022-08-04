@@ -20,13 +20,9 @@ A ferryctl needs to be installed for each cluster's control node
 
 https://github.com/ferryproxy/ferry/releases
 
-## Initialize Control Plane Cluster
+## Preparation
 
-
-``` bash
-# execute on control plane
-ferryctl control-plane init
-```
+[Preparation](/docs/user/preparation)
 
 ## Join a Data Plane Cluster
 

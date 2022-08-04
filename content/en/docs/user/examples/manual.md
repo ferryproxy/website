@@ -10,11 +10,9 @@ In some cluster unreachability scenarios, the apiserver address of the data plan
 
 The routing rules configured by this feature are not controlled by the ferry-controller.
 
-## Install Tunnel
+## Preparation
 
-``` bash
-ferryctl data-plane init
-```
+[Preparation](/docs/user/preparation)
 
 ## Manual Mapping Service
 

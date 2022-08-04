@@ -4,11 +4,9 @@ title: "Forward Local Port to Cluster"
 
 # Forward Local Port to Cluster
 
-## Installing Tunnel in the cluster
+## Preparation
 
-``` bash
-ferryctl data-plane init
-```
+[Preparation](/docs/user/preparation)
 
 ## Forward Local Port to Cluster
 

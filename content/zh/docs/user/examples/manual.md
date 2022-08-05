@@ -16,8 +16,6 @@ title: "手动映射服务"
 
 ## 手动映射服务
 
-需要 3 步去配置
-
 ### 定义从其他集群导出某一服务
 
 ``` bash
@@ -31,13 +29,7 @@ ferryctl local manual import --reachable=true "--tunnel-address=${HOST_IP}:31000
     --export-host-port 从其他集群导出的服务端口  
     --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  
 
-### 导出服务的集群执行
-
-上一个命令执行后, 会响应一个命令复制到导出集群执行
-
-### 导入服务的集群执行
-
-上一个命令执行后, 会响应一个命令复制到导入集群执行
+需要[握手](/docs/user/handshake)
 
 ## 快速在本地拉起测试环境
 

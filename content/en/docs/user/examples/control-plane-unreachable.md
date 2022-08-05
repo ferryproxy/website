@@ -26,8 +26,6 @@ ferryctl control-plane init --control-plane-reachable=false
 
 ## Join a Data Plane Cluster
 
-3 steps are required to configure
-
 ### Define which Data Plane Cluster needs to be joined
 
 ``` bash
@@ -38,13 +36,9 @@ ferryctl control-plane join cluster-1 "--data-plane-tunnel-address=${HOST_IP}:31
     --data-plane-tunnel-address Specify the address of the Data Plane Cluster Tunnel for the Control Plane Cluster  
     --control-plane-reachable Specify whether the Data Plane Cluster is reachable  
 
-### Execute on the Data Plane Cluster
+Need [handshake](/docs/user/handshake)
 
-After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.
-
-### Execute on the Control Plane Cluster
-
-After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.
+### Complete handshake
 
 This data plane cluster can then be viewed in the control plane cluster
 

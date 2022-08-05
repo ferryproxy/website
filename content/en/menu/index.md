@@ -12,6 +12,7 @@ headless: true
     - [Forward Local Port to Cluster]({{< relref "/docs/user/examples/forward-dial" >}})
     - [Forward Service to Local Port]({{< relref "/docs/user/examples/forward-listen" >}})
     - [Manual Mapping Service]({{< relref "/docs/user/examples/manual" >}})
+  - [Handshake]({{< relref "/docs/user/handshake" >}})
   - [With Service Mesh]({{< relref "/docs/user/with-service-mesh" >}})
 - [Technology Principle]({{< relref "/docs/principle" >}})
 - [Glossary]({{< relref "/docs/glossary" >}})

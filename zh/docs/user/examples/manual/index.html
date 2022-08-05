@@ -5,31 +5,31 @@
 <meta name=description content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
 准备工作 #   准备工作
-手动映射服务 #  需要 3 步去配置
-定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
---reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  导出服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导出集群执行
-导入服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导入集群执行
-快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
+手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
+--reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  需要 握手
+快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
+要求: Docker, Kind, Go
+git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/hack/start-environment.sh manual 将会使用 Kind 启动两个集群, 并配置好两个集群之间的服务路由规则">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="手动映射服务">
 <meta property="og:description" content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
 准备工作 #   准备工作
-手动映射服务 #  需要 3 步去配置
-定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
---reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  导出服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导出集群执行
-导入服务的集群执行 #  上一个命令执行后, 会响应一个命令复制到导入集群执行
-快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程">
+手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
+--reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  需要 握手
+快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
+要求: Docker, Kind, Go
+git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/hack/start-environment.sh manual 将会使用 Kind 启动两个集群, 并配置好两个集群之间的服务路由规则">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/manual/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
+<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
 <title>手动映射服务 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/manual/ title="Manual Mapping Service">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.8c838b5aa62327ae5c9a0b4068414bdb14252d54c3a0b896ae117db6d0a97004.js integrity="sha256-jIOLWqYjJ65cmgtAaEFL2xQlLVTDoLiWrhF9ttCpcAQ=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.89ee129d4e33b8aff6cd79a51a965f75b6c1e020b70965ca26bde26f0e632561.js integrity="sha256-ie4SnU4zuK/2zXmlGpZfdbbB4CC3CWXKJr3ibw5jJWE=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -92,6 +92,8 @@ English
 </ul>
 </li>
 <li>
+<a href=/zh/docs/user/handshake/>握手</a></li>
+<li>
 <a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
 </ul>
 </li>
@@ -134,8 +136,6 @@ Code Source
 <li><a href=#手动映射服务-1>手动映射服务</a>
 <ul>
 <li><a href=#定义从其他集群导出某一服务>定义从其他集群导出某一服务</a></li>
-<li><a href=#导出服务的集群执行>导出服务的集群执行</a></li>
-<li><a href=#导入服务的集群执行>导入服务的集群执行</a></li>
 </ul>
 </li>
 <li><a href=#快速在本地拉起测试环境>快速在本地拉起测试环境</a></li>
@@ -165,7 +165,6 @@ Code Source
 手动映射服务
 <a class=anchor href=#%e6%89%8b%e5%8a%a8%e6%98%a0%e5%b0%84%e6%9c%8d%e5%8a%a1-1>#</a>
 </h2>
-<p>需要 3 步去配置</p>
 <h3 id=定义从其他集群导出某一服务>
 定义从其他集群导出某一服务
 <a class=anchor href=#%e5%ae%9a%e4%b9%89%e4%bb%8e%e5%85%b6%e4%bb%96%e9%9b%86%e7%be%a4%e5%af%bc%e5%87%ba%e6%9f%90%e4%b8%80%e6%9c%8d%e5%8a%a1>#</a>
@@ -177,16 +176,8 @@ Code Source
 --export-host-port 从其他集群导出的服务端口  
 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  
 </code></pre>
-<h3 id=导出服务的集群执行>
-导出服务的集群执行
-<a class=anchor href=#%e5%af%bc%e5%87%ba%e6%9c%8d%e5%8a%a1%e7%9a%84%e9%9b%86%e7%be%a4%e6%89%a7%e8%a1%8c>#</a>
-</h3>
-<p>上一个命令执行后, 会响应一个命令复制到导出集群执行</p>
-<h3 id=导入服务的集群执行>
-导入服务的集群执行
-<a class=anchor href=#%e5%af%bc%e5%85%a5%e6%9c%8d%e5%8a%a1%e7%9a%84%e9%9b%86%e7%be%a4%e6%89%a7%e8%a1%8c>#</a>
-</h3>
-<p>上一个命令执行后, 会响应一个命令复制到导入集群执行</p>
+<p>需要
+<a href=/zh/docs/user/handshake/>握手</a></p>
 <h2 id=快速在本地拉起测试环境>
 快速在本地拉起测试环境
 <a class=anchor href=#%e5%bf%ab%e9%80%9f%e5%9c%a8%e6%9c%ac%e5%9c%b0%e6%8b%89%e8%b5%b7%e6%b5%8b%e8%af%95%e7%8e%af%e5%a2%83>#</a>
@@ -204,7 +195,7 @@ go install ./cmd/ferryctl
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-08-04</span>
 </a>
@@ -233,8 +224,6 @@ go install ./cmd/ferryctl
 <li><a href=#手动映射服务-1>手动映射服务</a>
 <ul>
 <li><a href=#定义从其他集群导出某一服务>定义从其他集群导出某一服务</a></li>
-<li><a href=#导出服务的集群执行>导出服务的集群执行</a></li>
-<li><a href=#导入服务的集群执行>导入服务的集群执行</a></li>
 </ul>
 </li>
 <li><a href=#快速在本地拉起测试环境>快速在本地拉起测试环境</a></li>

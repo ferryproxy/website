@@ -2,23 +2,35 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
+<meta name=description content="握手 #  部分命令需要通知两个集群这个行为称之为握手
+自动 #  如果能同时连上两个集群
+KUBECONFIG 指定当前集群的 kubeconfig 文件
+FERRY_PEER_KUBECONFIG 指定对端集群的 kubeconfig 文件
+手动 #  如果不能同时连上两个集群
+首次响应 #  在当前集群的命令执行后, 会响应一个命令复制到对端集群执行
+再次响应 #  在对端集群的命令执行后, 会响应一个命令复制到当前集群执行">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Tags">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ferryproxy.io/zh/tags/">
-<title>Tags | Ferry Proxy</title>
+<meta name=color-scheme content="light dark"><meta property="og:title" content="握手">
+<meta property="og:description" content="握手 #  部分命令需要通知两个集群这个行为称之为握手
+自动 #  如果能同时连上两个集群
+KUBECONFIG 指定当前集群的 kubeconfig 文件
+FERRY_PEER_KUBECONFIG 指定对端集群的 kubeconfig 文件
+手动 #  如果不能同时连上两个集群
+首次响应 #  在当前集群的命令执行后, 会响应一个命令复制到对端集群执行
+再次响应 #  在对端集群的命令执行后, 会响应一个命令复制到当前集群执行">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/user/handshake/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
+<title>握手 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=alternate hreflang=en href=https://ferryproxy.io/tags/ title=Tags>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/handshake/ title=Handshake>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.89ee129d4e33b8aff6cd79a51a965f75b6c1e020b70965ca26bde26f0e632561.js integrity="sha256-ie4SnU4zuK/2zXmlGpZfdbbB4CC3CWXKJr3ibw5jJWE=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
-<link rel=alternate type=application/rss+xml href=https://ferryproxy.io/zh/tags/index.xml title="Ferry Proxy">
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -47,7 +59,7 @@
 </label>
 <ul>
 <li>
-<a href=https://ferryproxy.io/tags/>
+<a href=https://ferryproxy.io/docs/user/handshake/>
 English
 </a>
 </li>
@@ -78,7 +90,7 @@ English
 </ul>
 </li>
 <li>
-<a href=/zh/docs/user/handshake/>握手</a></li>
+<a href=/zh/docs/user/handshake/ class=active>握手</a></li>
 <li>
 <a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
 </ul>
@@ -107,47 +119,90 @@ Code Source
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Tags</strong>
+<strong>握手</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
 <aside class="hidden clearfix">
-<nav>
+<nav id=TableOfContents>
 <ul>
-<li class=book-section-flat>
-<strong>Categories</strong>
+<li><a href=#握手>握手</a>
 <ul>
+<li><a href=#自动>自动</a></li>
+<li><a href=#手动>手动</a>
+<ul>
+<li><a href=#首次响应>首次响应</a></li>
+<li><a href=#再次响应>再次响应</a></li>
 </ul>
 </li>
-<li class=book-section-flat>
-<strong>Tags</strong>
-<ul>
 </ul>
 </li>
 </ul>
 </nav>
 </aside>
 </header>
+<article class=markdown><h1 id=握手>
+握手
+<a class=anchor href=#%e6%8f%a1%e6%89%8b>#</a>
+</h1>
+<p>部分命令需要通知两个集群这个行为称之为握手</p>
+<h2 id=自动>
+自动
+<a class=anchor href=#%e8%87%aa%e5%8a%a8>#</a>
+</h2>
+<p>如果能同时连上两个集群</p>
+<p><code>KUBECONFIG</code> 指定当前集群的 kubeconfig 文件</p>
+<p><code>FERRY_PEER_KUBECONFIG</code> 指定对端集群的 kubeconfig 文件</p>
+<h2 id=手动>
+手动
+<a class=anchor href=#%e6%89%8b%e5%8a%a8>#</a>
+</h2>
+<p>如果不能同时连上两个集群</p>
+<h3 id=首次响应>
+首次响应
+<a class=anchor href=#%e9%a6%96%e6%ac%a1%e5%93%8d%e5%ba%94>#</a>
+</h3>
+<p>在当前集群的命令执行后, 会响应一个命令复制到对端集群执行</p>
+<h3 id=再次响应>
+再次响应
+<a class=anchor href=#%e5%86%8d%e6%ac%a1%e5%93%8d%e5%ba%94>#</a>
+</h3>
+<p>在对端集群的命令执行后, 会响应一个命令复制到当前集群执行</p>
+</article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-08-04</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/user/handshake.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
 </div>
 <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
 </footer>
+<div class=book-comments>
+</div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
 <aside class=book-toc>
 <div class=book-toc-content>
-<nav>
+<nav id=TableOfContents>
 <ul>
-<li class=book-section-flat>
-<strong>Categories</strong>
+<li><a href=#握手>握手</a>
 <ul>
+<li><a href=#自动>自动</a></li>
+<li><a href=#手动>手动</a>
+<ul>
+<li><a href=#首次响应>首次响应</a></li>
+<li><a href=#再次响应>再次响应</a></li>
 </ul>
 </li>
-<li class=book-section-flat>
-<strong>Tags</strong>
-<ul>
 </ul>
 </li>
 </ul>

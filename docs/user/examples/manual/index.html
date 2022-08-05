@@ -5,23 +5,23 @@
 <meta name=description content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
 The routing rules configured by this feature are not controlled by the ferry-controller.
 Preparation #   Preparation
-Manual Mapping Service #  3 steps are required to configure">
+Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Manual Mapping Service">
 <meta property="og:description" content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
 The routing rules configured by this feature are not controlled by the ferry-controller.
 Preparation #   Preparation
-Manual Mapping Service #  3 steps are required to configure">
+Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/manual/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
+<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
 <title>Manual Mapping Service | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/manual/ title=手动映射服务>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.b15e3c3823699fbc907013f5b4d744c7ecfd3dec8263b8ed8622b74cd6238a67.js integrity="sha256-sV48OCNpn7yQcBP1tNdEx+z9PeyCY7jthiK3TNYjimc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8fe608c2cc934eed849a783791294a1d7d79c9a1ee84f47eabadb9baf430e914.js integrity="sha256-j+YIwsyTTu2Emng3kSlKHX15yaHuhPR+q625uvQw6RQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -84,6 +84,8 @@ English
 </ul>
 </li>
 <li>
+<a href=/docs/user/handshake/>Handshake</a></li>
+<li>
 <a href=/docs/user/with-service-mesh/>With Service Mesh</a></li>
 </ul>
 </li>
@@ -126,8 +128,6 @@ Code Source
 <li><a href=#manual-mapping-service-1>Manual Mapping Service</a>
 <ul>
 <li><a href=#define-exporting-a-service-from-another-cluster>Define exporting a service from another cluster</a></li>
-<li><a href=#execute-in-the-cluster-of-the-exported-service>Execute in the cluster of the exported service</a></li>
-<li><a href=#execute-in-the-cluster-of-the-imported-service>Execute in the cluster of the imported service</a></li>
 </ul>
 </li>
 <li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
@@ -157,7 +157,6 @@ Preparation
 Manual Mapping Service
 <a class=anchor href=#manual-mapping-service-1>#</a>
 </h2>
-<p>3 steps are required to configure</p>
 <h3 id=define-exporting-a-service-from-another-cluster>
 Define exporting a service from another cluster
 <a class=anchor href=#define-exporting-a-service-from-another-cluster>#</a>
@@ -169,16 +168,8 @@ Define exporting a service from another cluster
 --export-host-port Service ports exported from other clusters  
 --import-service-name Mapped services created by the current cluster from services exported from other clusters (by default under the ferry-tunnel-system namespace)  
 </code></pre>
-<h3 id=execute-in-the-cluster-of-the-exported-service>
-Execute in the cluster of the exported service
-<a class=anchor href=#execute-in-the-cluster-of-the-exported-service>#</a>
-</h3>
-<p>After the previous command is executed, a response is copied to the exported cluster for execution</p>
-<h3 id=execute-in-the-cluster-of-the-imported-service>
-Execute in the cluster of the imported service
-<a class=anchor href=#execute-in-the-cluster-of-the-imported-service>#</a>
-</h3>
-<p>After the previous command is executed, a response is copied to the imported cluster for execution</p>
+<p>Need
+<a href=/docs/user/handshake/>handshake</a></p>
 <h2 id=quickly-pull-up-a-test-environment-locally>
 Quickly pull up a test environment locally
 <a class=anchor href=#quickly-pull-up-a-test-environment-locally>#</a>
@@ -196,7 +187,7 @@ go install ./cmd/ferryctl
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-08-04</span>
 </a>
@@ -225,8 +216,6 @@ go install ./cmd/ferryctl
 <li><a href=#manual-mapping-service-1>Manual Mapping Service</a>
 <ul>
 <li><a href=#define-exporting-a-service-from-another-cluster>Define exporting a service from another cluster</a></li>
-<li><a href=#execute-in-the-cluster-of-the-exported-service>Execute in the cluster of the exported service</a></li>
-<li><a href=#execute-in-the-cluster-of-the-imported-service>Execute in the cluster of the imported service</a></li>
 </ul>
 </li>
 <li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>

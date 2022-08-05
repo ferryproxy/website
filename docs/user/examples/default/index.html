@@ -8,7 +8,7 @@ Can be a cluster of one node or a cluster of Kind but at least two.
 A ferryctl needs to be installed for each cluster&rsquo;s control node
  https://github.com/ferryproxy/ferry/releases
 Preparation #   Preparation
-Join a Data Plane Cluster #  3 steps are required to configure">
+Join a Data Plane Cluster #  Define which Data Plane Cluster needs to be joined #  # execute on Control Plane Cluster ferryctl control-plane join cluster-1 Need handshake">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Default Example">
 <meta property="og:description" content="Default Example #  Prepare at least two clusters for demonstration
@@ -17,17 +17,17 @@ Can be a cluster of one node or a cluster of Kind but at least two.
 A ferryctl needs to be installed for each cluster&rsquo;s control node
  https://github.com/ferryproxy/ferry/releases
 Preparation #   Preparation
-Join a Data Plane Cluster #  3 steps are required to configure">
+Join a Data Plane Cluster #  Define which Data Plane Cluster needs to be joined #  # execute on Control Plane Cluster ferryctl control-plane join cluster-1 Need handshake">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/default/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-04T17:53:56+08:00">
+<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
 <title>Default Example | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/default/ title=默认示例>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.b15e3c3823699fbc907013f5b4d744c7ecfd3dec8263b8ed8622b74cd6238a67.js integrity="sha256-sV48OCNpn7yQcBP1tNdEx+z9PeyCY7jthiK3TNYjimc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8fe608c2cc934eed849a783791294a1d7d79c9a1ee84f47eabadb9baf430e914.js integrity="sha256-j+YIwsyTTu2Emng3kSlKHX15yaHuhPR+q625uvQw6RQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -90,6 +90,8 @@ English
 </ul>
 </li>
 <li>
+<a href=/docs/user/handshake/>Handshake</a></li>
+<li>
 <a href=/docs/user/with-service-mesh/>With Service Mesh</a></li>
 </ul>
 </li>
@@ -132,8 +134,7 @@ Code Source
 <li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
 <ul>
 <li><a href=#define-which-data-plane-cluster-needs-to-be-joined>Define which Data Plane Cluster needs to be joined</a></li>
-<li><a href=#execute-on-the-data-plane-cluster>Execute on the Data Plane Cluster</a></li>
-<li><a href=#execute-on-the-control-plane-cluster>Execute on the Control Plane Cluster</a></li>
+<li><a href=#complete-handshake>Complete handshake</a></li>
 </ul>
 </li>
 <li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>
@@ -170,23 +171,18 @@ Preparation
 Join a Data Plane Cluster
 <a class=anchor href=#join-a-data-plane-cluster>#</a>
 </h2>
-<p>3 steps are required to configure</p>
 <h3 id=define-which-data-plane-cluster-needs-to-be-joined>
 Define which Data Plane Cluster needs to be joined
 <a class=anchor href=#define-which-data-plane-cluster-needs-to-be-joined>#</a>
 </h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># execute on Control Plane Cluster</span>
 ferryctl control-plane join cluster-1
-</code></pre></div><h3 id=execute-on-the-data-plane-cluster>
-Execute on the Data Plane Cluster
-<a class=anchor href=#execute-on-the-data-plane-cluster>#</a>
+</code></pre></div><p>Need
+<a href=/docs/user/handshake/>handshake</a></p>
+<h3 id=complete-handshake>
+Complete handshake
+<a class=anchor href=#complete-handshake>#</a>
 </h3>
-<p>After the last command is executed of Control Plane Cluster, it responds with a command, copied to Data Plane Cluster to run.</p>
-<h3 id=execute-on-the-control-plane-cluster>
-Execute on the Control Plane Cluster
-<a class=anchor href=#execute-on-the-control-plane-cluster>#</a>
-</h3>
-<p>After the last command is executed of Data Plane Cluster, it responds with a command, copied to the Control Plane Cluster to run.</p>
 <p>This data plane cluster can then be viewed in the control plane cluster</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get hub.traffic.ferryproxy.io -n ferry-system
 </code></pre></div><h2 id=quickly-pull-up-a-test-environment-locally>
@@ -231,7 +227,7 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c26553038169468ba6cd9175cfe786ff80db36c8 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-08-04</span>
 </a>
@@ -260,8 +256,7 @@ kubectl --context<span style=color:#f92672>=</span>kind-ferry-test-cluster-1 exe
 <li><a href=#join-a-data-plane-cluster>Join a Data Plane Cluster</a>
 <ul>
 <li><a href=#define-which-data-plane-cluster-needs-to-be-joined>Define which Data Plane Cluster needs to be joined</a></li>
-<li><a href=#execute-on-the-data-plane-cluster>Execute on the Data Plane Cluster</a></li>
-<li><a href=#execute-on-the-control-plane-cluster>Execute on the Control Plane Cluster</a></li>
+<li><a href=#complete-handshake>Complete handshake</a></li>
 </ul>
 </li>
 <li><a href=#quickly-pull-up-a-test-environment-locally>Quickly pull up a test environment locally</a></li>

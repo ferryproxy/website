@@ -4,15 +4,28 @@
 本文概述了Ferry作为一个项目的一些目标、非目标和未来的期望。
 {{< /hint >}}
 
+## DONE
 - [x] 通信加密
-- [x] 只使用Ferryctl来配置集群之间的服务映射，而不使用Controller
+- [x] 只使用 Ferryctl 来配置集群之间的服务映射，而不使用 Controller
+- [x] 支持多级代理
+
+## TODO
+- [ ] 支持完整的卸载自身和清理
 - [ ] 监控状态，并显示在Hub的状态中
+- [ ] 适配上下游生态
+- [ ] SSH-via-QUIC: ssh 协议使用 quic 替换 tcp, 在 IP 变化后无需重新连接, 预期更好的性能
+- [ ] 支持 [mcs api](https://github.com/kubernetes-sigs/mcs-api)
+- [ ] 支持任何带有 sshd 的服务器作为 Hub，不需要集群
+
+## IDEA
 - [ ] 多集群故障转移
 - [ ] 多集群负载均衡
 - [ ] 基于 IP 的访问控制
 - [ ] 提供流量和业务性能的 cluster-to-cluster 视图
-- [ ] 适配上下游生态
 - [ ] 支持 Service 的 UDP
-- [ ] 支持 [mcs api](https://github.com/kubernetes-sigs/mcs-api)
 - [ ] 支持两个无公网 IP 的集群通过 UDP p2p 直连
-- [ ] 支持任何带有 sshd 的服务器作为 Hub，不需要集群
+
+## Suggesting
+
+如果我们遗漏了一些东西，让 Ferry 对你更有用，请让我们知道。
+最好的方法是 [提交一个 Issue](https://github.com/ferryproxy/ferry/issues/new)，并包括关于你打算如何使用 Ferry 的信息。

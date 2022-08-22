@@ -2,20 +2,20 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Status is monitored and displayed in the status of the Hub Multi-cluster failover Multi-cluster load balancing IP-based access control Provide an cluster-to-cluster view of traffic flow and service performance Adapting to the ecosystem Support UDP of Service Support mcs api Supports direct UDP p2p connection between two clusters without public IPs Support any server with sshd as a hub without Cluster  ">
+<meta name=description content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation itself and cleanup Status is monitored and displayed in the status of the Hub Adapting to the ecosystem SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance Support mcs api Support any server with sshd as a hub without Cluster  IDEA #   Multi-cluster failover Multi-cluster load balancing IP-based access control Provide an cluster-to-cluster view of traffic flow and service performance Support UDP of Service Supports direct UDP p2p connection between two clusters without public IPs  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Status is monitored and displayed in the status of the Hub Multi-cluster failover Multi-cluster load balancing IP-based access control Provide an cluster-to-cluster view of traffic flow and service performance Adapting to the ecosystem Support UDP of Service Support mcs api Supports direct UDP p2p connection between two clusters without public IPs Support any server with sshd as a hub without Cluster  ">
+<meta property="og:description" content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation itself and cleanup Status is monitored and displayed in the status of the Hub Adapting to the ecosystem SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance Support mcs api Support any server with sshd as a hub without Cluster  IDEA #   Multi-cluster failover Multi-cluster load balancing IP-based access control Provide an cluster-to-cluster view of traffic flow and service performance Support UDP of Service Supports direct UDP p2p connection between two clusters without public IPs  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/roadmap/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-26T17:05:17+08:00">
+<meta property="article:modified_time" content="2022-08-22T16:03:43+08:00">
 <title>Roadmap | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/roadmap/ title=Roadmap>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.8fe608c2cc934eed849a783791294a1d7d79c9a1ee84f47eabadb9baf430e914.js integrity="sha256-j+YIwsyTTu2Emng3kSlKHX15yaHuhPR+q625uvQw6RQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6e34a1b7dc923d943aaec075b15ea6a7dacc0b4c7fb9b0a02ac39c13a4e5ce04.js integrity="sha256-bjSht9ySPZQ6rsB1sV6mp9rMC0x/ubCgKsOcE6TlzgQ=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -115,7 +115,14 @@ Code Source
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#roadmap>Roadmap</a></li>
+<li><a href=#roadmap>Roadmap</a>
+<ul>
+<li><a href=#done>DONE</a></li>
+<li><a href=#todo>TODO</a></li>
+<li><a href=#idea>IDEA</a></li>
+<li><a href=#suggesting>Suggesting</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -127,27 +134,53 @@ Roadmap
 <blockquote class="book-hint info">
 This document outlines some goals, non-goals, and future aspirations for Ferry as a project.
 </blockquote>
+<h2 id=done>
+DONE
+<a class=anchor href=#done>#</a>
+</h2>
 <ul>
 <li><input checked disabled type=checkbox> Engage encryption</li>
 <li><input checked disabled type=checkbox> Use Ferryctl alone to configure service mapping between clusters without the Controller</li>
+<li><input checked disabled type=checkbox> Support multi-level proxy</li>
+</ul>
+<h2 id=todo>
+TODO
+<a class=anchor href=#todo>#</a>
+</h2>
+<ul>
+<li><input disabled type=checkbox> Support complete uninstallation itself and cleanup</li>
 <li><input disabled type=checkbox> Status is monitored and displayed in the status of the Hub</li>
+<li><input disabled type=checkbox> Adapting to the ecosystem</li>
+<li><input disabled type=checkbox> SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance</li>
+<li><input disabled type=checkbox> Support
+<a href=https://github.com/kubernetes-sigs/mcs-api>mcs api</a></li>
+<li><input disabled type=checkbox> Support any server with sshd as a hub without Cluster</li>
+</ul>
+<h2 id=idea>
+IDEA
+<a class=anchor href=#idea>#</a>
+</h2>
+<ul>
 <li><input disabled type=checkbox> Multi-cluster failover</li>
 <li><input disabled type=checkbox> Multi-cluster load balancing</li>
 <li><input disabled type=checkbox> IP-based access control</li>
 <li><input disabled type=checkbox> Provide an cluster-to-cluster view of traffic flow and service performance</li>
-<li><input disabled type=checkbox> Adapting to the ecosystem</li>
 <li><input disabled type=checkbox> Support UDP of Service</li>
-<li><input disabled type=checkbox> Support
-<a href=https://github.com/kubernetes-sigs/mcs-api>mcs api</a></li>
 <li><input disabled type=checkbox> Supports direct UDP p2p connection between two clusters without public IPs</li>
-<li><input disabled type=checkbox> Support any server with sshd as a hub without Cluster</li>
 </ul>
+<h2 id=suggesting>
+Suggesting
+<a class=anchor href=#suggesting>#</a>
+</h2>
+<p>If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.
+The best way to do this is to
+<a href=https://github.com/ferryproxy/ferry/issues/new>Submit an Issue</a> and include information about how you plan to use Ferry.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/2dc999b9a3e212b4e360e6c06c258e3569b8055b title="Last modified by Shiming Zhang | 2022-07-26" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/55cf78778651f5bd6cf183ed0e0840e175a1dcb6 title="Last modified by Shiming Zhang | 2022-08-22" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-07-26</span>
+<span>2022-08-22</span>
 </a>
 </div>
 <div>
@@ -167,7 +200,14 @@ This document outlines some goals, non-goals, and future aspirations for Ferry a
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#roadmap>Roadmap</a></li>
+<li><a href=#roadmap>Roadmap</a>
+<ul>
+<li><a href=#done>DONE</a></li>
+<li><a href=#todo>TODO</a></li>
+<li><a href=#idea>IDEA</a></li>
+<li><a href=#suggesting>Suggesting</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>

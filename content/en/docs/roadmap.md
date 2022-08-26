@@ -10,20 +10,22 @@ This document outlines some goals, non-goals, and future aspirations for Ferry a
 - [x] Support multi-level proxy
 
 ## TODO
-- [ ] Support complete uninstallation itself and cleanup
-- [ ] Status is monitored and displayed in the status of the Hub
+- [ ] Support complete uninstallation of itself and cleanup
+- [ ] Monitor status and display in Hub's status
 - [ ] Adapting to the ecosystem
+- [ ] Support for [mcs api](https://github.com/kubernetes-sigs/mcs-api)
+- [ ] Multi-replicas tunnels for a single Hub
 - [ ] SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance
-- [ ] Support [mcs api](https://github.com/kubernetes-sigs/mcs-api)
-- [ ] Support any server with sshd as a hub without Cluster
+- [ ] Support for any device to actively connect and join as a hub, SDK and Binary provided
+- [ ] Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation
+- [ ] Load balancing
+- [ ] Failover
+- [ ] Proximity access
+- [ ] Access control
 
 ## IDEA
-- [ ] Multi-cluster failover
-- [ ] Multi-cluster load balancing
-- [ ] IP-based access control
-- [ ] Provide an cluster-to-cluster view of traffic flow and service performance
+- [ ] Provide an view of traffic flow and service performance
 - [ ] Support UDP of Service
-- [ ] Supports direct UDP p2p connection between two clusters without public IPs
 
 ## Suggesting
 

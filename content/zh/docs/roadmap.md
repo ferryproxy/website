@@ -13,17 +13,19 @@
 - [ ] 支持完整的卸载自身和清理
 - [ ] 监控状态，并显示在Hub的状态中
 - [ ] 适配上下游生态
-- [ ] SSH-via-QUIC: ssh 协议使用 quic 替换 tcp, 在 IP 变化后无需重新连接, 预期更好的性能
 - [ ] 支持 [mcs api](https://github.com/kubernetes-sigs/mcs-api)
-- [ ] 支持任何带有 sshd 的服务器作为 Hub，不需要集群
+- [ ] 单个 Hub 支持多副本 Tunnel
+- [ ] SSH-via-QUIC: Tunnel 之间的 ssh 协议使用 quic 替换 tcp, 在 IP 变化后无需重新连接, 预期更好的性能
+- [ ] 支持任何设备主动连接并加入作为 Hub, 提供 SDK 和 Binary
+- [ ] 支持两个无公网 IP 的 Hub 经过控制面撮合, 通过 UDP p2p 直连
+- [ ] 负载均衡
+- [ ] 故障转移
+- [ ] 就近访问
+- [ ] 访问控制
 
 ## IDEA
-- [ ] 多集群故障转移
-- [ ] 多集群负载均衡
-- [ ] 基于 IP 的访问控制
-- [ ] 提供流量和业务性能的 cluster-to-cluster 视图
+- [ ] 提供流量和业务性能的视图
 - [ ] 支持 Service 的 UDP
-- [ ] 支持两个无公网 IP 的集群通过 UDP p2p 直连
 
 ## Suggesting
 

@@ -2,10 +2,10 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation of itself and cleanup Monitor status and display in Hub&rsquo;s status Adaptation to upstream and downstream ecologies Support for mcs api Multi-copy Tunnel support for a single Hub SSH-via-QUIC: The ssh protocol between tunnels uses quic instead of tcp, eliminating the need to reconnect after an IP change, expecting better performance Support for any device to actively connect and join as a hub, SDK and Binary provided Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation Load balancing Failover Proximity access Access control  IDEA #   Provide an view of traffic flow and service performance Support UDP of Service  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
+<meta name=description content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation of itself and cleanup Monitor status and display in Hub&rsquo;s status Adapting to the ecosystem Support for mcs api Multi-replicas tunnels for a single Hub SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance Support for any device to actively connect and join as a hub, SDK and Binary provided Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation Load balancing Failover Proximity access Access control  IDEA #   Provide an view of traffic flow and service performance Support UDP of Service  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation of itself and cleanup Monitor status and display in Hub&rsquo;s status Adaptation to upstream and downstream ecologies Support for mcs api Multi-copy Tunnel support for a single Hub SSH-via-QUIC: The ssh protocol between tunnels uses quic instead of tcp, eliminating the need to reconnect after an IP change, expecting better performance Support for any device to actively connect and join as a hub, SDK and Binary provided Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation Load balancing Failover Proximity access Access control  IDEA #   Provide an view of traffic flow and service performance Support UDP of Service  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
+<meta property="og:description" content="Roadmap #  This document outlines some goals, non-goals, and future aspirations for Ferry as a project.  DONE #   Engage encryption Use Ferryctl alone to configure service mapping between clusters without the Controller Support multi-level proxy  TODO #   Support complete uninstallation of itself and cleanup Monitor status and display in Hub&rsquo;s status Adapting to the ecosystem Support for mcs api Multi-replicas tunnels for a single Hub SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance Support for any device to actively connect and join as a hub, SDK and Binary provided Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation Load balancing Failover Proximity access Access control  IDEA #   Provide an view of traffic flow and service performance Support UDP of Service  Suggesting #  If we&rsquo;ve missed something that would make Ferry more useful to you, please let us know.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/roadmap/"><meta property="article:section" content="docs">
 <meta property="article:modified_time" content="2022-08-26T12:28:18+08:00">
@@ -15,7 +15,7 @@
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/roadmap/ title=Roadmap>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.be618a55d2ef51ccc79241c04fe27109a186ab123b1a3ec0d105d73fd7efbe62.js integrity="sha256-vmGKVdLvUczHkkHAT+JxCaGGqxI7Gj7A0QXXP9fvvmI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3244651204de883e08cce32e0b022ffa817c0f3002df5432c7ab5565eba2ca21.js integrity="sha256-MkRlEgTeiD4IzOMuCwIv+oF8DzAC31Qyx6tVZeuiyiE=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -150,11 +150,11 @@ TODO
 <ul>
 <li><input disabled type=checkbox> Support complete uninstallation of itself and cleanup</li>
 <li><input disabled type=checkbox> Monitor status and display in Hub&rsquo;s status</li>
-<li><input disabled type=checkbox> Adaptation to upstream and downstream ecologies</li>
+<li><input disabled type=checkbox> Adapting to the ecosystem</li>
 <li><input disabled type=checkbox> Support for
 <a href=https://github.com/kubernetes-sigs/mcs-api>mcs api</a></li>
-<li><input disabled type=checkbox> Multi-copy Tunnel support for a single Hub</li>
-<li><input disabled type=checkbox> SSH-via-QUIC: The ssh protocol between tunnels uses quic instead of tcp, eliminating the need to reconnect after an IP change, expecting better performance</li>
+<li><input disabled type=checkbox> Multi-replicas tunnels for a single Hub</li>
+<li><input disabled type=checkbox> SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance</li>
 <li><input disabled type=checkbox> Support for any device to actively connect and join as a hub, SDK and Binary provided</li>
 <li><input disabled type=checkbox> Support for two hubs without public IPs to connect directly via UDP p2p after control plane collocation</li>
 <li><input disabled type=checkbox> Load balancing</li>
@@ -180,7 +180,7 @@ The best way to do this is to
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/be1f4815ab4b0b025b148fb269cb4cea79981ff9 title="Last modified by Shiming Zhang | 2022-08-26" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/873a9ca1346712a16d8519abab07ee01aee5698b title="Last modified by Shiming Zhang | 2022-08-26" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>2022-08-26</span>
 </a>

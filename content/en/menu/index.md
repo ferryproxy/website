@@ -5,6 +5,11 @@ headless: true
 - [**Home**]({{< relref "/" >}})
 - **User Guide**
   - [Preparation]({{< relref "/docs/user/preparation" >}})
+  - [CRD]({{< relref "/docs/crd" >}})
+    - [Hub]({{< relref "/docs/crd/hub" >}})
+    - [Route]({{< relref "/docs/crd/route" >}})
+    - [Route Policy]({{< relref "/docs/crd/route_policy" >}})
+    - [MCS API]({{< relref "/docs/crd/mcs_api" >}})
   - Examples
     - [Default Example]({{< relref "/docs/user/examples/default" >}})
     - [Control Plane Unreachable]({{< relref "/docs/user/examples/control-plane-unreachable" >}})

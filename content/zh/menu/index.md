@@ -5,6 +5,11 @@ headless: true
 - [**主页**]({{< relref "/" >}})
 - **用户指引**
   - [准备工作]({{< relref "/docs/user/preparation" >}})
+  - [CRD]({{< relref "/docs/crd" >}})
+    - [Hub]({{< relref "/docs/crd/hub" >}})
+    - [Route]({{< relref "/docs/crd/route" >}})
+    - [Route Policy]({{< relref "/docs/crd/route_policy" >}})
+    - [MCS API]({{< relref "/docs/crd/mcs_api" >}})
   - 示例
     - [默认示例]({{< relref "/docs/user/examples/default" >}})
     - [控制面集群不可达]({{< relref "/docs/user/examples/control-plane-unreachable" >}})

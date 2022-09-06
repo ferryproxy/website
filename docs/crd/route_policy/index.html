@@ -1,0 +1,327 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Route Policy #  RoutePolicy is used to define generic composite routing rules, which will eventually convert to Route CR
+Explicit Route #  One-to-one import #  apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 This is a CR equivalent to the Route CR example
+Import from multiple Hubs #  apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 - hubName: cluster-2 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 This routing rule generates two Route CR, app-1.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Route Policy">
+<meta property="og:description" content="Route Policy #  RoutePolicy is used to define generic composite routing rules, which will eventually convert to Route CR
+Explicit Route #  One-to-one import #  apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 This is a CR equivalent to the Route CR example
+Import from multiple Hubs #  apiVersion: traffic.ferryproxy.io/v1alpha2 kind: RoutePolicy spec: exports: - hubName: cluster-1 service: namespace: default name: app-1 - hubName: cluster-2 service: namespace: default name: app-1 imports: - hubName: cluster-0 service: namespace: default name: app-1 This routing rule generates two Route CR, app-1.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/docs/crd/route_policy/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<title>Route Policy | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/crd/route_policy/ title="Route Policy">
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.64d7964360656402779482f826bc2bdff1a08250077c923aedd0b4db6b1c8580.js integrity="sha256-ZNeWQ2BlZAJ3lIL4Jrwr3/GgglAHfJI67dC022schYA=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+English
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/zh/docs/crd/route_policy/>
+简体中文
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/><strong>Home</strong></a></li>
+<li><strong>User Guide</strong>
+<ul>
+<li>
+<a href=/docs/user/preparation/>Preparation</a></li>
+<li>
+<a href=/docs/crd/>CRD</a>
+<ul>
+<li>
+<a href=/docs/crd/hub/>Hub</a></li>
+<li>
+<a href=/docs/crd/route/>Route</a></li>
+<li>
+<a href=/docs/crd/route_policy/ class=active>Route Policy</a></li>
+<li>
+<a href=/docs/crd/mcs_api/>MCS API</a></li>
+</ul>
+</li>
+<li>Examples
+<ul>
+<li>
+<a href=/docs/user/examples/default/>Default Example</a></li>
+<li>
+<a href=/docs/user/examples/control-plane-unreachable/>Control Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
+<li>
+<a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
+<li>
+<a href=/docs/user/examples/manual/>Manual Mapping Service</a></li>
+</ul>
+</li>
+<li>
+<a href=/docs/user/handshake/>Handshake</a></li>
+<li>
+<a href=/docs/user/with-service-mesh/>With Service Mesh</a></li>
+</ul>
+</li>
+<li>
+<a href=/docs/principle/>Technology Principle</a></li>
+<li>
+<a href=/docs/glossary/>Glossary</a></li>
+<li>
+<a href=/docs/roadmap/>Roadmap</a></li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Route Policy</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#route-policy>Route Policy</a>
+<ul>
+<li><a href=#explicit-route>Explicit Route</a>
+<ul>
+<li><a href=#one-to-one-import>One-to-one import</a></li>
+<li><a href=#import-from-multiple-hubs>Import from multiple Hubs</a></li>
+<li><a href=#exporting-to-multiple-hubs>Exporting to multiple Hubs</a></li>
+</ul>
+</li>
+<li><a href=#macth-route>Macth Route</a>
+<ul>
+<li><a href=#bulk-export-using-label-filtering>Bulk export using Label filtering</a></li>
+<li><a href=#bulk-import-using-label-filtering>Bulk import using Label filtering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=route-policy>
+Route Policy
+<a class=anchor href=#route-policy>#</a>
+</h1>
+<p>RoutePolicy is used to define generic composite routing rules, which will eventually convert to
+<a href=/docs/crd/route/>Route CR</a></p>
+<h2 id=explicit-route>
+Explicit Route
+<a class=anchor href=#explicit-route>#</a>
+</h2>
+<h3 id=one-to-one-import>
+One-to-one import
+<a class=anchor href=#one-to-one-import>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div><p>This is a CR equivalent to the
+<a href=/docs/crd/route/>Route CR</a> example</p>
+<h3 id=import-from-multiple-hubs>
+Import from multiple Hubs
+<a class=anchor href=#import-from-multiple-hubs>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-2</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div><p>This routing rule generates two
+<a href=/docs/crd/route/>Route CR</a>,
+app-1.default from
+<a href=/docs/crd/hub/>Hub</a> cluster-1 and cluster-2 into
+<a href=/docs/crd/hub/>Hub</a> cluster-0, respectively.
+This is done by configuring multiple backends at the endpoint of cluster-0&rsquo;s app-1.default to point to the two imported routes</p>
+<p>Even if it is written in a different RoutePolicy CR or
+<a href=/docs/crd/route/>Route CR</a>, multiple backends will be configured for the endpoint as long as the import destinations are the same</p>
+<h3 id=exporting-to-multiple-hubs>
+Exporting to multiple Hubs
+<a class=anchor href=#exporting-to-multiple-hubs>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-2</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div><p>This rule is actually equivalent to two one-to-one rules</p>
+<h2 id=macth-route>
+Macth Route
+<a class=anchor href=#macth-route>#</a>
+</h2>
+<p>In addition to explicit routing, Ferry provides the ability to filter the imported and exported services by label
+However, it is important to note that matching routes cannot modify the imported name</p>
+<h3 id=bulk-export-using-label-filtering>
+Bulk export using Label filtering
+<a class=anchor href=#bulk-export-using-label-filtering>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>labels</span>:
+          <span style=color:#f92672>export</span>: <span style=color:#ae81ff>enabled</span>
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+</code></pre></div><p>This routing rule will match all services with <code>export=enabled</code> label in namespace default of
+<a href=/docs/crd/hub/>Hub</a> cluster-1 for export to
+<a href=/docs/crd/hub/>Hub</a> cluster-0</p>
+<h3 id=bulk-import-using-label-filtering>
+Bulk import using Label filtering
+<a class=anchor href=#bulk-import-using-label-filtering>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>RoutePolicy</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>exports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>labels</span>:
+          <span style=color:#f92672>export</span>: <span style=color:#ae81ff>enabled</span>
+        <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+  <span style=color:#f92672>imports</span>:
+    - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+      <span style=color:#f92672>service</span>:
+        <span style=color:#f92672>labels</span>:
+          <span style=color:#f92672>export-2</span>: <span style=color:#ae81ff>enabled</span>
+</code></pre></div><p>This rule adds to the previous one that the exported service must also have the <code>export-2=enabled</code> label</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="Last modified by Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-09-05</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/crd/route_policy.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#route-policy>Route Policy</a>
+<ul>
+<li><a href=#explicit-route>Explicit Route</a>
+<ul>
+<li><a href=#one-to-one-import>One-to-one import</a></li>
+<li><a href=#import-from-multiple-hubs>Import from multiple Hubs</a></li>
+<li><a href=#exporting-to-multiple-hubs>Exporting to multiple Hubs</a></li>
+</ul>
+</li>
+<li><a href=#macth-route>Macth Route</a>
+<ul>
+<li><a href=#bulk-export-using-label-filtering>Bulk export using Label filtering</a></li>
+<li><a href=#bulk-import-using-label-filtering>Bulk import using Label filtering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Hub #  Hub CR defines a Hub, which is the address to communicate with other Hubs, For now only one cluster is supported, in the future it will be added to support any possible device as a Hub, even your laptop
+Hub provides the basis for RoutePolicy CR and Route CR calculations
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Hub">
+<meta property="og:description" content="Hub #  Hub CR defines a Hub, which is the address to communicate with other Hubs, For now only one cluster is supported, in the future it will be added to support any possible device as a Hub, even your laptop
+Hub provides the basis for RoutePolicy CR and Route CR calculations
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/docs/crd/hub/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<title>Hub | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/crd/hub/ title=Hub>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.64d7964360656402779482f826bc2bdff1a08250077c923aedd0b4db6b1c8580.js integrity="sha256-ZNeWQ2BlZAJ3lIL4Jrwr3/GgglAHfJI67dC022schYA=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+English
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/zh/docs/crd/hub/>
+简体中文
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/><strong>Home</strong></a></li>
+<li><strong>User Guide</strong>
+<ul>
+<li>
+<a href=/docs/user/preparation/>Preparation</a></li>
+<li>
+<a href=/docs/crd/>CRD</a>
+<ul>
+<li>
+<a href=/docs/crd/hub/ class=active>Hub</a></li>
+<li>
+<a href=/docs/crd/route/>Route</a></li>
+<li>
+<a href=/docs/crd/route_policy/>Route Policy</a></li>
+<li>
+<a href=/docs/crd/mcs_api/>MCS API</a></li>
+</ul>
+</li>
+<li>Examples
+<ul>
+<li>
+<a href=/docs/user/examples/default/>Default Example</a></li>
+<li>
+<a href=/docs/user/examples/control-plane-unreachable/>Control Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/data-plane-unreachable/>Data Plane Unreachable</a></li>
+<li>
+<a href=/docs/user/examples/forward-dial/>Forward Local Port to Cluster</a></li>
+<li>
+<a href=/docs/user/examples/forward-listen/>Forward Service to Local Port</a></li>
+<li>
+<a href=/docs/user/examples/manual/>Manual Mapping Service</a></li>
+</ul>
+</li>
+<li>
+<a href=/docs/user/handshake/>Handshake</a></li>
+<li>
+<a href=/docs/user/with-service-mesh/>With Service Mesh</a></li>
+</ul>
+</li>
+<li>
+<a href=/docs/principle/>Technology Principle</a></li>
+<li>
+<a href=/docs/glossary/>Glossary</a></li>
+<li>
+<a href=/docs/roadmap/>Roadmap</a></li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Hub</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#hub>Hub</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=hub>
+Hub
+<a class=anchor href=#hub>#</a>
+</h1>
+<p>Hub CR defines a Hub, which is the address to communicate with other Hubs,
+For now only one cluster is supported, in the future it will be added to support any possible device as a Hub, even your laptop</p>
+<p>Hub provides the basis for
+<a href=/docs/crd/route_policy/>RoutePolicy CR</a> and
+<a href=/docs/crd/hub/>Route CR</a> calculations</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Hub</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>gateway</span>:
+    <span style=color:#75715e># Reachable indicates that this Hub is reachable</span>
+    <span style=color:#f92672>reachable</span>: <span style=color:#66d9ef>true</span>
+
+    <span style=color:#75715e># Address is the address of this Hub, used when Reachable is true</span>
+    <span style=color:#f92672>address</span>: <span style=color:#ae81ff>1.1.1.1</span>:<span style=color:#ae81ff>31087</span>
+
+    <span style=color:#75715e># NavigationWay is a list of Hub names through which this Hub needs to reach other Hubs, used when this Hub reaches other Hubs,</span>
+    <span style=color:#75715e># used by RoutePolicy to calculate Routes</span>
+    <span style=color:#f92672>navigationWay</span>:
+      - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e># ReceptionWay is a list of Hub names through which other hubs needs to reach this Hub,</span>
+    <span style=color:#75715e># used when other Hubs reaches this Hub and Reachable is true,</span>
+    <span style=color:#75715e># used by RoutePolicy to calculate Routes</span>
+    <span style=color:#f92672>receptionWay</span>:
+      - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e>#  NavigationProxy is a list of proxies through which this Hub to reach other Hubs must need to go through,</span>
+    <span style=color:#75715e># used when this Hub reaches other Hubs</span>
+    <span style=color:#f92672>navigationProxy</span>:
+      - <span style=color:#f92672>proxy</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e># ReceptionProxy is a list of proxies through which other Hubs to reach this Hub must need to go through,</span>
+    <span style=color:#75715e># used when other Hubs reaches this Hub and Reachable is true</span>
+    <span style=color:#f92672>receptionProxy</span>:
+      - <span style=color:#f92672>proxy</span>: <span style=color:#ae81ff>hubname</span>
+
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="Last modified by Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-09-05</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/en/docs/crd/hub.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#hub>Hub</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

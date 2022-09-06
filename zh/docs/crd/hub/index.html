@@ -1,0 +1,210 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Hub #  Hub CR 定义一个 Hub, 是与其他 Hub 通信地址, 现在只支持一个集群, 未来会添加支持任何可能得设备作为 Hub, 甚至是你的笔记本也行
+Hub 为 RoutePolicy CR 和 Route CR 提供了计算的依据
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Hub">
+<meta property="og:description" content="Hub #  Hub CR 定义一个 Hub, 是与其他 Hub 通信地址, 现在只支持一个集群, 未来会添加支持任何可能得设备作为 Hub, 甚至是你的笔记本也行
+Hub 为 RoutePolicy CR 和 Route CR 提供了计算的依据
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/crd/hub/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<title>Hub | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/crd/hub/ title=Hub>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.1e39af06d544cbcab2a11acee3ce5cf27190d4d141355bf50a555ccf3bdedc09.js integrity="sha256-HjmvBtVEy8qyoRrO485c8nGQ1NFBNVv1ClVczzve3Ak=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/docs/crd/hub/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/zh/><strong>主页</strong></a></li>
+<li><strong>用户指引</strong>
+<ul>
+<li>
+<a href=/zh/docs/user/preparation/>准备工作</a></li>
+<li>
+<a href=/zh/docs/crd/>CRD</a>
+<ul>
+<li>
+<a href=/zh/docs/crd/hub/ class=active>Hub</a></li>
+<li>
+<a href=/zh/docs/crd/route/>Route</a></li>
+<li>
+<a href=/zh/docs/crd/route_policy/>Route Policy</a></li>
+<li>
+<a href=/zh/docs/crd/mcs_api/>MCS API</a></li>
+</ul>
+</li>
+<li>示例
+<ul>
+<li>
+<a href=/zh/docs/user/examples/default/>默认示例</a></li>
+<li>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>控制面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-listen/>创建并转发集群的 Service 端口到本地端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/manual/>手动映射服务</a></li>
+</ul>
+</li>
+<li>
+<a href=/zh/docs/user/handshake/>握手</a></li>
+<li>
+<a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
+</ul>
+</li>
+<li>
+<a href=/zh/docs/principle/>技术原理</a></li>
+<li>
+<a href=/zh/docs/glossary/>术语</a></li>
+<li>
+<a href=/zh/docs/roadmap/>路线图</a></li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Hub</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#hub>Hub</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=hub>
+Hub
+<a class=anchor href=#hub>#</a>
+</h1>
+<p>Hub CR 定义一个 Hub, 是与其他 Hub 通信地址,
+现在只支持一个集群, 未来会添加支持任何可能得设备作为 Hub, 甚至是你的笔记本也行</p>
+<p>Hub 为
+<a href=/zh/docs/crd/route_policy/>RoutePolicy CR</a> 和
+<a href=/zh/docs/crd/hub/>Route CR</a> 提供了计算的依据</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Hub</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>gateway</span>:
+    <span style=color:#75715e># 表示这个 Hub 是否是可以被连接的</span>
+    <span style=color:#f92672>reachable</span>: <span style=color:#66d9ef>true</span>
+
+    <span style=color:#75715e># 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub</span>
+    <span style=color:#f92672>address</span>: <span style=color:#ae81ff>1.1.1.1</span>:<span style=color:#ae81ff>31087</span>
+
+    <span style=color:#75715e># 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用</span>
+    <span style=color:#75715e># 被 RoutePolicy 用来计算 Route</span>
+    <span style=color:#f92672>navigationWay</span>:
+      - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e># 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub</span>
+    <span style=color:#75715e># 被 RoutePolicy 用来计算 Route</span>
+    <span style=color:#f92672>receptionWay</span>:
+      - <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e># 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。</span>
+    <span style=color:#75715e># 当此 Hub 到达其他 Hub 时使用</span>
+    <span style=color:#f92672>navigationProxy</span>:
+      - <span style=color:#f92672>proxy</span>: <span style=color:#ae81ff>hubname</span>
+
+    <span style=color:#75715e># 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。</span>
+    <span style=color:#75715e># 当此 Hub 到达其他 Hub 时使用</span>
+    <span style=color:#f92672>receptionProxy</span>:
+      - <span style=color:#f92672>proxy</span>: <span style=color:#ae81ff>hubname</span>
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="最后修改者 Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-09-05</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/crd/hub.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#hub>Hub</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

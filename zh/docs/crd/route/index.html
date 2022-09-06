@@ -1,0 +1,190 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Route #  Route CR 定义 Hub 之间的单个 Service 的路由规则
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Route">
+<meta property="og:description" content="Route #  Route CR 定义 Hub 之间的单个 Service 的路由规则
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ferryproxy.io/zh/docs/crd/route/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<title>Route | Ferry Proxy</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=alternate hreflang=en href=https://ferryproxy.io/docs/crd/route/ title=Route>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.1e39af06d544cbcab2a11acee3ce5cf27190d4d141355bf50a555ccf3bdedc09.js integrity="sha256-HjmvBtVEy8qyoRrO485c8nGQ1NFBNVv1ClVczzve3Ak=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/zh/><img src=/logo.png alt=Logo><span>Ferry Proxy</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul class=book-languages>
+<li>
+<input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between">
+<a role=button class="flex align-center">
+<img src=/svg/translate.svg class=book-icon alt=Languages>
+简体中文
+</a>
+</label>
+<ul>
+<li>
+<a href=https://ferryproxy.io/docs/crd/route/>
+English
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/zh/><strong>主页</strong></a></li>
+<li><strong>用户指引</strong>
+<ul>
+<li>
+<a href=/zh/docs/user/preparation/>准备工作</a></li>
+<li>
+<a href=/zh/docs/crd/>CRD</a>
+<ul>
+<li>
+<a href=/zh/docs/crd/hub/>Hub</a></li>
+<li>
+<a href=/zh/docs/crd/route/ class=active>Route</a></li>
+<li>
+<a href=/zh/docs/crd/route_policy/>Route Policy</a></li>
+<li>
+<a href=/zh/docs/crd/mcs_api/>MCS API</a></li>
+</ul>
+</li>
+<li>示例
+<ul>
+<li>
+<a href=/zh/docs/user/examples/default/>默认示例</a></li>
+<li>
+<a href=/zh/docs/user/examples/control-plane-unreachable/>控制面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/data-plane-unreachable/>数据面集群不可达</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-dial/>转发本地端口到集群的端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/forward-listen/>创建并转发集群的 Service 端口到本地端口</a></li>
+<li>
+<a href=/zh/docs/user/examples/manual/>手动映射服务</a></li>
+</ul>
+</li>
+<li>
+<a href=/zh/docs/user/handshake/>握手</a></li>
+<li>
+<a href=/zh/docs/user/with-service-mesh/>和服务网格一起使用</a></li>
+</ul>
+</li>
+<li>
+<a href=/zh/docs/principle/>技术原理</a></li>
+<li>
+<a href=/zh/docs/glossary/>术语</a></li>
+<li>
+<a href=/zh/docs/roadmap/>路线图</a></li>
+</ul>
+<ul>
+<li>
+<a href=https://github.com/ferryproxy/ferry target=_blank rel=noopener>
+Code Source
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Route</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#route>Route</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=route>
+Route
+<a class=anchor href=#route>#</a>
+</h1>
+<p>Route CR 定义 Hub 之间的单个 Service 的路由规则</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Route</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>export</span>:
+    <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
+    <span style=color:#f92672>service</span>:
+      <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+  <span style=color:#f92672>import</span>:
+    <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-0</span>
+    <span style=color:#f92672>service</span>:
+      <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>default</span>
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>app-1</span>
+</code></pre></div><p>示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default
+导入和导出的 name 和 namespace 不必一样</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="最后修改者 Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>2022-09-05</span>
+</a>
+</div>
+<div>
+<a class="flex align-center" href=https://github.com/ferryproxy/website/edit/main/content/zh/docs/crd/route.md target=_blank rel=noopener>
+<img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span>
+</a>
+</div>
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#route>Route</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

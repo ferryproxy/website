@@ -19,15 +19,15 @@ title: "手动映射服务"
 ### 定义从其他集群导出某一服务
 
 ``` bash
-ferryctl local manual import --reachable=true "--tunnel-address=${HOST_IP}:31000" --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080
+ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.test --import-service=web-1-8080.ferry-tunnel-system --port=8080
 ```
 
 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
 
-    --reachable=true 当前集群是否可以达到  
     --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址  
-    --export-host-port 从其他集群导出的服务端口  
-    --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  
+    --port 从其他集群导出的服务端口  
+    --export-service 从其他集群导出的服务
+    --import-service 当前集群从其他集群导出的服务建立的映射服务 
 
 需要[握手](/docs/user/handshake)
 

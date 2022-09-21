@@ -10,10 +10,10 @@ This document outlines some goals, non-goals, and future aspirations for Ferry a
 - [x] Support multi-level proxy
 - [x] Support for [mcs api](https://github.com/kubernetes-sigs/mcs-api)
 - [x] Load balancing
+- [x] Monitor status and display in Hub's status
 
 ## TODO
 - [ ] Support complete uninstallation of itself and cleanup
-- [ ] Monitor status and display in Hub's status
 - [ ] Adapting to the ecosystem
 - [ ] Multi-replicas tunnels for a single Hub
 - [ ] SSH-via-QUIC: QUIC is used to replace TCP in SSH, no need to reconnect after an IP change, expect better performance

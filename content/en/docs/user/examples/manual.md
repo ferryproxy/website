@@ -19,15 +19,15 @@ The routing rules configured by this feature are not controlled by the ferry-con
 ### Define exporting a service from another cluster
 
 ``` bash
-ferryctl local manual import --reachable=true "--tunnel-address=${HOST_IP}:31000" --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080
+ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.test --import-service=web-1-8080.ferry-tunnel-system --port=8080
 ```
 
 This command describes the mapping of the web-1.test.svc:8080 service of the export service cluster to the web-1-8080.ferry-tunnel-system:8080 service of the current cluster
 
-    --reachable=true Is the current cluster is reachable  
     --tunnel-address The address of the Tunnel if the current cluster is reachable  
-    --export-host-port Service ports exported from other clusters  
-    --import-service-name Mapped services created by the current cluster from services exported from other clusters (by default under the ferry-tunnel-system namespace)  
+    --port The port of the service exported from the other cluster  
+    --export-service Service exported from other cluster
+    --import-service Mapping service created by the current cluster from services exported from other clusters 
 
 Need [handshake](/docs/user/handshake)
 

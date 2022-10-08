@@ -5,23 +5,23 @@
 <meta name=description content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
 The routing rules configured by this feature are not controlled by the ferry-controller.
 Preparation #   Preparation
-Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.">
+Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Manual Mapping Service">
 <meta property="og:description" content="Manual Mapping Service #  Why this is needed #  In some cluster unreachability scenarios, the apiserver address of the data plane needs to be exposed to the control plane in advance so that the control plane can access the apiserver of the data plane.
 The routing rules configured by this feature are not controlled by the ferry-controller.
 Preparation #   Preparation
-Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.">
+Manual Mapping Service #  Define exporting a service from another cluster #  ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/user/examples/manual/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
+<meta property="article:modified_time" content="2022-09-21T13:56:55+08:00">
 <title>Manual Mapping Service | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/user/examples/manual/ title=手动映射服务>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.64d7964360656402779482f826bc2bdff1a08250077c923aedd0b4db6b1c8580.js integrity="sha256-ZNeWQ2BlZAJ3lIL4Jrwr3/GgglAHfJI67dC022schYA=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.5b8dec83c81c519d544113901892fd9a0082beec2adde7939bbdd29296ac85fa.js integrity="sha256-W43sg8gcUZ1UQROQGJL9mgCCvuwq3eeTm73Skpashfo=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -174,12 +174,12 @@ Manual Mapping Service
 Define exporting a service from another cluster
 <a class=anchor href=#define-exporting-a-service-from-another-cluster>#</a>
 </h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local manual import --reachable<span style=color:#f92672>=</span>true <span style=color:#e6db74>&#34;--tunnel-address=</span><span style=color:#e6db74>${</span>HOST_IP<span style=color:#e6db74>}</span><span style=color:#e6db74>:31000&#34;</span> --export-host-port<span style=color:#f92672>=</span>web-1.test.svc:8080 --import-service-name<span style=color:#f92672>=</span>web-1-8080
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local manual import --reachable<span style=color:#f92672>=</span>true --tunnel-address<span style=color:#f92672>=</span>tunneladdress:31000 --export-service<span style=color:#f92672>=</span>web-1.test --import-service<span style=color:#f92672>=</span>web-1-8080.ferry-tunnel-system --port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>
 </code></pre></div><p>This command describes the mapping of the web-1.test.svc:8080 service of the export service cluster to the web-1-8080.ferry-tunnel-system:8080 service of the current cluster</p>
-<pre><code>--reachable=true Is the current cluster is reachable  
---tunnel-address The address of the Tunnel if the current cluster is reachable  
---export-host-port Service ports exported from other clusters  
---import-service-name Mapped services created by the current cluster from services exported from other clusters (by default under the ferry-tunnel-system namespace)  
+<pre><code>--tunnel-address The address of the Tunnel if the current cluster is reachable  
+--port The port of the service exported from the other cluster  
+--export-service Service exported from other cluster
+--import-service Mapping service created by the current cluster from services exported from other clusters 
 </code></pre>
 <p>Need
 <a href=/docs/user/handshake/>handshake</a></p>
@@ -200,9 +200,9 @@ go install ./cmd/ferryctl
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="Last modified by Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/108b9b1883532f8786f89e1738c94a87b4d8603e title="Last modified by Shiming Zhang | 2022-09-21" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-08-04</span>
+<span>2022-09-21</span>
 </a>
 </div>
 <div>

@@ -5,8 +5,8 @@
 <meta name=description content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
 准备工作 #   准备工作
-手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
---reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  需要 握手
+手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.test --import-service=web-1-8080.ferry-tunnel-system --port=8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
+--tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --port 从其他集群导出的服务端口 --export-service 从其他集群导出的服务 --import-service 当前集群从其他集群导出的服务建立的映射服务  需要 握手
 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
 要求: Docker, Kind, Go
 git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/hack/start-environment.sh manual 将会使用 Kind 启动两个集群, 并配置好两个集群之间的服务路由规则">
@@ -15,21 +15,21 @@ git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/h
 <meta property="og:description" content="手动映射服务 #  为什么需要这个 #  在某些集群不可达的场景里, 需要提前暴露数据面的 apiserver 地址给控制面, 这样控制面就可以访问数据面的 apiserver
 由该功能配置的路由规则不受 ferry-controller 的控制
 准备工作 #   准备工作
-手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true &#34;--tunnel-address=${HOST_IP}:31000&#34; --export-host-port=web-1.test.svc:8080 --import-service-name=web-1-8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
---reachable=true 当前集群是否可以达到 --tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --export-host-port 从其他集群导出的服务端口 --import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  需要 握手
+手动映射服务 #  定义从其他集群导出某一服务 #  ferryctl local manual import --reachable=true --tunnel-address=tunneladdress:31000 --export-service=web-1.test --import-service=web-1-8080.ferry-tunnel-system --port=8080 这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务
+--tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址 --port 从其他集群导出的服务端口 --export-service 从其他集群导出的服务 --import-service 当前集群从其他集群导出的服务建立的映射服务  需要 握手
 快速在本地拉起测试环境 #  如果你没有可以测试集群又想快速尝试可以按照下面的流程
 要求: Docker, Kind, Go
 git clone https://github.com/ferryproxy/ferry go install ./cmd/ferryctl ./test/hack/start-environment.sh manual 将会使用 Kind 启动两个集群, 并配置好两个集群之间的服务路由规则">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/user/examples/manual/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-04T19:19:00+08:00">
+<meta property="article:modified_time" content="2022-09-21T13:56:55+08:00">
 <title>手动映射服务 | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/user/examples/manual/ title="Manual Mapping Service">
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.1e39af06d544cbcab2a11acee3ce5cf27190d4d141355bf50a555ccf3bdedc09.js integrity="sha256-HjmvBtVEy8qyoRrO485c8nGQ1NFBNVv1ClVczzve3Ak=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.3da6c2937d1b58635a0253c9c6dbc6ac9073892ec021f2bbd03e64395f405be3.js integrity="sha256-PabCk30bWGNaAlPJxtvGrJBziS7AIfK70D5kOV9AW+M=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -182,12 +182,12 @@ Code Source
 定义从其他集群导出某一服务
 <a class=anchor href=#%e5%ae%9a%e4%b9%89%e4%bb%8e%e5%85%b6%e4%bb%96%e9%9b%86%e7%be%a4%e5%af%bc%e5%87%ba%e6%9f%90%e4%b8%80%e6%9c%8d%e5%8a%a1>#</a>
 </h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local manual import --reachable<span style=color:#f92672>=</span>true <span style=color:#e6db74>&#34;--tunnel-address=</span><span style=color:#e6db74>${</span>HOST_IP<span style=color:#e6db74>}</span><span style=color:#e6db74>:31000&#34;</span> --export-host-port<span style=color:#f92672>=</span>web-1.test.svc:8080 --import-service-name<span style=color:#f92672>=</span>web-1-8080
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ferryctl local manual import --reachable<span style=color:#f92672>=</span>true --tunnel-address<span style=color:#f92672>=</span>tunneladdress:31000 --export-service<span style=color:#f92672>=</span>web-1.test --import-service<span style=color:#f92672>=</span>web-1-8080.ferry-tunnel-system --port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>
 </code></pre></div><p>这条命令描述将导出服务集群的 web-1.test.svc:8080 服务映射到当前集群的 web-1-8080.ferry-tunnel-system:8080 服务</p>
-<pre><code>--reachable=true 当前集群是否可以达到  
---tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址  
---export-host-port 从其他集群导出的服务端口  
---import-service-name 当前集群从其他集群导出的服务建立的映射服务 (默认在 ferry-tunnel-system 命名空间下)  
+<pre><code>--tunnel-address 当前集群如果可以达到的情况下 Tunnel 的地址  
+--port 从其他集群导出的服务端口  
+--export-service 从其他集群导出的服务
+--import-service 当前集群从其他集群导出的服务建立的映射服务 
 </code></pre>
 <p>需要
 <a href=/zh/docs/user/handshake/>握手</a></p>
@@ -208,9 +208,9 @@ go install ./cmd/ferryctl
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/c9e4bb8c3b83d6652dc103c91eb4a33a6f2f0960 title="最后修改者 Shiming Zhang | 2022-08-04" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/108b9b1883532f8786f89e1738c94a87b4d8603e title="最后修改者 Shiming Zhang | 2022-09-21" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-08-04</span>
+<span>2022-09-21</span>
 </a>
 </div>
 <div>

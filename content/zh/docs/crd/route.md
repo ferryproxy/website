@@ -9,6 +9,9 @@ Route CR 定义 Hub 之间的单个 Service 的路由规则
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: Route
+metadata:
+  name: route-name
+  namespace: ferry-system
 spec:
   export:
     hubName: cluster-1

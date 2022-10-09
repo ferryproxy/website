@@ -9,6 +9,9 @@ Route CR Define a routing rules for individual services between hubs
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: Route
+metadata:
+  name: route-name
+  namespace: ferry-system
 spec:
   export:
     hubName: cluster-1

@@ -12,6 +12,9 @@ Hub provides the basis for [RoutePolicy CR][1] and [Route CR][2] calculations
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: Hub
+metadata:
+  name: hub-name
+  namespace: ferry-system
 spec:
   gateway:
     # Reachable indicates that this Hub is reachable

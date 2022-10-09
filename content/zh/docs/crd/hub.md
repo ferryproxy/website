@@ -12,6 +12,9 @@ Hub 为 [RoutePolicy CR][1] 和 [Route CR][2] 提供了计算的依据
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: Hub
+metadata:
+  name: hub-name
+  namespace: ferry-system
 spec:
   gateway:
     # 表示这个 Hub 是否是可以被连接的

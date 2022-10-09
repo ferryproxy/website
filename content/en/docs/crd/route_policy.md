@@ -12,6 +12,9 @@ RoutePolicy is used to define generic composite routing rules, which will eventu
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -31,6 +34,9 @@ This is a CR equivalent to the [Route CR][1] example
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -59,6 +65,9 @@ Even if it is written in a different RoutePolicy CR or [Route CR][1], multiple b
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-0
@@ -87,6 +96,9 @@ However, it is important to note that matching routes cannot modify the imported
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -104,6 +116,9 @@ This routing rule will match all services with `export=enabled` label in namespa
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1

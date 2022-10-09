@@ -12,6 +12,9 @@ RoutePolicy 是用于定义通用的复合型的路由规则, 最终会转换成
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -31,6 +34,9 @@ spec:
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -59,6 +65,9 @@ spec:
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-0
@@ -87,6 +96,9 @@ spec:
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1
@@ -104,6 +116,9 @@ spec:
 ``` yaml
 apiVersion: traffic.ferryproxy.io/v1alpha2
 kind: RoutePolicy
+metadata:
+  name: policy-name
+  namespace: ferry-system
 spec:
   exports:
     - hubName: cluster-1

@@ -4,22 +4,22 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Hub #  Hub CR defines a Hub, which is the address to communicate with other Hubs, For now only one cluster is supported, in the future it will be added to support any possible device as a Hub, even your laptop
 Hub provides the basis for RoutePolicy CR and Route CR calculations
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub metadata: name: hub-name namespace: ferry-system spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Hub">
 <meta property="og:description" content="Hub #  Hub CR defines a Hub, which is the address to communicate with other Hubs, For now only one cluster is supported, in the future it will be added to support any possible device as a Hub, even your laptop
 Hub provides the basis for RoutePolicy CR and Route CR calculations
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub metadata: name: hub-name namespace: ferry-system spec: gateway: # Reachable indicates that this Hub is reachable reachable: true # Address is the address of this Hub, used when Reachable is true address: 1.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/docs/crd/hub/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<meta property="article:modified_time" content="2022-10-09T14:14:25+08:00">
 <title>Hub | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=zh href=https://ferryproxy.io/zh/docs/crd/hub/ title=Hub>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5b8dec83c81c519d544113901892fd9a0082beec2adde7939bbdd29296ac85fa.js integrity="sha256-W43sg8gcUZ1UQROQGJL9mgCCvuwq3eeTm73Skpashfo=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.79affc154398e8b2f533b6cb8608da9d7e1d2ff5cf1a3e26bee834e32a123b53.js integrity="sha256-ea/8FUOY6LL1M7bLhgjanX4dL/XPGj4mvug04yoSO1M=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -148,6 +148,9 @@ For now only one cluster is supported, in the future it will be added to support
 <a href=/docs/crd/hub/>Route CR</a> calculations</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Hub</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>hub-name</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
 <span style=color:#f92672>spec</span>:
   <span style=color:#f92672>gateway</span>:
     <span style=color:#75715e># Reachable indicates that this Hub is reachable</span>
@@ -180,9 +183,9 @@ For now only one cluster is supported, in the future it will be added to support
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="Last modified by Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/ac342d4c618e46f979678d1696b4de805406f00f title="Last modified by Shiming Zhang | 2022-10-09" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-09-05</span>
+<span>2022-10-09</span>
 </a>
 </div>
 <div>

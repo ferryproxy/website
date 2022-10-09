@@ -4,22 +4,22 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Hub #  Hub CR 定义一个 Hub, 是与其他 Hub 通信地址, 现在只支持一个集群, 未来会添加支持任何可能得设备作为 Hub, 甚至是你的笔记本也行
 Hub 为 RoutePolicy CR 和 Route CR 提供了计算的依据
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub metadata: name: hub-name namespace: ferry-system spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Hub">
 <meta property="og:description" content="Hub #  Hub CR 定义一个 Hub, 是与其他 Hub 通信地址, 现在只支持一个集群, 未来会添加支持任何可能得设备作为 Hub, 甚至是你的笔记本也行
 Hub 为 RoutePolicy CR 和 Route CR 提供了计算的依据
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Hub metadata: name: hub-name namespace: ferry-system spec: gateway: # 表示这个 Hub 是否是可以被连接的 reachable: true # 在 reachable 为 true 时, 其他 Hub 会根据这个地址连接本 Hub address: 1.1.1.1:31087 # 这是一个 Hub 名的列表，本 Hub 需要通过它来到达其他 Hub 使用 # 被 RoutePolicy 用来计算 Route navigationWay: - hubName: hubname # 这是一个 Hub 名的列表，其他 Hub 需要通过它达到本 Hub # 被 RoutePolicy 用来计算 Route receptionWay: - hubName: hubname # 是一个代理的列表，这个 Hub 要到达其他 Hub 必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 navigationProxy: - proxy: hubname # 是一个代理的列表，其他 Hub 到达到本 Hub 达必须通过这个代理。 # 当此 Hub 到达其他 Hub 时使用 receptionProxy: - proxy: hubname ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/crd/hub/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<meta property="article:modified_time" content="2022-10-09T14:14:25+08:00">
 <title>Hub | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/crd/hub/ title=Hub>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.3da6c2937d1b58635a0253c9c6dbc6ac9073892ec021f2bbd03e64395f405be3.js integrity="sha256-PabCk30bWGNaAlPJxtvGrJBziS7AIfK70D5kOV9AW+M=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.4e7dfe947b0955392956537dd77f992ed03d3e682810eb21e22884efb77872af.js integrity="sha256-Tn3+lHsJVTkpVlN913+ZLtA9PmgoEOsh4iiE77d4cq8=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -148,6 +148,9 @@ Hub
 <a href=/zh/docs/crd/hub/>Route CR</a> 提供了计算的依据</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Hub</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>hub-name</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
 <span style=color:#f92672>spec</span>:
   <span style=color:#f92672>gateway</span>:
     <span style=color:#75715e># 表示这个 Hub 是否是可以被连接的</span>
@@ -178,9 +181,9 @@ Hub
 </code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="最后修改者 Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/ac342d4c618e46f979678d1696b4de805406f00f title="最后修改者 Shiming Zhang | 2022-10-09" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-09-05</span>
+<span>2022-10-09</span>
 </a>
 </div>
 <div>

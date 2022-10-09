@@ -3,21 +3,21 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Route #  Route CR 定义 Hub 之间的单个 Service 的路由规则
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route metadata: name: route-name namespace: ferry-system spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Route">
 <meta property="og:description" content="Route #  Route CR 定义 Hub 之间的单个 Service 的路由规则
-apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
+apiVersion: traffic.ferryproxy.io/v1alpha2 kind: Route metadata: name: route-name namespace: ferry-system spec: export: hubName: cluster-1 service: namespace: default name: app-1 import: hubName: cluster-0 service: namespace: default name: app-1 示例的 CR 描述了 Hub cluster-1 导出 Service app-1.default, 在 Hub cluster-0 导入它并命名为 app-1.default 导入和导出的 name 和 namespace 不必一样">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ferryproxy.io/zh/docs/crd/route/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-05T13:20:37+08:00">
+<meta property="article:modified_time" content="2022-10-09T14:14:25+08:00">
 <title>Route | Ferry Proxy</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=alternate hreflang=en href=https://ferryproxy.io/docs/crd/route/ title=Route>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.3da6c2937d1b58635a0253c9c6dbc6ac9073892ec021f2bbd03e64395f405be3.js integrity="sha256-PabCk30bWGNaAlPJxtvGrJBziS7AIfK70D5kOV9AW+M=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.4e7dfe947b0955392956537dd77f992ed03d3e682810eb21e22884efb77872af.js integrity="sha256-Tn3+lHsJVTkpVlN913+ZLtA9PmgoEOsh4iiE77d4cq8=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLXJP3JP3M"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HLXJP3JP3M',{anonymize_ip:!1})}</script>
@@ -142,6 +142,9 @@ Route
 <p>Route CR 定义 Hub 之间的单个 Service 的路由规则</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>traffic.ferryproxy.io/v1alpha2</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Route</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>route-name</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>ferry-system</span>
 <span style=color:#f92672>spec</span>:
   <span style=color:#f92672>export</span>:
     <span style=color:#f92672>hubName</span>: <span style=color:#ae81ff>cluster-1</span>
@@ -158,9 +161,9 @@ Route
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
-<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/84d8eaea230c498f2da0b1349f97bdbafb8e8b31 title="最后修改者 Shiming Zhang | 2022-09-05" target=_blank rel=noopener>
+<div><a class="flex align-center" href=https://github.com/ferryproxy/website/commit/ac342d4c618e46f979678d1696b4de805406f00f title="最后修改者 Shiming Zhang | 2022-10-09" target=_blank rel=noopener>
 <img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>2022-09-05</span>
+<span>2022-10-09</span>
 </a>
 </div>
 <div>
